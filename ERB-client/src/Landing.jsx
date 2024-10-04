@@ -1,4 +1,4 @@
-
+import { Link } from "react-router-dom"
 
 const Landing = () =>
 {
@@ -7,7 +7,15 @@ const Landing = () =>
     return(
 
         <div>
-            <h4>suck my dick</h4>
+            <Link to={"/portfolio"}>
+                <button>Portfolio</button>
+            </Link>
+            <Link to={"/products"}>
+                <button>View Products</button>
+            </Link>
+            <Link to={"/about-us"}>
+                <button>About EBD</button>
+            </Link>
         </div>
     )
 }

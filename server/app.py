@@ -9,5 +9,11 @@ from models.photo import Photo
 from models.portfolio import Portfolio
 from models.admin import Admin
 
+# class Portfolios(Resource):
+#     def get(self):
+
+
+
+
 if __name__ == "__main__":
     app.run(port=5555, debug=True)
