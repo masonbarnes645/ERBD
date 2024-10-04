@@ -8,6 +8,8 @@ DATABASE = os.environ.get("DB_URI", f"sqlite:///{os.path.join(BASE_DIR, 'app.db'
 from models.photo import Photo
 from models.portfolio import Portfolio
 from models.admin import Admin
+from models.product import Product
+from models.tag import Tag
 
 # class Portfolios(Resource):
 #     def get(self):

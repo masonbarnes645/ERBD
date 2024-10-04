@@ -7,6 +7,7 @@ class Photo(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     portfolio_id = db.Column(db.Integer, db.ForeignKey('portfolios.id'))
+    image_url = db.Column(db.String, nullable=False)
 
 
     portfolio = db.relationship("Portfolio", back_populates="photos")

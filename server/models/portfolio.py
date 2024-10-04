@@ -7,7 +7,7 @@ class Portfolio(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String)
-    created_at = db.Column(db.DateTime, server_default=db.func.now())
-    updated_at = db.Column(db.DateTime, onupdate=db.func.now())
+    description = db.Column(db.String)
+
 
     photos = db.relationship("Photo", back_populates="portfolio")

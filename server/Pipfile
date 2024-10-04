@@ -11,6 +11,7 @@ flask-cors = "*"
 flask-migrate = "*"
 flask-session = "*"
 sqlalchemy = "*"
+faker = "*"
 
 [dev-packages]
 
