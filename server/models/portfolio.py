@@ -1,8 +1,8 @@
-from models.__init__ import db
+from models.__init__ import db, SerializerMixin
 
 
 
-class Portfolio(db.Model):
+class Portfolio(db.Model, SerializerMixin):
     __tablename__= "portfolios"
 
     id = db.Column(db.Integer, primary_key=True)
