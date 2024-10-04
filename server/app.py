@@ -19,10 +19,19 @@ class Portfolios(Resource):
             return make_response([portfolio.to_dict() for portfolio in Portfolio.query], 200)
         except Exception as e:
             return make_response({"error": str(e)}, 404)
+        
+
+class Products(Resource):
+    def get(self):
+        try:
+            return make_response([product.to_dict() for product in Product.query], 200)
+        except Exception as e:
+            return make_response({"error": str(e)}, 404)
 
 
 
 api.add_resource(Portfolios, "/portfolios")
+api.add_resource(Products, "/products")
 
 
 if __name__ == "__main__":

@@ -1,7 +1,7 @@
-from models.__init__ import db
+from models.__init__ import db, SerializerMixin
 from models.product_tags import product_tags
 
-class Product(db.Model):
+class Product(db.Model, SerializerMixin):
     __tablename__ = "products"
 
     id = db.Column(db.Integer, primary_key=True)
