@@ -27,11 +27,36 @@ class Products(Resource):
             return make_response([product.to_dict() for product in Product.query], 200)
         except Exception as e:
             return make_response({"error": str(e)}, 404)
+        
+
+class PortfolioById(Resource):
+    def get(self,id):
+        try:
+            portfolio = db.session.get(Portfolio, id)
+            if portfolio is None:
+                return make_response({"error": str(e)}, 404)
+            else:
+                return make_response(portfolio.to_dict(), 200)
+        except Exception as e:
+            return make_response({"error": str(e)}, 404)
+
+class ProductById(Resource):
+    def get(self,id):
+        try:
+            product = db.session.get(Product, id)
+            if product is None:
+                return make_response({"error": str(e)}, 404)
+            else:
+                return make_response(product.to_dict(), 200)
+        except Exception as e:
+            return make_response({"error": str(e)}, 404)
 
 
 
 api.add_resource(Portfolios, "/portfolios")
 api.add_resource(Products, "/products")
+api.add_resource(PortfolioById, "/portfolios/<int:id>")
+api.add_resource(ProductById, "/products/<int:id>")
 
 
 if __name__ == "__main__":
