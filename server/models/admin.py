@@ -10,10 +10,8 @@ class Admin(db.Model, SerializerMixin):
     _password_hash = db.Column("password", db.String)
 
 
-    @hybrid_property
-    def password_hash(self):
-        raise AttributeError("Private Information")
-    
+    def authenticate(self, pass_check):
+        return bcrypt.check_password_hash(self._password_hash, pass_check)  
 
             
 

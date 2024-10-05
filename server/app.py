@@ -50,6 +50,47 @@ class ProductById(Resource):
                 return make_response(product.to_dict(), 200)
         except Exception as e:
             return make_response({"error": str(e)}, 404)
+        
+class Login(Resource):
+    def post(self):
+        try:
+            data = request.get_json()
+            username = data.get("username")
+            password = data.get("password")
+            user = Admin.query.filter_by(username=username).first()
+
+            if user and user.authenticate(password):
+                session["user_id"] = user.id
+                return make_response(200)
+            return make_response({"error": "Incorrect email or password"}, 401)
+        except Exception as e:
+            return make_response({"error": str(e)}, 422)
+        
+class CheckSession(Resource):
+    def get(self):
+        try:
+
+            user_id = session.get("user_id")
+
+
+            if not user_id:
+                return make_response({"message": "No user logged in"}, 401)
+
+            user = Admin.query.filter_by(id=user_id).first()
+
+
+            if user:
+                return make_response({"user": user.to_dict()}, 200)  
+
+
+            return make_response({"error": "User not found"}, 404)
+        
+        except Exception as e:
+            return make_response({"error": str(e)}, 422)
+
+            
+
+
 
 
 
@@ -57,6 +98,8 @@ api.add_resource(Portfolios, "/portfolios")
 api.add_resource(Products, "/products")
 api.add_resource(PortfolioById, "/portfolios/<int:id>")
 api.add_resource(ProductById, "/products/<int:id>")
+api.add_resource(Login, "/login")
+api.add_resource(CheckSession, "/check-session")
 
 
 if __name__ == "__main__":
