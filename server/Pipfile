@@ -13,6 +13,7 @@ flask-session = "*"
 sqlalchemy = "*"
 faker = "*"
 sqlalchemy-serializer = "*"
+flask-bcrypt = "*"
 
 [dev-packages]
 

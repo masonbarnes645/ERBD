@@ -6,6 +6,8 @@ from os import environ
 from flask_session import Session
 from flask_restful import Api
 from sqlalchemy import MetaData
+from flask_bcrypt import Bcrypt
+
 
 
 app = Flask(__name__)
@@ -26,5 +28,6 @@ app.config["SESSION_SQLALCHEMY"] = db
 
 CORS(app)
 Session(app)
+bcrypt = Bcrypt(app)
 
 
