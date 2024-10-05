@@ -61,7 +61,7 @@ class Login(Resource):
 
             if user and user.authenticate(password):
                 session["user_id"] = user.id
-                return make_response(200)
+                return make_response({"message": "Login successful"},200)
             return make_response({"error": "Incorrect email or password"}, 401)
         except Exception as e:
             return make_response({"error": str(e)}, 422)
@@ -69,20 +69,12 @@ class Login(Resource):
 class CheckSession(Resource):
     def get(self):
         try:
-
             user_id = session.get("user_id")
-
-
             if not user_id:
                 return make_response({"message": "No user logged in"}, 401)
-
             user = Admin.query.filter_by(id=user_id).first()
-
-
             if user:
                 return make_response({"user": user.to_dict()}, 200)  
-
-
             return make_response({"error": "User not found"}, 404)
         
         except Exception as e:
