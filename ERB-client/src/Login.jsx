@@ -1,25 +1,28 @@
 
-import { useContext } from "react"
+import { useContext, useState } from "react"
 import { UserContext } from "./usercontext"
 import toast from "react-hot-toast"
 
 const Login = () => {
     const { setUser } = useContext(UserContext)
+    const [username, setUsername] = useState()
+    const [password, setPassword] = useState()
 
-    const handleSubmit = (formData) => {
-        fetch("http://127.0.0.1:5555/login",{
-            method: "POST",
-            headers: {
-                "content-type": "application/json",
-            },
-            body: JSON.stringify({
-                username: formData.username,
-                password: formData.password,
-            })
+    const handleSubmit = () => {
+        preventDefault()
+        fetch("http://127.0.0.1:5555/login", {
+                method: "POST",
+                headers: {
+                    "content-type": "application/json",
+                },
+                body: JSON.stringify({
+                    username: username,
+                    password: password
+                })
         })
         .then((res) => {
-            if (res.ok){
-                res.json().then((data) =>{
+            if (res.ok) {
+                res.json().then((data) => {
                     setUser(data)
                     toast.success("Logged In")
                 })
@@ -27,26 +30,26 @@ const Login = () => {
             }
             else {
                 return res.json().then((errObj) => {
-                toast.error(errObj.error);
-            })
-        }
+                    toast.error(errObj.error);
+                })
+            }
         })
-        .catch((errObj) =>{
-            toast.error(errObj.error)
-        })
-
+    .catch((errObj) => {
+        toast.error(errObj.error)
+    })
+    
 
      }
-    return (
-        <form onSubmit={() => handleSubmit}>
-            <label>
-                username: <input type="text" username="username" />
-                password: <input type="text" password="password" />
-            </label>
-            <button type="submit" >Submit</button>
+return (
+    <form onSubmit={handleSubmit}>
+        <label>
+            username: <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
+            password: <input type="password"value={password} onChange={(e) => setPassword(e.target.value)} />
+        </label>
+        <button type="submit">Submit</button>
 
-        </form>
-    )
+    </form>
+)
 }
 
 export default Login
