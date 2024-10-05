@@ -4,6 +4,8 @@ import { createBrowserRouter } from "react-router-dom";
 import Portfolio from "./Portfolio";
 import Products from "./Products";
 import About from "./About";
+import ProductDetails from "./ProductDetails";
+import PortfolioDetails from "./PortfolioDetails";
 
 export const router =  createBrowserRouter(
     [
@@ -16,7 +18,7 @@ export const router =  createBrowserRouter(
                     element: <Landing />,
                 },
                 {
-                    path: "/portfolio",
+                    path: "/portfolios",
                     element: <Portfolio />
                 },
                 {
@@ -24,8 +26,16 @@ export const router =  createBrowserRouter(
                     element: <Products />
                 },
                 {
-                    path: "about-us",
+                    path: "/about-us",
                     element: <About />
+                },
+                {
+                    path: "/portfolios/:portfolioId",
+                    element: <PortfolioDetails />
+                },
+                {
+                    path: "/products/:productId",
+                    element: <ProductDetails />
                 }
             ]
         }

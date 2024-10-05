@@ -7,7 +7,7 @@ const Landing = () =>
     return(
 
         <div>
-            <Link to={"/portfolio"}>
+            <Link to={"/portfolios"}>
                 <button>Portfolio</button>
             </Link>
             <Link to={"/products"}>
