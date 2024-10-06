@@ -8,8 +8,8 @@ const Login = () => {
     const [username, setUsername] = useState()
     const [password, setPassword] = useState()
 
-    const handleSubmit = () => {
-        preventDefault()
+    const handleSubmit = (e) => {
+        e.preventDefault()
         fetch("http://127.0.0.1:5555/login", {
                 method: "POST",
                 headers: {
@@ -41,7 +41,7 @@ const Login = () => {
 
      }
 return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={(e) => handleSubmit(e)}>
         <label>
             username: <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
             password: <input type="password"value={password} onChange={(e) => setPassword(e.target.value)} />
