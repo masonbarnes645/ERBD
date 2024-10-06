@@ -25,6 +25,10 @@ db.init_app(app)
 
 app.config["SESSION_TYPE"] = "sqlalchemy"
 app.config["SESSION_SQLALCHEMY"] = db
+app.config["SESSION_PERMANENT"] = True
+
+app.secret_key = environ.get("SESSION_SECRET")
+
 
 CORS(app)
 Session(app)

@@ -4,15 +4,15 @@ import { UserProvider } from "./usercontext";
 
 const App = () => {
 
-  return(
-   <div>
-   <UserProvider>
-    <div>
-      <Outlet />
-    </div>
-    <Toaster />
-    </UserProvider> 
-    </div>
+  return (
+
+    <UserProvider>
+      <div>
+        <Outlet />
+      </div>
+      <Toaster />
+    </UserProvider>
+
   )
 
 }

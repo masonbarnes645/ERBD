@@ -2,11 +2,13 @@
 import { useContext, useState } from "react"
 import { UserContext } from "./usercontext"
 import toast from "react-hot-toast"
+import { useNavigate } from "react-router-dom"
 
 const Login = () => {
     const { setUser } = useContext(UserContext)
     const [username, setUsername] = useState()
     const [password, setPassword] = useState()
+    const navigate = useNavigate()
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -24,6 +26,7 @@ const Login = () => {
             if (res.ok) {
                 res.json().then((data) => {
                     setUser(data)
+                    navigate("/")
                     toast.success("Logged In")
                 })
 
