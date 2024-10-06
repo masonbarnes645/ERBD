@@ -19,6 +19,15 @@ class Portfolios(Resource):
             return make_response([portfolio.to_dict() for portfolio in Portfolio.query], 200)
         except Exception as e:
             return make_response({"error": str(e)}, 404)
+    def post(self):
+        data = request.get_json()
+        try:
+            new_portfolio = Portfolio(**data)
+            db.session.add(new_portfolio)
+            db.session.commit()
+        except Exception as e:
+            db.session.rollback()
+            return make_response({"error": str(e)}, 400)
         
 
 class Products(Resource):
@@ -27,6 +36,15 @@ class Products(Resource):
             return make_response([product.to_dict() for product in Product.query], 200)
         except Exception as e:
             return make_response({"error": str(e)}, 404)
+    def post(self):
+        data = request.get_json()
+        try:
+            new_product = Product(**data)
+            db.session.add(new_product)
+            db.session.commit()
+        except Exception as e:
+            db.session.rollback()
+            return make_response({"error": str(e)}, 400)
         
 
 class PortfolioById(Resource):
