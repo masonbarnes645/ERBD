@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react"
+import toast from "react-hot-toast"
 import { useNavigate, useParams } from "react-router-dom"
 
 
@@ -30,8 +31,8 @@ const PortfolioDetails = () => {
         })
         .then((res) =>{
             if (res.ok){
-
                 navigate("/")
+                toast.success("Portfolio Deleted")
             }
         })
 
