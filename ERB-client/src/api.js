@@ -46,3 +46,19 @@ export const deleteProduct = async (productId) => {
         toast.error(errObj.error);
     }
 }
+
+export const deletePortfolio = async (portfolioId) => {
+    try { 
+        const response = await fetch(`${API_URL}/portfolios/${portfolioId}`, {
+            method: "DELETE",
+        });
+        if (!response.ok) {
+            throw new Error("Failed to delete product");
+        }
+
+        toast.success("Product deleted successfully");
+    } 
+    catch (errObj) {
+        toast.error(errObj.error);
+    }
+}

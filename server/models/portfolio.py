@@ -10,4 +10,7 @@ class Portfolio(db.Model, SerializerMixin):
     description = db.Column(db.String)
 
 
+
     photos = db.relationship("Photo", back_populates="portfolio")
+
+    serialize_rules = ("-photos",)

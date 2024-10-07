@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import toast from "react-hot-toast"
 import { useNavigate, useParams } from "react-router-dom"
+import { deletePortfolio } from "./api"
 
 
 const PortfolioDetails = () => {
@@ -24,18 +25,9 @@ const PortfolioDetails = () => {
     }, [])
 
 
-    const handleDelete = () =>{
-        fetch(`http://127.0.0.1:5555/portfolios/${portfolioId}`, {
-            method: "DELETE",
-            headers:{}
-        })
-        .then((res) =>{
-            if (res.ok){
-                navigate("/")
-                toast.success("Portfolio Deleted")
-            }
-        })
-
+    const handleDelete = async () => {
+        await deletePortfolio(portfolioId)
+        navigate("/")
     }
 
     return(
