@@ -35,17 +35,23 @@ const ControlPanel = () => {
     const handleSubmit = async (postFormData, e) =>{
         e.preventDefault()    
         await postProduct(postFormData)
-
-
     }
     
     
     
     const productForm = (productFormOpen ? <form onSubmit={(e) => handleSubmit(postFormData, e)}>
         <label>
-            title: <input type="text" name="name" value={postFormData.title} onChange={handleChange} />
+            name: <input type="text" name="name" value={postFormData.title} onChange={handleChange} />
             description: <input type="text" name="description" value={postFormData.description} onChange={handleChange} />
             price: <input type="integer" name="price" value={postFormData.price} onChange={handleChange} />
+        </label>
+        <button type="submit">Submit</button>
+    </form> : 
+    <></>)
+    const portfolioForm = (portfolioFormOpen ? <form onSubmit={(e) => handleSubmit(postFormData, e)}>
+        <label>
+            title: <input type="text" name="name" value={postFormData.title} onChange={handleChange} />
+            description: <input type="text" name="description" value={postFormData.description} onChange={handleChange} />
         </label>
         <button type="submit">Submit</button>
     </form> : 
@@ -56,6 +62,7 @@ const ControlPanel = () => {
     return (
         <div>
             <h4>{productForm}</h4>
+            <h4>{portfolioForm}</h4>
             <button onClick={toggleForm} name="product">dfgfdgd</button>
             <button onClick={toggleForm} name="portfolio">dfgsssfdgd</button>
 
