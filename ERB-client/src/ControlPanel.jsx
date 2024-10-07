@@ -11,14 +11,9 @@ const ControlPanel = () => {
         "title": "",
         "description": ""
     });
-    const [productFormOpen, setProductFormOpen] = useState()
-    const [portfolioFormOpen, setPortfolioFormOpen] = useState()
+    const [productFormOpen, setProductFormOpen] = useState(false)
+    const [portfolioFormOpen, setPortfolioFormOpen] = useState(false)
 
-    // setPostFormData({
-    //     "title": "example",
-    //     "description": "test"
-
-    // })
 
     const handleChange = (e) =>{
         const {name, value} = e.target
@@ -29,6 +24,16 @@ const ControlPanel = () => {
     )
     }
 
+    const toggleForm = (e) =>{
+        console.log(e.target.name)
+        if(e.target.name == "product")
+            setProductFormOpen((current) => (!current))
+        else if (e.target.name == "portfolio")
+            setPortfolioFormOpen((current) => (!current))
+
+
+    }
+
 
     
     
@@ -36,6 +41,8 @@ const ControlPanel = () => {
     return(
         <div>
             <h4>control</h4>
+            <button onClick={toggleForm} name="product">dfgfdgd</button>
+            <button onClick={toggleForm} name="portfolio">dfgsssfdgd</button>
             <form onSubmit={(e) => handleSubmit(e)}>
         <label>
             title: <input type="text" name="title" value={postFormData.title} onChange={handleChange} />
