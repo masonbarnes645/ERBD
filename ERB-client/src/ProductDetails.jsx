@@ -1,27 +1,20 @@
 import { useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
-import { deleteProduct } from "./api"
-import toast from "react-hot-toast"
+import { deleteProduct, fetchProductById } from "./api"
 
 const ProductDetails = () => {
     const { productId } = useParams()
-    const [product, setProduct] = useState([])
+    const [product, setProduct] = useState([{}])
     const navigate = useNavigate()
 
-    useEffect(() =>{
-        fetch(`http://127.0.0.1:5555/products/${productId}`)
-            .then((res) => {
-                if (res.ok){
-                    return res.json().then((data =>{
-                        setProduct(data)
-                        console.log(product)
-                    }))
-                }
-                else{
-                    res.json().then((errObj) => toast.error(errObj.error))                  
-                }
-            })
-            .catch((errObj) => toast.error(errObj.error))
+    useEffect(() => {
+        const loadProduct = async () => {
+            if (!productId) return;
+            const data = await fetchProductById(productId);
+            setProduct(data);
+        };
+        
+        loadProduct();
     }, [])
     
     const handleDelete = async () =>{
@@ -30,6 +23,9 @@ const ProductDetails = () => {
 
     }
 
+    if (!product) {
+        return <div>Loading...</div>; 
+      }
     return(
         <>
         <div>{product.name}</div>

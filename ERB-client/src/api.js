@@ -62,3 +62,32 @@ export const deletePortfolio = async (portfolioId) => {
         toast.error(errObj.error);
     }
 }
+
+export const fetchProductById = async (productId) => {
+    try {
+        const response = await fetch(`${API_URL}/products/${productId}`)
+        if (!response.ok){
+            throw new Error("Failed to retrieve product")
+
+        }
+        const data = await response.json()
+        return data
+    }
+    catch (errObj){
+        toast.error(errObj.error)
+    }    
+}
+export const fetchPortfolioById = async (portfolioId) => {
+    try {
+        const response = await fetch(`${API_URL}/portfolios/${portfolioId}`)
+        if (!response.ok){
+            throw new Error("Failed to retrieve portfolio")
+
+        }
+        const data = await response.json()
+        return data
+    }
+    catch (errObj){
+        toast.error(errObj.error)
+    }    
+}
