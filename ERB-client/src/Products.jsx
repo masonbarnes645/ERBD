@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import { Container, Grid } from "semantic-ui-react";
+import { fetchProducts } from "./api";
 import ProductCard from "./ProductCard";
 
 
@@ -7,17 +8,17 @@ const Products = () =>{
     const [products, setProducts] = useState([])
 
     useEffect(() => {
-        fetch("http://127.0.0.1:5555/products")
-            .then((res) => {
-                if (res.ok) {
-                    res.json().then(setProducts)
-                }
-                else {
-                    res.json().then((errObj) => toast.error(errObj.error))
-                }
-            })
-            .catch((errObj) => toast.error(errObj.error))
-    }, [])
+      const loadProducts = async () => {
+        try {
+          const data = await fetchProducts();
+          setProducts(data);
+        } catch (err) {
+          setError(err.message);
+        }
+      };
+  
+      loadProducts();
+    }, []);
 
     console.log(products)
     return(

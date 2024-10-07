@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
+import { deleteProduct } from "./api"
+import toast from "react-hot-toast"
 
 const ProductDetails = () => {
     const { productId } = useParams()
@@ -22,17 +24,9 @@ const ProductDetails = () => {
             .catch((errObj) => toast.error(errObj.error))
     }, [])
     
-    const handleDelete = () =>{
-        fetch(`http://127.0.0.1:5555/products/${productId}`, {
-            method: "DELETE",
-            headers:{}
-        })
-        .then((res) =>{
-            if (res.ok){
-                navigate("/")
-                toast.success("Product Deleted")
-            }
-        })
+    const handleDelete = async () =>{
+        await deleteProduct(productId)
+        navigate("/")
 
     }
 
