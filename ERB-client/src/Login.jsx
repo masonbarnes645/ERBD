@@ -26,7 +26,7 @@ const Login = () => {
             if (res.ok) {
                 res.json().then((data) => {
                     setUser(data)
-                    navigate("/")
+                    navigate("/control")
                     toast.success("Logged In")
                 })
 

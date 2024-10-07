@@ -7,6 +7,7 @@ import About from "./About";
 import ProductDetails from "./ProductDetails";
 import PortfolioDetails from "./PortfolioDetails";
 import Login from "./Login";
+import ControlPanel from "./ControlPanel";
 
 export const router =  createBrowserRouter(
     [
@@ -41,6 +42,10 @@ export const router =  createBrowserRouter(
                 {
                     path: "/login",
                     element: <Login />
+                },
+                {
+                    path: "/control",
+                    element: <ControlPanel />
                 }
             ]
         }

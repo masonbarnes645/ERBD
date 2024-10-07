@@ -51,11 +51,20 @@ def seed_data():
             )
             products.append(product)
             db.session.add(product)
+        
+        tags = []
+        for _ in range (10):
+            tag = Tag(
+                name = fake.word()
+            )
+            tags.append(tag)
+            db.session.add(tag)
 
 
 
 
         db.session.commit()
+        print ("complete")
 
 
 if __name__ == "__main__":

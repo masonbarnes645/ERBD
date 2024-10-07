@@ -66,7 +66,8 @@ class PortfolioById(Resource):
                 return make_response({}, 204)
         except Exception as e:
             db.session.rollback()
-            return make_response({"error": str(e)}, 400) 
+            return make_response({"error": str(e)}, 400)
+     
 
 class ProductById(Resource):
     def get(self,id):

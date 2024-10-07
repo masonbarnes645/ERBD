@@ -10,9 +10,9 @@ export const fetchProducts = async () => {
         }
         const data = await response.json();
         return data;
-    } 
+    }
     catch (errObj) {
-        toast.error(errObj.error);  
+        toast.error(errObj.error);
     }
 }
 
@@ -25,14 +25,14 @@ export const fetchPortfolios = async () => {
         }
         const data = await response.json();
         return data;
-    } 
+    }
     catch (errObj) {
-        toast.error(errObj.error);  
+        toast.error(errObj.error);
     }
 }
 
 export const deleteProduct = async (productId) => {
-    try { 
+    try {
         const response = await fetch(`${API_URL}/products/${productId}`, {
             method: "DELETE",
         });
@@ -41,14 +41,14 @@ export const deleteProduct = async (productId) => {
         }
 
         toast.success("Product deleted successfully");
-    } 
+    }
     catch (errObj) {
         toast.error(errObj.error);
     }
 }
 
 export const deletePortfolio = async (portfolioId) => {
-    try { 
+    try {
         const response = await fetch(`${API_URL}/portfolios/${portfolioId}`, {
             method: "DELETE",
         });
@@ -57,7 +57,7 @@ export const deletePortfolio = async (portfolioId) => {
         }
 
         toast.success("Product deleted successfully");
-    } 
+    }
     catch (errObj) {
         toast.error(errObj.error);
     }
@@ -66,28 +66,65 @@ export const deletePortfolio = async (portfolioId) => {
 export const fetchProductById = async (productId) => {
     try {
         const response = await fetch(`${API_URL}/products/${productId}`)
-        if (!response.ok){
+        if (!response.ok) {
             throw new Error("Failed to retrieve product")
 
         }
         const data = await response.json()
         return data
     }
-    catch (errObj){
+    catch (errObj) {
         toast.error(errObj.error)
-    }    
+    }
 }
 export const fetchPortfolioById = async (portfolioId) => {
     try {
         const response = await fetch(`${API_URL}/portfolios/${portfolioId}`)
-        if (!response.ok){
+        if (!response.ok) {
             throw new Error("Failed to retrieve portfolio")
 
         }
         const data = await response.json()
         return data
     }
-    catch (errObj){
+    catch (errObj) {
         toast.error(errObj.error)
-    }    
+    }
+}
+
+export const postProduct = async (productData) => {
+    try {
+        const response = await fetch(`${API_URL}/products`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(productData),
+        })
+        if (!response.ok) {
+            throw new Error("Post Failed")
+        }
+    }
+    catch (errObj) {
+        toast.error(errObj.error)
+
+    }
+}
+export const postPortfolio = async (portfolioData) => {
+    try {
+        const response = await fetch(`${API_URL}/products`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(portfolioData),
+        })
+        if (!response.ok) {
+            throw new Error("Post Failed")
+        }
+    }
+    catch (errObj) {
+        toast.error(errObj.error)
+
+    }
 }
