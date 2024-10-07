@@ -38,8 +38,8 @@ const ControlPanel = () => {
             <h4>control</h4>
             <form onSubmit={(e) => handleSubmit(e)}>
         <label>
-            title: <input title="text" value={postFormData.title} onChange={handleChange} />
-            description: <input description="text"value={postFormData.description} onChange={handleChange} />
+            title: <input type="text" name="title" value={postFormData.title} onChange={handleChange} />
+            description: <input type="text" name="description" value={postFormData.description} onChange={handleChange} />
         </label>
         <button type="submit">Submit</button>
 
