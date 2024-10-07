@@ -7,15 +7,43 @@ import { useState } from "react"
 
 
 const ControlPanel = () => {
-    const [postFormData, setPostFormData] = useState();
+    const [postFormData, setPostFormData] = useState({
+        "title": "",
+        "description": ""
+    });
     const [productFormOpen, setProductFormOpen] = useState()
+    const [portfolioFormOpen, setPortfolioFormOpen] = useState()
+
+    // setPostFormData({
+    //     "title": "example",
+    //     "description": "test"
+
+    // })
+
+    const handleChange = (e) =>{
+        const {name, value} = e.target
+        setPostFormData((prevData) => ({
+            ...prevData,
+            [name]: value
+        })
+    )
+    }
 
 
-
-
+    
+    
+    
     return(
         <div>
             <h4>control</h4>
+            <form onSubmit={(e) => handleSubmit(e)}>
+        <label>
+            title: <input title="text" value={postFormData.title} onChange={handleChange} />
+            description: <input description="text"value={postFormData.description} onChange={handleChange} />
+        </label>
+        <button type="submit">Submit</button>
+
+    </form>
         </div>
     )
 }
