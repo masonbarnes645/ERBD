@@ -45,6 +45,7 @@ class Products(Resource):
         except Exception as e:
             db.session.rollback()
             return make_response({"error": str(e)}, 400)
+
         
 
 class PortfolioById(Resource):
@@ -67,6 +68,7 @@ class PortfolioById(Resource):
         except Exception as e:
             db.session.rollback()
             return make_response({"error": str(e)}, 400)
+
      
 
 class ProductById(Resource):
@@ -89,7 +91,8 @@ class ProductById(Resource):
         except Exception as e:
             db.session.rollback()
             return make_response({"error": str(e)}, 400) 
-        
+
+            
 class Login(Resource):
     def post(self):
         try:

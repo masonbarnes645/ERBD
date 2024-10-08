@@ -128,3 +128,37 @@ export const postPortfolio = async (portfolioData) => {
 
     }
 }
+
+export const patchProduct = async(productData, productId)
+try {
+    const response = await fetch(`${API_URL}/products/${productId}`, {
+        method: "PATCH",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(productData),
+    })
+    if (!response.ok) {
+        throw new Error("Patch Failed")
+    }
+}
+catch (errorObj) {
+    toast.error(errorObj.error)
+}
+
+export const patchPortfolio = async(portfolioData, portfolioId)
+try {
+    const response = await fetch(`${API_URL}/portfolios/${portfolioId}`, {
+        method: "PATCH",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(portfolioData),
+    })
+    if (!response.ok) {
+        throw new Error("Patch Failed")
+    }
+}
+catch (errorObj) {
+    toast.error(errorObj.error)
+}

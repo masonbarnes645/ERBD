@@ -5,7 +5,9 @@ import { deleteProduct, fetchProductById } from "./api"
 const ProductDetails = () => {
     const { productId } = useParams()
     const [product, setProduct] = useState([{}])
+
     const navigate = useNavigate()
+    console.log(formData, product)
 
     useEffect(() => {
         const loadProduct = async () => {
@@ -22,6 +24,9 @@ const ProductDetails = () => {
         navigate("/")
 
     }
+
+        // Open a form that has the current info already in the values of each box, change what you want and send that form data to the patch request
+
 
     if (!product) {
         return <div>Loading...</div>; 

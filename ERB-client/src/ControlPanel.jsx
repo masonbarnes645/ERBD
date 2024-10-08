@@ -1,7 +1,7 @@
 // list products, add to products, delete products, analytics?
 
 import { useState } from "react"
-import { postProduct } from "./api";
+import { postPortfolio, postProduct } from "./api";
 
 // for scrolling container, css = overflow-y
 // conditional post for portfolio or product
@@ -32,14 +32,15 @@ const ControlPanel = () => {
             setPortfolioFormOpen((current) => (!current))
     }
 
-    const handleSubmit = async (postFormData, e) =>{
+    const handleSubmitProduct = async (postFormData, e) =>{
         e.preventDefault()    
         await postProduct(postFormData)
     }
-    
-    
-    
-    const productForm = (productFormOpen ? <form onSubmit={(e) => handleSubmit(postFormData, e)}>
+    const handleSubmitPortfolio = async (postFormData, e) =>{
+        e.preventDefault()    
+        await postPortfolio(postFormData)
+    }
+    const productForm = (productFormOpen ? <form onSubmit={(e) => handleSubmitProduct(postFormData, e)}>
         <label>
             name: <input type="text" name="name" value={postFormData.title} onChange={handleChange} />
             description: <input type="text" name="description" value={postFormData.description} onChange={handleChange} />
@@ -48,7 +49,8 @@ const ControlPanel = () => {
         <button type="submit">Submit</button>
     </form> : 
     <></>)
-    const portfolioForm = (portfolioFormOpen ? <form onSubmit={(e) => handleSubmit(postFormData, e)}>
+    
+    const portfolioForm = (portfolioFormOpen ? <form onSubmit={(e) => handleSubmitPortfolio(postFormData, e)}>
         <label>
             title: <input type="text" name="name" value={postFormData.title} onChange={handleChange} />
             description: <input type="text" name="description" value={postFormData.description} onChange={handleChange} />
@@ -56,6 +58,9 @@ const ControlPanel = () => {
         <button type="submit">Submit</button>
     </form> : 
     <></>)
+    
+    
+    
 
 
 
