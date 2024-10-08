@@ -65,6 +65,15 @@ const ControlPanel = () => {
             price: <input type="integer" name="price" value={postFormData.price} onChange={handleChange} />
             image: <input type="file" />
         </label>
+        <div>
+            {tags.map((tag) => (
+                <label key={tag.id}>
+                    {tag.name}
+                    <input type="checkbox" />
+                </label>
+            ))}
+
+        </div>
         <button type="submit">Submit</button>
     </form> :
         <></>)
@@ -76,9 +85,6 @@ const ControlPanel = () => {
             title: <input type="text" name="name" value={postFormData.title} onChange={handleChange} />
             description: <input type="text" name="description" value={postFormData.description} onChange={handleChange} />
         </label>
-        <div>
-
-        </div>
         <button type="submit">Submit</button>
     </form> :
         <></>)
