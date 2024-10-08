@@ -7,7 +7,7 @@ const ProductDetails = () => {
     const [product, setProduct] = useState([{}])
 
     const navigate = useNavigate()
-    console.log(formData, product)
+
 
     useEffect(() => {
         const loadProduct = async () => {
@@ -35,6 +35,9 @@ const ProductDetails = () => {
         <>
         <div>{product.name}</div>
         <button onClick={handleDelete}>Delete</button>
+        <form>
+            <input type="file"/>
+        </form>
         </>
     )
 }

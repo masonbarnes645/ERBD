@@ -162,6 +162,14 @@ class Logout(Resource):
             return make_response({"error": str(e)}, 400)
         
 
+class Tags(Resource):
+    def get(self):
+        try:
+            return make_response([tag.to_dict() for tag in Tag.query], 200)
+        except Exception as e:
+            return make_response({"error": str(e)}, 404)
+        
+
             
 
 
@@ -175,6 +183,7 @@ api.add_resource(ProductById, "/products/<int:id>")
 api.add_resource(Login, "/login")
 api.add_resource(CheckSession, "/check-session")
 api.add_resource(Logout, "/logout")
+api.add_resource(Tags, "/tags")
 
 
 if __name__ == "__main__":

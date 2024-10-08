@@ -129,36 +129,52 @@ export const postPortfolio = async (portfolioData) => {
     }
 }
 
-export const patchProduct = async(productData, productId)
-try {
-    const response = await fetch(`${API_URL}/products/${productId}`, {
-        method: "PATCH",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(productData),
-    })
-    if (!response.ok) {
-        throw new Error("Patch Failed")
+export const patchProduct = async (productData, productId) => {
+    try {
+        const response = await fetch(`${API_URL}/products/${productId}`, {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(productData),
+        })
+        if (!response.ok) {
+            throw new Error("Patch Failed")
+        }
+    }
+    catch (errorObj) {
+        toast.error(errorObj.error)
     }
 }
-catch (errorObj) {
-    toast.error(errorObj.error)
+export const patchPortfolio = async (portfolioData, portfolioId) => {
+    try {
+        const response = await fetch(`${API_URL}/portfolios/${portfolioId}`, {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(portfolioData),
+        })
+        if (!response.ok) {
+            throw new Error("Patch Failed")
+        }
+    }
+    catch (errorObj) {
+        toast.error(errorObj.error)
+    }
 }
 
-export const patchPortfolio = async(portfolioData, portfolioId)
-try {
-    const response = await fetch(`${API_URL}/portfolios/${portfolioId}`, {
-        method: "PATCH",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(portfolioData),
-    })
-    if (!response.ok) {
-        throw new Error("Patch Failed")
+
+export const fetchTags = async () => {
+    try {
+        const response = await fetch(`${API_URL}/tags`);
+        if (!response.ok) {
+            throw new Error("Failed to fetch tags");
+        }
+        const data = await response.json();
+        return data;
     }
-}
-catch (errorObj) {
-    toast.error(errorObj.error)
+    catch (errObj) {
+        toast.error(errObj.error);
+    }
 }

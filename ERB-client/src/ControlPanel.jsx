@@ -1,18 +1,17 @@
 // list products, add to products, delete products, analytics?
 
-import { useState } from "react"
-import { postPortfolio, postProduct } from "./api";
+import { useEffect, useState } from "react"
+import { fetchTags, postPortfolio, postProduct } from "./api";
 
 // for scrolling container, css = overflow-y
 // conditional post for portfolio or product
 
 
 const ControlPanel = () => {
-    const [postFormData, setPostFormData] = useState({
-
-    });
+    const [postFormData, setPostFormData] = useState({});
     const [productFormOpen, setProductFormOpen] = useState(false)
     const [portfolioFormOpen, setPortfolioFormOpen] = useState(false)
+    const [tags, setTags] = useState({})
 
 
     const handleChange = (e) => {
@@ -32,35 +31,62 @@ const ControlPanel = () => {
             setPortfolioFormOpen((current) => (!current))
     }
 
-    const handleSubmitProduct = async (postFormData, e) =>{
-        e.preventDefault()    
+    const handleSubmitProduct = async (postFormData, e) => {
+        e.preventDefault()
         await postProduct(postFormData)
     }
-    const handleSubmitPortfolio = async (postFormData, e) =>{
-        e.preventDefault()    
+
+
+    const handleSubmitPortfolio = async (postFormData, e) => {
+        e.preventDefault()
         await postPortfolio(postFormData)
     }
+
+    useEffect(() => {
+        const loadTags = async () => {
+            try {
+                const data = await fetchTags();
+                setTags(data);
+            } catch (err) {
+                setError(err.message);
+            }
+        };
+
+        loadTags();
+        console.log(tags)
+    }, []);
+
+
+
     const productForm = (productFormOpen ? <form onSubmit={(e) => handleSubmitProduct(postFormData, e)}>
         <label>
             name: <input type="text" name="name" value={postFormData.title} onChange={handleChange} />
             description: <input type="text" name="description" value={postFormData.description} onChange={handleChange} />
             price: <input type="integer" name="price" value={postFormData.price} onChange={handleChange} />
+            image: <input type="file" />
         </label>
         <button type="submit">Submit</button>
-    </form> : 
-    <></>)
-    
+    </form> :
+        <></>)
+
+
+
     const portfolioForm = (portfolioFormOpen ? <form onSubmit={(e) => handleSubmitPortfolio(postFormData, e)}>
         <label>
             title: <input type="text" name="name" value={postFormData.title} onChange={handleChange} />
             description: <input type="text" name="description" value={postFormData.description} onChange={handleChange} />
         </label>
+        <div>
+
+        </div>
         <button type="submit">Submit</button>
-    </form> : 
-    <></>)
-    
-    
-    
+    </form> :
+        <></>)
+
+    //map tags as checkboxes to a scrollable container
+
+
+
 
 
 
