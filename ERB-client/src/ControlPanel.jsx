@@ -12,7 +12,18 @@ const ControlPanel = () => {
     const [productFormOpen, setProductFormOpen] = useState(false)
     const [portfolioFormOpen, setPortfolioFormOpen] = useState(false)
     const [tags, setTags] = useState({})
+    const [selectedTags, setSelectedTags] = useState([])
 
+
+    const handleCheckboxChange = (e) => {
+        const checkbox = e.target
+        console.log(checkbox)
+        if (checkbox.checked)
+            {setSelectedTags([...selectedTags, e.target.name])}
+        else
+            {setSelectedTags(selectedTags.filter((tag) => tag !== checkbox.name))}
+
+    }
 
     const handleChange = (e) => {
         const { name, value } = e.target
@@ -56,7 +67,7 @@ const ControlPanel = () => {
         console.log(tags)
     }, []);
 
-
+    // "tags": []
 
     const productForm = (productFormOpen ? <form onSubmit={(e) => handleSubmitProduct(postFormData, e)}>
         <label>
@@ -69,7 +80,7 @@ const ControlPanel = () => {
             {tags.map((tag) => (
                 <label key={tag.id}>
                     {tag.name}
-                    <input type="checkbox" />
+                    <input type="checkbox" name={tag.name} onChange={handleCheckboxChange}/>
                 </label>
             ))}
 
