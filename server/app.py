@@ -68,6 +68,19 @@ class PortfolioById(Resource):
         except Exception as e:
             db.session.rollback()
             return make_response({"error": str(e)}, 400)
+    def patch(self,id):
+        try:
+            portfolio = db.session.get(Portfolio, id)
+            if portfolio is None:
+                return make_response({"error": "portfolio not found"}, 404)
+            data = request.get_json()
+            for key, value in data.items():
+                if hasattr(portfolio, key):
+                    setattr(portfolio, key, value)
+            db.session.commit()
+        except Exception as e:
+            db.session.rollback()
+            return make_response({"error": str(e)}, 400)
 
      
 
@@ -90,7 +103,21 @@ class ProductById(Resource):
                 return make_response({}, 204)
         except Exception as e:
             db.session.rollback()
-            return make_response({"error": str(e)}, 400) 
+            return make_response({"error": str(e)}, 400)
+    def patch(self,id):
+        try:
+            product = db.session.get(Product, id)
+            if product is None:
+                return make_response({"error": "product not found"}, 404)
+            data = request.get_json()
+            for key, value in data.items():
+                if hasattr(product, key):
+                    setattr(product, key, value)
+            db.session.commit()
+        except Exception as e:
+            db.session.rollback()
+            return make_response({"error": str(e)}, 400)
+
 
             
 class Login(Resource):
