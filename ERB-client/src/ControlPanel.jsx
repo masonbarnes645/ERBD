@@ -17,11 +17,11 @@ const ControlPanel = () => {
 
     const handleCheckboxChange = (e) => {
         const checkbox = e.target
-        console.log(checkbox)
+        console.log(checkbox.value)
         if (checkbox.checked)
-            {setSelectedTags([...selectedTags, e.target.name])}
+            {setSelectedTags([...selectedTags, checkbox.value])}
         else
-            {setSelectedTags(selectedTags.filter((tag) => tag !== checkbox.name))}
+            {setSelectedTags(selectedTags.filter((tag) => tag.id !== checkbox.value))}
 
     }
 
@@ -44,7 +44,12 @@ const ControlPanel = () => {
 
     const handleSubmitProduct = async (postFormData, e) => {
         e.preventDefault()
-        await postProduct(postFormData)
+        const formWithTags = {
+            ...postFormData,
+            tags: selectedTags 
+        };
+
+        await postProduct(formWithTags)
     }
 
 
@@ -80,7 +85,7 @@ const ControlPanel = () => {
             {tags.map((tag) => (
                 <label key={tag.id}>
                     {tag.name}
-                    <input type="checkbox" name={tag.name} onChange={handleCheckboxChange}/>
+                    <input type="checkbox" value={tag.id} onChange={handleCheckboxChange}/>
                 </label>
             ))}
 

@@ -8,5 +8,8 @@ class Product(db.Model, SerializerMixin):
     name = db.Column(db.String, nullable=False)
     description = db.Column(db.String)
     price = db.Column(db.Float)
-
     tags = db.relationship("Tag", secondary=product_tags, back_populates="products")
+
+
+    serialize_rules = ("-tags",)
+ 

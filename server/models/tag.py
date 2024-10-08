@@ -6,5 +6,4 @@ class Tag(db.Model, SerializerMixin):
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String, nullable=False)
-
     products = db.relationship("Product", secondary=product_tags, back_populates="tags")
