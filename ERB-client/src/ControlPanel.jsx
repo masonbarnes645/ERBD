@@ -35,12 +35,16 @@ const ControlPanel = () => {
     }
 
     const toggleForm = (e) => {
-        console.log(e.target.name)
-        if (e.target.name == "product")
-            setProductFormOpen((current) => (!current))
-        else if (e.target.name == "portfolio")
-            setPortfolioFormOpen((current) => (!current))
-    }
+        console.log(e.target.name);
+        
+        if (e.target.name === "product") {
+            setProductFormOpen((current) => !current);
+            setPortfolioFormOpen(false); 
+        } else if (e.target.name === "portfolio") {
+            setPortfolioFormOpen((current) => !current); 
+            setProductFormOpen(false); 
+        }
+    };
 
     const handleSubmitProduct = async (postFormData, e) => {
         e.preventDefault()
@@ -79,7 +83,7 @@ const ControlPanel = () => {
             name: <input type="text" name="name" value={postFormData.title} onChange={handleChange} />
             description: <input type="text" name="description" value={postFormData.description} onChange={handleChange} />
             price: <input type="integer" name="price" value={postFormData.price} onChange={handleChange} />
-            image: <input type="file" />
+            image: <input type="file" value={postFormData.image} onChange={handleChange} />
         </label>
         <div>
             {tags.map((tag) => (
@@ -116,8 +120,8 @@ const ControlPanel = () => {
         <div>
             <h4>{productForm}</h4>
             <h4>{portfolioForm}</h4>
-            <button onClick={toggleForm} name="product">dfgfdgd</button>
-            <button onClick={toggleForm} name="portfolio">dfgsssfdgd</button>
+            <button onClick={toggleForm} name="product">Product</button>
+            <button onClick={toggleForm} name="portfolio">Portfolio</button>
 
         </div>
     )
