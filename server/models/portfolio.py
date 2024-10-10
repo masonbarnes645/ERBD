@@ -14,6 +14,7 @@ class Portfolio(db.Model, SerializerMixin):
         primaryjoin="and_(Photo.owner_id == foreign(Portfolio.id), Photo.owner_type=='portfolio')",
         backref="portfolio",
         viewonly=True,
+        lazy='select',
         uselist=True
     )
-    serialize_rules = ("-photos",)
+

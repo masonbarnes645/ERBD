@@ -28,6 +28,7 @@ const PortfolioDetails = () => {
     return(
         <div>
             {portfolio.title}
+            {portfolio.photos}
             <button onClick={handleDelete}>Delete</button>
         </div>
     )
