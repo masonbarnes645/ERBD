@@ -15,6 +15,7 @@ faker = "*"
 sqlalchemy-serializer = "*"
 flask-bcrypt = "*"
 python-dotenv = "*"
+flask-mail = "*"
 
 [dev-packages]
 

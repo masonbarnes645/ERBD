@@ -29,6 +29,14 @@ app.config["SESSION_TYPE"] = "sqlalchemy"
 app.config["SESSION_SQLALCHEMY"] = db
 app.config["SESSION_PERMANENT"] = True
 
+app.config['MAIL_SERVER'] = 'stmp.gmail.com'
+app.config['MAIL_PORT'] = 587
+app.config['MAIL_USERNAME'] = 'ebarnesdesigninquiry@gmail.com'
+app.config['MAIL_PASSWORD'] = 'kxef tasb epto xokr'
+app.config['MAIL_USE_TLS'] = True
+app.config['MAIL_USE_SSL'] = False
+
+
 app.secret_key = environ.get("SESSION_SECRET")
 
 

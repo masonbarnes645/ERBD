@@ -2,10 +2,12 @@ from flask import make_response, session, request
 from flask_restful import Resource
 import os
 from config import app, api, db
+from flask_mail import Mail, Message
 
 
 BASE_DIR = os.path.abspath(os.path.dirname(__file__))
 DATABASE = os.environ.get("DB_URI", f"sqlite:///{os.path.join(BASE_DIR, 'app.db')}")
+mail = Mail(app)
 
 from models.photo import Photo
 from models.portfolio import Portfolio
@@ -222,6 +224,32 @@ class Photos(Resource):
                 return make_response({"error": str(e)}, 500)
         else:
             return make_response({"error": "File type not allowed"}, 400)
+        
+class Inquiries(Resource):
+    def send_email():
+        data = request.get_json()  # Call the method to get JSON data
+        try:
+            msg = Message(
+                subject=f"Inquiry from {data['name']}",
+                sender='ebarnesdesigninquiry@gmail.com',
+                recipients=['mrbarnes00@gmail.com'],  # Wrap recipients in a list
+                body=f"Name: {data['name']}\nEmail: {data['email']}\nMessage: {data['message']}"
+            )
+            mail.send(msg)
+            return make_response("Inquiry sent", 200)
+        except Exception as e:
+            return make_response({"error": str(e)}, 400)
+    def post(self):
+        data = request.get_json()
+        try:
+            new_inquiry = Inquiry(**data)
+            db.session.add(new_inquiry)
+            db.session.commit()
+            return make_response("Inquiry added", 201)
+        except Exception as e:
+            db.session.rollback()
+            return make_response({"error": str(e)})
+
 
 
 
@@ -236,6 +264,7 @@ api.add_resource(CheckSession, "/check-session")
 api.add_resource(Logout, "/logout")
 api.add_resource(Tags, "/tags")
 api.add_resource(Photos, "/photos")
+api.add_resource(Inquiries, "/inquiries")
 
 
 if __name__ == "__main__":

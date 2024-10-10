@@ -7,6 +7,7 @@ import { deletePortfolio, fetchPortfolioById } from "./api"
 const PortfolioDetails = () => {
     const { portfolioId } = useParams()
     const [portfolio, setPortfolio] = useState([])
+    const [editMode, setEditMode] = useState(false)
     const navigate = useNavigate()
 
     useEffect(() => {
@@ -26,6 +27,14 @@ const PortfolioDetails = () => {
         navigate("/")
     }
 
+    const editModeJSX = (
+        <div></div>
+    )
+    
+    
+    
+    
+    
     return (
         <div>
             <h2>{portfolio.title}</h2>
