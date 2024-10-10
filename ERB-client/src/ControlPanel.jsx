@@ -1,7 +1,7 @@
 // list products, add to products, delete products, analytics?
 
 import { useEffect, useState } from "react"
-import { fetchTags, postPortfolio, postProduct } from "./api";
+import { fetchTags, postPhoto, postPortfolio, postProduct } from "./api";
 
 // for scrolling container, css = overflow-y
 // conditional post for portfolio or product
@@ -13,36 +13,43 @@ const ControlPanel = () => {
     const [portfolioFormOpen, setPortfolioFormOpen] = useState(false)
     const [tags, setTags] = useState({})
     const [selectedTags, setSelectedTags] = useState([])
+    const [photo, setPhoto] = useState()
 
 
     const handleCheckboxChange = (e) => {
         const checkbox = e.target
         console.log(checkbox.value)
-        if (checkbox.checked)
-            {setSelectedTags([...selectedTags, checkbox.value])}
-        else
-            {setSelectedTags(selectedTags.filter((tag) => tag.id !== checkbox.value))}
+        if (checkbox.checked) { setSelectedTags([...selectedTags, checkbox.value]) }
+        else { setSelectedTags(selectedTags.filter((tag) => tag.id !== checkbox.value)) }
 
     }
 
     const handleChange = (e) => {
-        const { name, value } = e.target
-        setPostFormData((prevData) => ({
-            ...prevData,
-            [name]: value
-        })
-        )
-    }
+        const { name, value, } = e.target;
+        {
+            setPostFormData((prevData) => ({
+                ...prevData,
+                [name]: value
+            }));
+        }
+    };
+    const handlePhotoChange = (e) => {
+        const { name, value } = e.target;
+        setPhoto((prevPhoto) => ({
+            ...prevPhoto, 
+            [name]: value 
+        }));
+    };
 
     const toggleForm = (e) => {
         console.log(e.target.name);
-        
+
         if (e.target.name === "product") {
             setProductFormOpen((current) => !current);
-            setPortfolioFormOpen(false); 
+            setPortfolioFormOpen(false);
         } else if (e.target.name === "portfolio") {
-            setPortfolioFormOpen((current) => !current); 
-            setProductFormOpen(false); 
+            setPortfolioFormOpen((current) => !current);
+            setProductFormOpen(false);
         }
     };
 
@@ -50,9 +57,10 @@ const ControlPanel = () => {
         e.preventDefault()
         const formWithTags = {
             ...postFormData,
-            tags: selectedTags 
+            tags: selectedTags
         };
 
+        await postPhoto(photo)
         await postProduct(formWithTags)
     }
 
@@ -76,20 +84,20 @@ const ControlPanel = () => {
         console.log(tags)
     }, []);
 
-    // "tags": []
+
 
     const productForm = (productFormOpen ? <form onSubmit={(e) => handleSubmitProduct(postFormData, e)}>
         <label>
             name: <input type="text" name="name" value={postFormData.title} onChange={handleChange} />
             description: <input type="text" name="description" value={postFormData.description} onChange={handleChange} />
             price: <input type="integer" name="price" value={postFormData.price} onChange={handleChange} />
-            image: <input type="file" value={postFormData.image} onChange={handleChange} />
+            image: <input type="file" name="photo" onChange={handlePhotoChange} />
         </label>
         <div>
             {tags.map((tag) => (
                 <label key={tag.id}>
                     {tag.name}
-                    <input type="checkbox" value={tag.id} onChange={handleCheckboxChange}/>
+                    <input type="checkbox" value={tag.id} onChange={handleCheckboxChange} />
                 </label>
             ))}
 
@@ -102,7 +110,7 @@ const ControlPanel = () => {
 
     const portfolioForm = (portfolioFormOpen ? <form onSubmit={(e) => handleSubmitPortfolio(postFormData, e)}>
         <label>
-            title: <input type="text" name="name" value={postFormData.title} onChange={handleChange} />
+            title: <input type="text" name="title" value={postFormData.title} onChange={handleChange} />
             description: <input type="text" name="description" value={postFormData.description} onChange={handleChange} />
         </label>
         <button type="submit">Submit</button>

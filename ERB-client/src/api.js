@@ -127,7 +127,7 @@ export const fetchPortfolioById = async (portfolioId) => {
 }
 export const postPortfolio = async (portfolioData) => {
     try {
-        const response = await fetch(`${API_URL}/products`, {
+        const response = await fetch(`${API_URL}/portfolios`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -196,5 +196,26 @@ export const postInquiry = async (inquiryData) => {
     catch (errObj) {
         toast.error(errObj.error)
 
+    }
+}
+
+// photos
+
+export const postPhoto = async (photoData) => {
+    try {
+        const response = await fetch(`${API_URL}/photos`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(photoData),
+
+        },)
+        if (!response.ok){
+            throw new Error("Post Failed")
+        }
+    }
+    catch (errObj){
+        toString.error(errObj.error)
     }
 }

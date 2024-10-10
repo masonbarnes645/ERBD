@@ -1,7 +1,7 @@
 from flask import make_response, session, request
 from flask_restful import Resource
 import os
-from config import app, api, db
+from config import app, api, db, UPLOAD_FOLDER, ALLOWED_EXTENSIONS
 from flask_mail import Mail, Message
 
 
@@ -190,9 +190,9 @@ class Tags(Resource):
         except Exception as e:
             return make_response({"error": str(e)}, 404)
         
-class Photos(Resource):
-    def allowed_file(filename):
+def allowed_file(filename):
         return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+class Photos(Resource):
     def post(self):
         # Check if 'image' is in the request.files
         if 'image' not in request.files:
