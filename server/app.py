@@ -14,6 +14,7 @@ from models.portfolio import Portfolio
 from models.admin import Admin
 from models.product import Product
 from models.tag import Tag
+from models.inquiry import Inquiry
 
 
 class Portfolios(Resource):
@@ -225,24 +226,22 @@ class Photos(Resource):
         else:
             return make_response({"error": "File type not allowed"}, 400)
         
-class Inquiries(Resource):
-    def send_email():
-        data = request.get_json()  # Call the method to get JSON data
-        try:
-            msg = Message(
-                subject=f"Inquiry from {data['name']}",
-                sender='ebarnesdesigninquiry@gmail.com',
-                recipients=['mrbarnes00@gmail.com'],  # Wrap recipients in a list
-                body=f"Name: {data['name']}\nEmail: {data['email']}\nMessage: {data['message']}"
-            )
+def send_email(data):
+        msg = Message(
+            subject=f"Inquiry from {data['name']}",
+            sender='ebarnesdesigninquiry@gmail.com',
+            recipients='mrbarnes00@gmail.com',  # Wrap recipients in a list
+        )
+        msg.body=f"Name: {data['name']}\nEmail: {data['email']}\nMessage: {data['message']}"
+        with app.app_context():
             mail.send(msg)
-            return make_response("Inquiry sent", 200)
-        except Exception as e:
-            return make_response({"error": str(e)}, 400)
+
+class Inquiries(Resource):
     def post(self):
         data = request.get_json()
         try:
             new_inquiry = Inquiry(**data)
+            send_email(data)
             db.session.add(new_inquiry)
             db.session.commit()
             return make_response("Inquiry added", 201)
