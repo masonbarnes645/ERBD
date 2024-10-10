@@ -26,8 +26,9 @@ def seed_data():
         photos = []
         for _ in range(20):
             photo = Photo(
-                portfolio_id = random.randint(1,5),
-                image_url = fake.image_url()
+                image_url = fake.image_url(),
+                owner_id = random.randint(1,5),
+                owner_type = "portfolio"
             )
             photos.append(photo)
             db.session.add(photo)

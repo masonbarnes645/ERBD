@@ -186,6 +186,45 @@ class Tags(Resource):
             return make_response([tag.to_dict() for tag in Tag.query], 200)
         except Exception as e:
             return make_response({"error": str(e)}, 404)
+        
+class Photos(Resource):
+    def allowed_file(filename):
+        return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+    def post(self):
+        # Check if 'image' is in the request.files
+        if 'image' not in request.files:
+            return make_response({"error": "No file part in the request"}, 400)
+        
+        file = request.files['image']
+
+        # If no file is selected
+        if file.filename == '':
+            return make_response({"error": "No file selected"}, 400)
+
+        # Ensure it's an allowed file type
+        if file and allowed_file(file.filename):
+            try:
+                # Save the file with a secure filename
+                filename = file.filename
+                file_path = os.path.join(UPLOAD_FOLDER, filename)
+                file.save(file_path)
+
+                # Create the Photo object with the file path and any other metadata
+                data = request.form  # Grab other form data (like product_id, portfolio_id, etc.)
+                photo = Photo(file_path=file_path, **data)
+                
+                db.session.add(photo)
+                db.session.commit()
+
+                return make_response(photo.to_dict(), 201)
+            except Exception as e:
+                db.session.rollback()  # Rollback if there is an error
+                return make_response({"error": str(e)}, 500)
+        else:
+            return make_response({"error": "File type not allowed"}, 400)
+
+
+
 
 
 api.add_resource(Portfolios, "/portfolios")
@@ -196,6 +235,7 @@ api.add_resource(Login, "/login")
 api.add_resource(CheckSession, "/check-session")
 api.add_resource(Logout, "/logout")
 api.add_resource(Tags, "/tags")
+api.add_resource(Photos, "/photos")
 
 
 if __name__ == "__main__":
