@@ -230,7 +230,7 @@ def send_email(data):
         msg = Message(
             subject=f"Inquiry from {data['name']}",
             sender='ebarnesdesigninquiry@gmail.com',
-            recipients='mrbarnes00@gmail.com',  # Wrap recipients in a list
+            recipients=['mrbarnes00@gmail.com'],  # Wrap recipients in a list
         )
         msg.body=f"Name: {data['name']}\nEmail: {data['email']}\nMessage: {data['message']}"
         with app.app_context():
@@ -239,9 +239,9 @@ def send_email(data):
 class Inquiries(Resource):
     def post(self):
         data = request.get_json()
+        send_email(data)
         try:
             new_inquiry = Inquiry(**data)
-            send_email(data)
             db.session.add(new_inquiry)
             db.session.commit()
             return make_response("Inquiry added", 201)

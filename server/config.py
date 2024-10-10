@@ -32,7 +32,8 @@ app.config["SESSION_PERMANENT"] = True
 app.config['MAIL_SERVER'] = 'smtp.gmail.com'
 app.config['MAIL_PORT'] = 587
 app.config['MAIL_USERNAME'] = 'ebarnesdesigninquiry@gmail.com'
-app.config['MAIL_PASSWORD'] = 'megg fgxu gtlo kljm'
+app.config['MAIL_PASSWORD'] = 'vdau opqm knse cvub'
+app.config['MAIL_DEFAULT_SENDER'] = 'ebarnesdesigninquiry@gmail.com'
 app.config['MAIL_USE_TLS'] = True
 app.config['MAIL_USE_SSL'] = False
 

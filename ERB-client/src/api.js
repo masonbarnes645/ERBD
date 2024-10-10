@@ -179,3 +179,22 @@ export const fetchTags = async () => {
         toast.error(errObj.error);
     }
 }
+
+// inquiries
+
+export const postInquiry = async (inquiryData) => {
+    try {
+        const response = await fetch(`${API_URL}/inquiries`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(inquiryData),
+        },)
+        if (!response.ok) {
+            throw new Error("Post Failed")
+        }
+    }
+    catch (errObj) {
+        toast.error(errObj.error)
+
+    }
+}
