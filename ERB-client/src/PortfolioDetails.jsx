@@ -17,6 +17,7 @@ const PortfolioDetails = () => {
         };
         
         loadPortfolio();
+        console.log(portfolio)
     }, [])
 
 
@@ -25,14 +26,24 @@ const PortfolioDetails = () => {
         navigate("/")
     }
 
-    return(
+    return (
         <div>
-            {portfolio.title}
-            {portfolio.photos}
-            <button onClick={handleDelete}>Delete</button>
+            <h2>{portfolio.title}</h2>
+            {portfolio.photos && portfolio.photos.length > 0 ? (
+                <div>
+                    {portfolio.photos.map(photo => (
+                        <div key={photo.id}>
+                            <h3>{photo.title}</h3>
+                            <img src={photo.image_url} alt={photo.title} />
+                            <p>{photo.description}</p>
+                        </div>
+                    ))}
+                </div>
+            ) : (
+                <p>No photos available.</p>
+            )}
         </div>
-    )
+    );
+};
 
-}
-
-export default PortfolioDetails
+            export default PortfolioDetails
