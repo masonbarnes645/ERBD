@@ -209,7 +209,7 @@ class Photos(Resource):
             if allowed_file(file.filename):
                 try:
                     filename = secure_filename(file.filename)
-                    file_path = os.path.join(filename)
+                    file_path = os.path.join("uploads", filename)
                     file.save(file_path)
 
 
