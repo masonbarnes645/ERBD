@@ -1,6 +1,6 @@
 // list products, add to products, delete products, analytics?
 
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { fetchTags, postPhoto, postPortfolio, postProduct } from "./api";
 
 // for scrolling container, css = overflow-y
@@ -13,8 +13,13 @@ const ControlPanel = () => {
     const [portfolioFormOpen, setPortfolioFormOpen] = useState(false)
     const [tags, setTags] = useState({})
     const [selectedTags, setSelectedTags] = useState([])
-    const [photo, setPhoto] = useState()
+    const fileInputRef = useRef(null);
 
+    const photoData = {
+        image: fileInputRef,
+        owner_id: 1,
+        owner_type: "product"
+    }
 
     const handleCheckboxChange = (e) => {
         const checkbox = e.target
@@ -33,13 +38,13 @@ const ControlPanel = () => {
             }));
         }
     };
-    const handlePhotoChange = (e) => {
-        const { name, value } = e.target;
-        setPhoto((prevPhoto) => ({
-            ...prevPhoto, 
-            [name]: value 
-        }));
-    };
+    // const handlePhotoChange = (e) => {
+    //     const { name, value } = e.target;
+    //     setPhoto((prevPhoto) => ({
+    //         ...prevPhoto,
+    //         [name]: value
+    //     }));
+    // };
 
     const toggleForm = (e) => {
         console.log(e.target.name);
@@ -60,8 +65,18 @@ const ControlPanel = () => {
             tags: selectedTags
         };
 
-        await postPhoto(photo)
+
         await postProduct(formWithTags)
+    }
+
+    const handleSubmitPhoto = async (e) => {
+        e.preventDefault
+        const fileData = new FormData()
+        const file = fileInputRef.current.files[0]
+        fileData.append('image', file)
+
+        await postPhoto(fileData)
+
     }
 
 
@@ -86,12 +101,11 @@ const ControlPanel = () => {
 
 
 
-    const productForm = (productFormOpen ? <form onSubmit={(e) => handleSubmitProduct(postFormData, e)}>
+    const productForm = (productFormOpen ?<> <form onSubmit={(e) => handleSubmitProduct(postFormData, e)} >
         <label>
             name: <input type="text" name="name" value={postFormData.title} onChange={handleChange} />
             description: <input type="text" name="description" value={postFormData.description} onChange={handleChange} />
             price: <input type="integer" name="price" value={postFormData.price} onChange={handleChange} />
-            image: <input type="file" name="photo" onChange={handlePhotoChange} />
         </label>
         <div>
             {tags.map((tag) => (
@@ -103,28 +117,36 @@ const ControlPanel = () => {
 
         </div>
         <button type="submit">Submit</button>
-    </form> :
+    </form>
+        <form onSubmit={ (e) => handleSubmitPhoto(e)}  encType="multipart/form-data">
+            image: <input type="file" name="image" ref={fileInputRef} />
+        </form>
+        <button type="submit">add photo</button>
+        </>
+
+        :
+
         <></>)
 
 
 
-    const portfolioForm = (portfolioFormOpen ? <form onSubmit={(e) => handleSubmitPortfolio(postFormData, e)}>
-        <label>
-            title: <input type="text" name="title" value={postFormData.title} onChange={handleChange} />
-            description: <input type="text" name="description" value={postFormData.description} onChange={handleChange} />
-        </label>
-        <button type="submit">Submit</button>
-    </form> :
+        const portfolioForm = (portfolioFormOpen ? <form onSubmit={(e) => handleSubmitPortfolio(postFormData, e)}>
+            <label>
+                title: <input type="text" name="title" value={postFormData.title} onChange={handleChange} />
+                description: <input type="text" name="description" value={postFormData.description} onChange={handleChange} />
+            </label>
+            <button type="submit">Submit</button>
+        </form> :
         <></>)
 
-    //map tags as checkboxes to a scrollable container
+        //map tags as checkboxes to a scrollable container
 
 
 
 
 
 
-    return (
+        return (
         <div>
             <h4>{productForm}</h4>
             <h4>{portfolioForm}</h4>
@@ -132,7 +154,7 @@ const ControlPanel = () => {
             <button onClick={toggleForm} name="portfolio">Portfolio</button>
 
         </div>
-    )
+        )
 }
 
-export default ControlPanel
+        export default ControlPanel

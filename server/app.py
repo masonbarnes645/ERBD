@@ -1,8 +1,10 @@
-from flask import make_response, session, request
+from flask import make_response, session, request, Flask
 from flask_restful import Resource
 import os
-from config import app, api, db, UPLOAD_FOLDER, ALLOWED_EXTENSIONS
+from config import app, api, db, ALLOWED_EXTENSIONS
 from flask_mail import Mail, Message
+from ipdb import set_trace
+from werkzeug.utils import secure_filename
 
 
 BASE_DIR = os.path.abspath(os.path.dirname(__file__))
@@ -190,47 +192,45 @@ class Tags(Resource):
         except Exception as e:
             return make_response({"error": str(e)}, 404)
         
+
 def allowed_file(filename):
-        return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+    ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+
+
 class Photos(Resource):
-    def post(self):
-        # Check if 'image' is in the request.files
-        if 'image' not in request.files:
-            return make_response({"error": "No file part in the request"}, 400)
-        
-        file = request.files['image']
+     def post(self):
+            print(request.files)
+            print(request.form)
+            file = request.files['photo']
+            if file.filename == '':
+                return make_response({"error": "No file selected"}, 400)
 
-        # If no file is selected
-        if file.filename == '':
-            return make_response({"error": "No file selected"}, 400)
+            if allowed_file(file.filename):
+                try:
+                    filename = secure_filename(file.filename)
+                    file_path = os.path.join(filename)
+                    file.save(file_path)
 
-        # Ensure it's an allowed file type
-        if file and allowed_file(file.filename):
-            try:
-                # Save the file with a secure filename
-                filename = file.filename
-                file_path = os.path.join(UPLOAD_FOLDER, filename)
-                file.save(file_path)
 
-                # Create the Photo object with the file path and any other metadata
-                data = request.form  # Grab other form data (like product_id, portfolio_id, etc.)
-                photo = Photo(file_path=file_path, **data)
-                
-                db.session.add(photo)
-                db.session.commit()
-
-                return make_response(photo.to_dict(), 201)
-            except Exception as e:
-                db.session.rollback()  # Rollback if there is an error
-                return make_response({"error": str(e)}, 500)
-        else:
-            return make_response({"error": "File type not allowed"}, 400)
+                    data = request.form.to_dict()  
+                    photo = Photo(file_path=file_path, **data)
+                    
+                    db.session.add(photo)
+                    db.session.commit()
+                    
+                    # return make_response(photo.to_dict(), 201)
+                except Exception as e:
+                        db.session.rollback()  
+                        return make_response({"error": str(e)}, 500)
+            else:
+                return make_response({"error": "File type not allowed"}, 400)
         
 def send_email(data):
         msg = Message(
             subject=f"Inquiry from {data['name']}",
             sender='ebarnesdesigninquiry@gmail.com',
-            recipients=['mrbarnes00@gmail.com'],  # Wrap recipients in a list
+            recipients=['mrbarnes00@gmail.com'],  
         )
         msg.body=f"Name: {data['name']}\nEmail: {data['email']}\nMessage: {data['message']}"
         with app.app_context():
@@ -248,7 +248,65 @@ class Inquiries(Resource):
         except Exception as e:
             db.session.rollback()
             return make_response({"error": str(e)})
-
+@app.route('/swagger.json')
+def swagger_json():
+    return {
+        "swagger": "2.0",
+        "info": {
+            "version": "1.0.0",
+            "title": "ERB"
+        },
+        "paths": {
+            "/photos": {
+                "post": {
+                    "summary": "Upload a photo",
+                    "consumes": ["multipart/form-data"],
+                    "produces": ["application/json"],
+                    "parameters": [
+                        {
+                            "name": "photo",
+                            "in": "formData",
+                            "description": "The photo to upload",
+                            "required": True,
+                            "type": "file"
+                        },
+                        {
+                            "name": "owner_type",
+                            "in": "formData",
+                            "description": "Title of the photo",
+                            "required": True,
+                            "type": "string"
+                        },
+                        {
+                            "name": "owner_id",
+                            "in": "formData",
+                            "description": "Description of the photo",
+                            "required": False,
+                            "type": "integer"
+                        }
+                    ],
+                    "responses": {
+                        "200": {
+                            "description": "Photo uploaded successfully",
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "message": {
+                                        "type": "string",
+                                        "example": "Photo uploaded successfully"
+                                    },
+                                    "photo_url": {
+                                        "type": "string",
+                                        "example": "https://example.com/photo.jpg"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
 
 
 

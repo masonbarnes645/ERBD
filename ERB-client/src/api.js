@@ -206,9 +206,9 @@ export const postPhoto = async (photoData) => {
         const response = await fetch(`${API_URL}/photos`, {
             method: "POST",
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "multipart/form-data"
             },
-            body: JSON.stringify(photoData),
+            body: photoData,
 
         },)
         if (!response.ok){
