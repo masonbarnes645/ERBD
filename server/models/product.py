@@ -2,6 +2,7 @@ from models.__init__ import db, SerializerMixin
 from models.product_tags import product_tags
 
 
+
 class Product(db.Model, SerializerMixin):
     __tablename__ = "products"
 
@@ -19,3 +20,6 @@ class Product(db.Model, SerializerMixin):
         viewonly=True,
     )
     serialize_rules = ("-tags",)
+
+
+# i think something about the query is not returning the pictures

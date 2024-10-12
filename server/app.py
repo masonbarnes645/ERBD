@@ -199,7 +199,7 @@ def allowed_file(filename):
 
 
 class Photos(Resource):
-     def post(self):
+    def post(self):
             print(request.files)
             print(request.form)
             file = request.files['image']
@@ -219,12 +219,29 @@ class Photos(Resource):
                     db.session.add(photo)
                     db.session.commit()
                     
-                    # return make_response(photo.to_dict(), 201)
+                    return make_response(photo.to_dict(), 201)
                 except Exception as e:
                         db.session.rollback()  
                         return make_response({"error": str(e)}, 500)
             else:
                 return make_response({"error": "File type not allowed"}, 400)
+        
+
+class PhotosByOwner(Resource):
+    def get(self):
+        owner = request.get_json()
+        id = owner['id']
+        try:
+            if owner['price']:
+                return make_response ([photo.to_dict() for photo in Photo.query.filter_by(Photo.owner_id == id).all()], 200)
+            else:
+                return make_response ([photo.to_dict() for photo in Photo.query.filter_by(Portfolio.owner_id == id).all()], 200)
+        except Exception as e:
+                return make_response({"error": str(e)}, 500)
+            
+
+
+#! fetch photos where owner_id = id and owner type is correct
         
 def send_email(data):
         msg = Message(
@@ -248,6 +265,27 @@ class Inquiries(Resource):
         except Exception as e:
             db.session.rollback()
             return make_response({"error": str(e)})
+
+
+
+
+
+api.add_resource(Portfolios, "/portfolios")
+api.add_resource(Products, "/products")
+api.add_resource(PortfolioById, "/portfolios/<int:id>")
+api.add_resource(ProductById, "/products/<int:id>")
+api.add_resource(Login, "/login")
+api.add_resource(CheckSession, "/check-session")
+api.add_resource(Logout, "/logout")
+api.add_resource(Tags, "/tags")
+api.add_resource(Photos, "/photos")
+api.add_resource(Inquiries, "/inquiries")
+
+
+if __name__ == "__main__":
+    app.run(port=5555, debug=True)
+
+
 @app.route('/swagger.json')
 def swagger_json():
     return {
@@ -307,22 +345,3 @@ def swagger_json():
             }
         }
     }
-
-
-
-
-
-api.add_resource(Portfolios, "/portfolios")
-api.add_resource(Products, "/products")
-api.add_resource(PortfolioById, "/portfolios/<int:id>")
-api.add_resource(ProductById, "/products/<int:id>")
-api.add_resource(Login, "/login")
-api.add_resource(CheckSession, "/check-session")
-api.add_resource(Logout, "/logout")
-api.add_resource(Tags, "/tags")
-api.add_resource(Photos, "/photos")
-api.add_resource(Inquiries, "/inquiries")
-
-
-if __name__ == "__main__":
-    app.run(port=5555, debug=True)

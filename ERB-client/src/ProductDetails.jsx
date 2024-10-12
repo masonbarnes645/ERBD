@@ -13,6 +13,7 @@ const ProductDetails = () => {
         const loadProduct = async () => {
             if (!productId) return;
             const data = await fetchProductById(productId);
+            console.log(data)
             setProduct(data);
         };
         
@@ -35,9 +36,6 @@ const ProductDetails = () => {
         <>
         <div>{product.name}</div>
         <button onClick={handleDelete}>Delete</button>
-        <form>
-            <input type="file"/>
-        </form>
         </>
     )
 }
