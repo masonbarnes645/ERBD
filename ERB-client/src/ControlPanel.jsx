@@ -13,13 +13,9 @@ const ControlPanel = () => {
     const [portfolioFormOpen, setPortfolioFormOpen] = useState(false)
     const [tags, setTags] = useState({})
     const [selectedTags, setSelectedTags] = useState([])
-    const fileInputRef = useRef(null);
+    const [fileInput, setFileInput] = useState() 
 
-    const photoData = {
-        image: fileInputRef,
-        owner_id: 1,
-        owner_type: "product"
-    }
+
 
     const handleCheckboxChange = (e) => {
         const checkbox = e.target
@@ -38,13 +34,11 @@ const ControlPanel = () => {
             }));
         }
     };
-    // const handlePhotoChange = (e) => {
-    //     const { name, value } = e.target;
-    //     setPhoto((prevPhoto) => ({
-    //         ...prevPhoto,
-    //         [name]: value
-    //     }));
-    // };
+
+    const handleFileChange = (e) =>{
+        setFileInput(e.target.files[0])
+
+    }
 
     const toggleForm = (e) => {
         console.log(e.target.name);
@@ -64,19 +58,15 @@ const ControlPanel = () => {
             ...postFormData,
             tags: selectedTags
         };
-
-
+        const photoForm = new FormData()
+        photoForm.append('image', fileInput)
+        photoForm.append('owner_type', 'product')
+        photoForm.append('owner_id', 1)
+        for (let pair of photoForm.entries()) {
+            console.log(pair[0] + ': ' + pair[1]);
+        }
+        await postPhoto(photoForm)
         await postProduct(formWithTags)
-    }
-
-    const handleSubmitPhoto = async (e) => {
-        e.preventDefault
-        const fileData = new FormData()
-        const file = fileInputRef.current.files[0]
-        fileData.append('image', file)
-
-        await postPhoto(fileData)
-
     }
 
 
@@ -101,11 +91,12 @@ const ControlPanel = () => {
 
 
 
-    const productForm = (productFormOpen ?<> <form onSubmit={(e) => handleSubmitProduct(postFormData, e)} >
+    const productForm = (productFormOpen ? <form onSubmit={(e) => handleSubmitProduct(postFormData, e)} >
         <label>
             name: <input type="text" name="name" value={postFormData.title} onChange={handleChange} />
             description: <input type="text" name="description" value={postFormData.description} onChange={handleChange} />
             price: <input type="integer" name="price" value={postFormData.price} onChange={handleChange} />
+            image: <input type="file" name="image" onChange={handleFileChange} />
         </label>
         <div>
             {tags.map((tag) => (
@@ -117,13 +108,7 @@ const ControlPanel = () => {
 
         </div>
         <button type="submit">Submit</button>
-    </form>
-        <form onSubmit={ (e) => handleSubmitPhoto(e)}  encType="multipart/form-data">
-            image: <input type="file" name="image" ref={fileInputRef} />
         </form>
-        <button type="submit">add photo</button>
-        </>
-
         :
 
         <></>)

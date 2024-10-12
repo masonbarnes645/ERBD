@@ -205,17 +205,17 @@ export const postPhoto = async (photoData) => {
     try {
         const response = await fetch(`${API_URL}/photos`, {
             method: "POST",
-            headers: {
-                "Content-Type": "multipart/form-data"
-            },
-            body: photoData,
+            body: photoData,  
+        });
 
-        },)
-        if (!response.ok){
-            throw new Error("Post Failed")
+        if (!response.ok) {
+            throw new Error("Post Failed");
         }
+        
+
+        const result = await response.json();
+        return result;
+    } catch (err) {
+        console.error("Error during photo upload:", err.message);
     }
-    catch (errObj){
-        toString.error(errObj.error)
-    }
-}
+};

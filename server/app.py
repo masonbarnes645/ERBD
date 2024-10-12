@@ -202,7 +202,7 @@ class Photos(Resource):
      def post(self):
             print(request.files)
             print(request.form)
-            file = request.files['photo']
+            file = request.files['image']
             if file.filename == '':
                 return make_response({"error": "No file selected"}, 400)
 
