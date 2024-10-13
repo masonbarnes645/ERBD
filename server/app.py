@@ -228,14 +228,16 @@ class Photos(Resource):
         
 
 class PhotosByOwner(Resource):
-    def get(self):
-        owner = request.get_json()
-        id = owner['id']
+    def get(self, owner_id, owner_type):
         try:
-            if owner['price']:
-                return make_response ([photo.to_dict() for photo in Photo.query.filter_by(Photo.owner_id == id).all()], 200)
+            if owner_type == 'product':
+                photos_by_owner_id = Photo.query.filter(
+                    Photo.owner_id == owner_id, 
+                    Photo.owner_type == "product"
+                ).all()
+                return make_response([photo.to_dict() for photo in photos_by_owner_id], 200)
             else:
-                return make_response ([photo.to_dict() for photo in Photo.query.filter_by(Portfolio.owner_id == id).all()], 200)
+                return make_response ([photo.to_dict() for photo in Photo.query.filter_by(Photo.owner_id == owner_id).all()], 200)
         except Exception as e:
                 return make_response({"error": str(e)}, 500)
             
@@ -280,6 +282,7 @@ api.add_resource(Logout, "/logout")
 api.add_resource(Tags, "/tags")
 api.add_resource(Photos, "/photos")
 api.add_resource(Inquiries, "/inquiries")
+api.add_resource(PhotosByOwner, "/photos/<string:owner_type>/<int:owner_id>")
 
 
 if __name__ == "__main__":
