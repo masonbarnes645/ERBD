@@ -11,7 +11,7 @@ class Photo(db.Model, SerializerMixin ):
     owner_type = db.Column(db.String, nullable=False)
     owner_id = db.Column(db.Integer, nullable=False)
 
-    serialize_rules = ("-product",)
+    serialize_rules = ("-product", "-portfolio")
 
     __mapper_args__ = {
         'polymorphic_on': owner_type

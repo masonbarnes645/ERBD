@@ -236,8 +236,12 @@ class PhotosByOwner(Resource):
                     Photo.owner_type == "product"
                 ).all()
                 return make_response([photo.to_dict() for photo in photos_by_owner_id], 200)
-            else:
-                return make_response ([photo.to_dict() for photo in Photo.query.filter_by(Photo.owner_id == owner_id).all()], 200)
+            elif owner_type == 'portfolio':
+                photos_by_owner_id = Photo.query.filter(
+                    Photo.owner_id == owner_id, 
+                    Photo.owner_type == "portfolio"
+                ).all()
+                return make_response([photo.to_dict() for photo in photos_by_owner_id], 200)
         except Exception as e:
                 return make_response({"error": str(e)}, 500)
             
