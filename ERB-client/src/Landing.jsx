@@ -7,6 +7,7 @@ const Landing = () =>
     return(
 
         <div>
+            <img src="src/assets/Header_logo.png" alt="header" />
             <Link to={"/portfolios"}>
                 <button>Portfolio</button>
             </Link>

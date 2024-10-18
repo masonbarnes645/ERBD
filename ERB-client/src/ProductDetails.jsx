@@ -34,7 +34,7 @@ const ProductDetails = () => {
       }
     return(
         <>
-        <div>{product.name}</div>
+        <div>{product.name} </div>
         <button onClick={handleDelete}>Delete</button>
         </>
     )
