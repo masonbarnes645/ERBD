@@ -7,24 +7,28 @@ const Landing = () => {
 
 
     return (
-        <Box alignItems='center' marginX={20}>
-            <Grid2 container spacing={2} alignItems="center" paddingY={10}>
+        <Box alignItems='center' marginX={20} sx={{ scrollSnapType: "y mandatory", scrollBehavior:'smooth' }} overflowY={'auto'}>
+            <Grid2 container spacing={2} alignItems="center" paddingY={10} sx={{scrollSnapAlign: 'start'}}>
                 <Grid2 item xs={12} sm={8}>
                     <Box width={300} marginTop={10}>
                         <Typography variant="body1" component='p'>
                             About ElizabethBarnesDesign Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa. Vestibulum lacinia arcu eget nulla. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur sodales ligula in libero. Sed dignissim lacinia nunc. Curabitur tortor. Pellentesque nibh. Aenean quam. In scelerisque sem at dolor. Maecenas mattis. Sed convallis tristique sem.
                         </Typography>
-                        <Button> Contact Us</Button>
+                        <Link to={"/about-us"}>
+                            <Button variant="contained">
+                                Contact Us
+                            </Button>
+                        </Link>
                     </Box>
                 </Grid2>
-                <Grid2 item xs={12} sm={4}>
+                <Grid2 item xs={12} sm={4} >
                     <Box marginX={5} marginTop={10}>
                         <img src="src/assets/Camino_1.jpg" width="100%" alt="Camino" />
                     </Box>
                 </Grid2>
 
             </Grid2>
-            <Grid2 container spacing={2} alignItems="center">
+            <Grid2 container spacing={2} alignItems="center"  sx={{scrollSnapAlign: 'start'}}>
                 <Grid2 item xs={12} sm={4}>
                     <Box marginX={5} marginTop={10}>
                         <img src="src/assets/Camino_1.jpg" width="100%" alt="Camino" />
@@ -36,17 +40,21 @@ const Landing = () => {
                         <Typography variant="body1" component='p'>
                             About ElizabethBarnesDesign Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa. Vestibulum lacinia arcu eget nulla. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur sodales ligula in libero. Sed dignissim lacinia nunc. Curabitur tortor. Pellentesque nibh. Aenean quam. In scelerisque sem at dolor. Maecenas mattis. Sed convallis tristique sem.
                         </Typography>
-                        <Button> Contact Us</Button>
+                        <Link to={"/portfolios"}>
+                            <Button variant="contained"> View our Work</Button>
+                        </Link>
                     </Box>
                 </Grid2>
             </Grid2>
-            <Grid2 container spacing={2} alignItems="center" paddingY={10}>
+            <Grid2 container spacing={2} alignItems="center" paddingY={10}  sx={{scrollSnapAlign: 'start'}}>
                 <Grid2 item xs={12} sm={8}>
                     <Box width={300} marginTop={10}>
                         <Typography variant="body1" component='p'>
                             About ElizabethBarnesDesign Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa. Vestibulum lacinia arcu eget nulla. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur sodales ligula in libero. Sed dignissim lacinia nunc. Curabitur tortor. Pellentesque nibh. Aenean quam. In scelerisque sem at dolor. Maecenas mattis. Sed convallis tristique sem.
                         </Typography>
-                        <Button> Contact Us</Button>
+                        <Link to={"/products"}>
+                            <Button variant="contained"> View Furniture</Button>
+                        </Link>
                     </Box>
                 </Grid2>
                 <Grid2 item xs={12} sm={4}>
@@ -70,7 +78,5 @@ export default Landing
 //     <Link to={"/products"}>
 //         <button>View Products</button>
 //     </Link>
-//     <Link to={"/about-us"}>
-//         <button>About EBD</button>
-//     </Link>
+
 // </div>
