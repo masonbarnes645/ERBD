@@ -3,7 +3,7 @@ import Landing from "./Landing";
 import { createBrowserRouter } from "react-router-dom";
 import Portfolio from "./Portfolio";
 import Products from "./Products";
-import About from "./About";
+import Contact from "./Contact"
 import ProductDetails from "./ProductDetails";
 import PortfolioDetails from "./PortfolioDetails";
 import Login from "./Login";
@@ -28,8 +28,8 @@ export const router =  createBrowserRouter(
                     element: <Products />
                 },
                 {
-                    path: "/about-us",
-                    element: <About />
+                    path: "/contact-us",
+                    element: <Contact />
                 },
                 {
                     path: "/portfolios/:portfolioId",
