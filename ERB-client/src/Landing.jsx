@@ -8,7 +8,7 @@ const Landing = () => {
 
     return (
         <Box alignItems='center' marginX={20} sx={{ scrollSnapType: "y mandatory", scrollBehavior:'smooth' }} overflowY={'auto'}>
-            <Grid2 container spacing={2} alignItems="center" paddingY={10} sx={{scrollSnapAlign: 'start'}}>
+            <Grid2 container spacing={2} alignItems="center" paddingY={10} sx={{scrollSnapAlign: 'center'}}>
                 <Grid2 item xs={12} sm={8}>
                     <Box width={300} marginTop={10}>
                         <Typography variant="body1" component='p'>
@@ -28,7 +28,7 @@ const Landing = () => {
                 </Grid2>
 
             </Grid2>
-            <Grid2 container spacing={2} alignItems="center"  sx={{scrollSnapAlign: 'start'}}>
+            <Grid2 container spacing={2} alignItems="center"  sx={{scrollSnapAlign: 'center'}}>
                 <Grid2 item xs={12} sm={4}>
                     <Box marginX={5} marginTop={10}>
                         <img src="src/assets/Camino_1.jpg" width="100%" alt="Camino" />
@@ -46,7 +46,7 @@ const Landing = () => {
                     </Box>
                 </Grid2>
             </Grid2>
-            <Grid2 container spacing={2} alignItems="center" paddingY={10}  sx={{scrollSnapAlign: 'start'}}>
+            <Grid2 container spacing={2} alignItems="center" paddingY={10}  sx={{scrollSnapAlign: 'center'}}>
                 <Grid2 item xs={12} sm={8}>
                     <Box width={300} marginTop={10}>
                         <Typography variant="body1" component='p'>
@@ -71,12 +71,3 @@ const Landing = () => {
 }
 
 export default Landing
-// <div>
-//     <Link to={"/portfolios"}>
-//         <button>Portfolio</button>
-//     </Link>
-//     <Link to={"/products"}>
-//         <button>View Products</button>
-//     </Link>
-
-// </div>
