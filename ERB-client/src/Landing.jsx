@@ -7,7 +7,7 @@ const Landing = () => {
 
 
     return (
-        <Box alignItems='center' marginX={20} sx={{ scrollSnapType: "y mandatory", scrollBehavior:'smooth', height: '100vh', overflowY: 'auto', width: '100vw', overflowX:'hidden' }}>
+        <Box alignItems='center' marginX={20} sx={{ scrollSnapType: "y mandatory", scrollBehavior:'smooth', height: '100vh', overflowY: 'auto', width: '100vw' }}>
             <Grid2 container spacing={2} alignItems="center" paddingY={10} sx={{scrollSnapAlign: 'center'}}>
                 <Grid2 item xs={12} sm={8}>
                     <Box width={300} marginTop={10}>
