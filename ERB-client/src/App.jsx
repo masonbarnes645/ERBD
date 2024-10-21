@@ -9,7 +9,7 @@ const App = () => {
 
     <UserProvider>
       <NavBar/>
-      <div>
+      <div className="base">
         <Outlet />
       </div>
       <Toaster />
