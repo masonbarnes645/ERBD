@@ -7,7 +7,7 @@ const Landing = () => {
 
 
     return (
-        <>
+        <Box alignItems='center' marginX={20}>
             <Grid2 container spacing={2} alignItems="center" paddingY={10}>
                 <Grid2 item xs={12} sm={8}>
                     <Box width={300} marginTop={10}>
@@ -57,7 +57,7 @@ const Landing = () => {
 
             </Grid2>
 
-        </>
+        </Box>
 
     )
 }
