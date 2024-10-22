@@ -251,20 +251,21 @@ class PhotosByOwner(Resource):
         
 def send_email(data):
         msg = Message(
-            subject=f"Inquiry from {data['name']}",
+            subject=f"Inquiry from {data['firstname']}",
             sender='ebarnesdesigninquiry@gmail.com',
             recipients=['mrbarnes00@gmail.com'],  
         )
-        msg.body=f"Name: {data['name']}\nEmail: {data['email']}\nMessage: {data['message']}"
+        msg.body=f"Name: {data['firstname']}\nEmail: {data['email']}\nMessage: {data['message']}"
         with app.app_context():
             mail.send(msg)
 
 class Inquiries(Resource):
     def post(self):
         data = request.get_json()
+        data['name'] = f"{data['firstname']} {data['lastname']}"
         send_email(data)
         try:
-            new_inquiry = Inquiry(**data)
+            new_inquiry = Inquiry(name=data['name'], email=data['email'], message=data['message'])
             db.session.add(new_inquiry)
             db.session.commit()
             return make_response("Inquiry added", 201)
