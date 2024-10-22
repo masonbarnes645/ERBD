@@ -23,15 +23,15 @@ def seed_data():
 
 
 
-        # photos = []
-        # for _ in range(20):
-        #     photo = Photo(
-        #         image_url = fake.image_url(),
-        #         owner_id = random.randint(1,5),
-        #         owner_type = "portfolio"
-        #     )
-        #     photos.append(photo)
-        #     db.session.add(photo)
+        photos = []
+        for _ in range(20):
+            photo = Photo(
+                file_path = "../client/uploads/A_Tribute_To_Spacemen_3_2023.jpg",
+                owner_id = random.randint(1,5),
+                owner_type = "portfolio"
+            )
+            photos.append(photo)
+            db.session.add(photo)
 
         portfolios = []
         for _ in range(5):
