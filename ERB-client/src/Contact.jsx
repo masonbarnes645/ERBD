@@ -22,7 +22,8 @@ const Contact = () => {
         }
     };
 
-    const handleSubmit = async (e, formData) => {
+    const handleSubmit = async (e) => {
+        console.log(formData)
         e.preventDefault()
         await postInquiry(formData)
     }
