@@ -28,7 +28,7 @@ def seed_data():
             photo = Photo(
                 file_path = "../client/uploads/A_Tribute_To_Spacemen_3_2023.jpg",
                 owner_id = random.randint(1,5),
-                owner_type = "portfolio"
+                owner_type = "product"
             )
             photos.append(photo)
             db.session.add(photo)

@@ -1,17 +1,25 @@
 
 
 
-const ProductCard = ({name, description, price, tags, photos, product}) =>{
-
-
-    return(
+const ProductCard = ({ name, description, price, tags, photos, product, id }) => {
+    // console.log(photos.file_path)
+    return (
         <div>
             <h1>
                 {name}
                 {description}
                 {price}
                 {tags}
-                {/* {product.photos.length > 0 ? <img src={product.photos[0].file_path}/> : <></>} */}
+                {/* {photos} */}
+                {photos && photos.file_path ? (
+                    <img
+                        src={photos.file_path}
+                        alt={name}
+                        style={{ width: '200px', height: 'auto' }}
+                    />
+                ) : (
+                    <p>No image available</p>
+                )}
             </h1>
         </div>
     )

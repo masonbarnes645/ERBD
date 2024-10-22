@@ -14,12 +14,14 @@ const Products = () => {
       try {
         const data = await fetchProducts();
         setProducts(data);
+      
       } catch (err) {
         setError(err.message);
       }
     };
 
     loadProducts();
+    console.log(products)
   }, []);
 
   return (
