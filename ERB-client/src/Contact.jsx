@@ -4,6 +4,8 @@ import Typography from "@mui/material/Typography";
 import TextField from '@mui/material/TextField';
 import Paper from '@mui/material/Paper';
 import { useState } from 'react';
+import { postInquiry } from './api';
+import { Button } from '@mui/material';
 
 
 const Contact = () => {
@@ -20,6 +22,11 @@ const Contact = () => {
         }
     };
 
+    const handleSubmit = async (e, formData) => {
+        e.preventDefault()
+        await postInquiry(formData)
+    }
+
 
     return (
         <Box alignItems={"center"}>
@@ -35,7 +42,7 @@ const Contact = () => {
                     </Box>
                 </Grid>
                 <Grid size={8}>
-                    <Paper component='form' sx={{ width: '100%', height: 400, paddingTop:8 }} >
+                    <Paper component='form' onSubmit={handleSubmit} sx={{ width: '100%', height: 400, paddingTop:8 }} >
                         <Box alignContent={'center'}>
                             <TextField label="First Name" onChange={handleChange}  name='firstname'/>
                             <TextField label="Last Name" onChange={handleChange} name='lastname'/>
@@ -49,6 +56,7 @@ const Contact = () => {
                         <Box>
                             <TextField label="Message" sx={{width:'80%', marginX:"5%"}} onChange={handleChange} name='message'/>
                         </Box>
+                        <Button type='submit'>Submit</Button>
                     </Paper>
                 </Grid>
             </Grid>
