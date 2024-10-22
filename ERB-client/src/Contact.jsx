@@ -3,10 +3,22 @@ import Box from '@mui/material/Box';
 import Typography from "@mui/material/Typography";
 import TextField from '@mui/material/TextField';
 import Paper from '@mui/material/Paper';
-import { width } from '@mui/system';
+import { useState } from 'react';
+
 
 const Contact = () => {
+    const [formData, setFormData] = useState({});
 
+
+    const handleChange = (e) => {
+        const { name, value, } = e.target;
+        {
+            setFormData((prevData) => ({
+                ...prevData,
+                [name]: value
+            }));
+        }
+    };
 
 
     return (
@@ -25,17 +37,17 @@ const Contact = () => {
                 <Grid size={8}>
                     <Paper component='form' sx={{ width: '100%', height: 400, paddingTop:8 }} >
                         <Box alignContent={'center'}>
-                            <TextField label="First Name" />
-                            <TextField label="Last Name" />
+                            <TextField label="First Name" onChange={handleChange}  name='firstname'/>
+                            <TextField label="Last Name" onChange={handleChange} name='lastname'/>
                         </Box>
                         <Box>
-                            <TextField label="Email"/>
+                            <TextField label="Email" onChange={handleChange} name='email'/>
                         </Box>
                         <Box>
-                            <TextField label="Subject"/>
+                            <TextField label="Subject" onChange={handleChange} name='subject'/>
                         </Box>
                         <Box>
-                            <TextField label="Message" sx={{width:'80%', marginX:"5%"}}/>
+                            <TextField label="Message" sx={{width:'80%', marginX:"5%"}} onChange={handleChange} name='message'/>
                         </Box>
                     </Paper>
                 </Grid>
