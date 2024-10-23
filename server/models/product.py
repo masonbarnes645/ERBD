@@ -22,4 +22,3 @@ class Product(db.Model, SerializerMixin):
     serialize_rules = ("-tags",)
 
 
-# i think something about the query is not returning the pictures

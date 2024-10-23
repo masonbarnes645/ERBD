@@ -1,4 +1,4 @@
-from flask import make_response, session, request, Flask
+from flask import make_response, session, request, Flask, send_from_directory
 from flask_restful import Resource
 import os
 from config import app, api, db, ALLOWED_EXTENSIONS
@@ -271,7 +271,16 @@ class Inquiries(Resource):
             return make_response("Inquiry added", 201)
         except Exception as e:
             db.session.rollback()
-            return make_response({"error": str(e)})
+            return make_response({"error": str(e)}, 500)
+        
+class File(Resource):
+    def get(self, file_path):
+        try:
+            uploads_dir = os.path.join(os.getcwd(), 'uploads')
+            return send_from_directory(uploads_dir, file_path)
+        except Exception as e:
+            return make_response({"error": str(e)}, 500)
+
 
 
 
@@ -287,6 +296,7 @@ api.add_resource(Logout, "/logout")
 api.add_resource(Tags, "/tags")
 api.add_resource(Photos, "/photos")
 api.add_resource(Inquiries, "/inquiries")
+api.add_resource(File, "/uploads/<string:file_path>")
 api.add_resource(PhotosByOwner, "/photos/<string:owner_type>/<int:owner_id>")
 
 

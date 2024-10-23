@@ -27,7 +27,7 @@ def seed_data():
         photos = []
         for _ in range(20):
             photo = Photo(
-                file_path = "../server/uploads/A_Tribute_To_Spacemen_3_2023.jpg",
+                file_path = "uploads/A_Tribute_To_Spacemen_3_2023.jpg",
                 owner_id = random.randint(1,5),
                 owner_type = "product"
             )

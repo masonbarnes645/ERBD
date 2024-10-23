@@ -2,8 +2,11 @@
 
 
 const ProductCard = ({ name, description, price, tags, photos, product, id }) => {
-
-    return (
+    const imageUrl = photos && photos.file_path
+        ? `http://localhost:5555/${photos.file_path}`
+        : null;
+    
+        return (
         <div>
             <h1>
                 {/* {name}
@@ -11,10 +14,10 @@ const ProductCard = ({ name, description, price, tags, photos, product, id }) =>
                 {price}
                 {tags} */}
                 {/* {photos} */}
-                {photos && photos.file_path ? (
+                {photos && photos.file_path[0] ? (
                     <>
                         <img
-                            src={photos.file_path}
+                            src={imageUrl}
                             alt={name}
                             style={{ width: '200px', height: 'auto' }}
                         />
