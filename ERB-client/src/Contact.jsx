@@ -58,7 +58,7 @@ const Contact = () => {
                             <TextField fullWidth label="Subject" onChange={handleChange} name='subject' />
                         </Box>
                         <Box sx={{marginLeft:2, marginRight:5, paddingBottom:5}}>
-                            <TextField fullWidth  label="Message" onChange={handleChange} name='message'  />
+                            <TextField fullWidth  label="Message" onChange={handleChange} name='message'  multiline rows={3}  />
                         </Box>
                         <Button type='submit'>Submit</Button>
                     </Paper>
