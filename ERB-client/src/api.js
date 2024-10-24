@@ -192,6 +192,7 @@ export const postInquiry = async (inquiryData) => {
         if (!response.ok) {
             throw new Error("Post Failed")
         }
+        toast.success("Email Sent")
     }
     catch (errObj) {
         toast.error(errObj.error)

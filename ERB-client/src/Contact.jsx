@@ -26,6 +26,7 @@ const Contact = () => {
         console.log(formData)
         e.preventDefault()
         await postInquiry(formData)
+        setFormData({})
     }
 
 
