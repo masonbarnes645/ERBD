@@ -43,19 +43,25 @@ const Contact = () => {
                     </Box>
                 </Grid>
                 <Grid size={8}>
-                    <Paper component='form' onSubmit={handleSubmit} sx={{ width: '100%', height: 400, paddingTop:8 }} >
-                        <Box alignContent={'center'}>
-                            <TextField label="First Name" onChange={handleChange}  name='firstname'/>
-                            <TextField label="Last Name" onChange={handleChange} name='lastname'/>
-                        </Box>
-                        <Box>
-                            <TextField label="Email" onChange={handleChange} name='email'/>
-                        </Box>
-                        <Box>
-                            <TextField label="Subject" onChange={handleChange} name='subject'/>
-                        </Box>
-                        <Box>
-                            <TextField label="Message" sx={{width:'80%', marginX:"5%"}} onChange={handleChange} name='message'/>
+                    <Paper component='form' onSubmit={handleSubmit} sx={{ width: '100%', height: 400, paddingTop: 8, display: 'grid', alignContent: 'stretch' }} >
+                        <Grid container spacing={2} sx={{ width: '100%', justifyContent:'center' }}>
+                            <Grid item lg={6} xs={12} sx={{alignSelf:'stretch'}}>
+                                <TextField fullWidth label="First Name" onChange={handleChange} name="firstname" />
+                            </Grid>
+                            <Grid item lg={6} xs={12} sx={{alignSelf:'stretch'}}>
+                                <TextField fullWidth label="Last Name" onChange={handleChange} name="lastname" />
+                            </Grid>
+                        </Grid>
+                        <Grid container spacing={2} sx={{ width: '100%', justifyContent:'center' }}>
+                            <Grid item lg={6} xs={12} sx={{alignSelf:'stretch'}}>
+                            <TextField fullWidth label="Email" onChange={handleChange} name='email' />
+                            </Grid>
+                            <Grid item lg={6} xs={12} sx={{alignSelf:'stretch'}}>
+                            <TextField fullWidth label="Subject" onChange={handleChange} name='subject' />
+                            </Grid>
+                        </Grid>
+                        <Box >
+                            <TextField fullWidth label="Message" onChange={handleChange} name='message' />
                         </Box>
                         <Button type='submit'>Submit</Button>
                     </Paper>
