@@ -200,8 +200,6 @@ def allowed_file(filename):
 
 class Photos(Resource):
     def post(self):
-            print(request.files)
-            print(request.form)
             file = request.files['image']
             if file.filename == '':
                 return make_response({"error": "No file selected"}, 400)
@@ -213,7 +211,8 @@ class Photos(Resource):
                     file.save(file_path)
 
 
-                    data = request.form.to_dict()  
+                    data = request.form.to_dict()
+                    data['owner_id'] = 5
                     photo = Photo(file_path=file_path, **data)
                     
                     db.session.add(photo)

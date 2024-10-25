@@ -62,9 +62,6 @@ const ControlPanel = () => {
         photoForm.append('image', fileInput)
         photoForm.append('owner_type', 'product')
         photoForm.append('owner_id', 1)
-        for (let pair of photoForm.entries()) {
-            console.log(pair[0] + ': ' + pair[1]);
-        }
         await postPhoto(photoForm)
         await postProduct(formWithTags)
     }
@@ -86,7 +83,6 @@ const ControlPanel = () => {
         };
 
         loadTags();
-        console.log(tags)
     }, []);
 
 
