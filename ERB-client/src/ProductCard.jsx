@@ -11,7 +11,7 @@ const ProductCard = ({ name, description, price, tags, photos, product, id }) =>
         : null;
 
     return (
-        <Paper>
+        <Paper elevation={10}>
             <Grid container paddingTop={4}>
                 <Grid item size={12} paddingX={5}>
                     {photos && photos.file_path[0] ? (

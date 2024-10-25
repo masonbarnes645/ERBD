@@ -25,7 +25,7 @@ const Products = () => {
   }, []);
 
   return (
-    <Grid container spacing={4} marginX={50} marginTop={25}>
+    <Grid container spacing={6} marginX={30} marginTop={20}>
       {products.length > 0 ? (
         products.map((product) => (
           <Grid size={{lg:6, xs:12}}>

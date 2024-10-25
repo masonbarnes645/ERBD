@@ -49,7 +49,7 @@ const Contact = () => {
                     </Box>
                 </Grid>
                 <Grid size={8}>
-                    <Paper component='form' onSubmit={handleSubmit} sx={{ width: '100%', height: 400, paddingTop: 4, display: 'grid', alignContent: 'stretch' }} >
+                    <Paper  elevation={10} component='form' onSubmit={handleSubmit} sx={{ width: '100%', height: 400, paddingTop: 4, display: 'grid', alignContent: 'stretch' }} >
                         <Grid container spacing={2} sx={{ width: '100%', justifyContent:'center' }}>
                             <Grid item lg={6} xs={12} sx={{paddingRight:10}} >
                                 <TextField fullWidth label="First Name" onChange={handleChange} value={formData.firstname} name="firstname" />
