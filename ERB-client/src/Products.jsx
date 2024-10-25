@@ -14,7 +14,7 @@ const Products = () => {
       try {
         const data = await fetchProducts();
         setProducts(data);
-      
+
       } catch (err) {
         setError(err.message);
       }
@@ -25,12 +25,14 @@ const Products = () => {
   }, []);
 
   return (
-    <Grid>
+    <Grid container spacing={4} marginX={50} marginTop={25}>
       {products.length > 0 ? (
         products.map((product) => (
-          <Box key={product.id}>
-            <ProductCard {...product} />
-          </Box>
+          <Grid size={{lg:6, xs:12}}>
+            <Box key={product.id}>
+              <ProductCard {...product} />
+            </Box>
+          </Grid>
         ))
       ) : (
         <div>No products available</div>
