@@ -212,7 +212,7 @@ class Photos(Resource):
 
 
                     data = request.form.to_dict()
-                    data['owner_id'] = 5
+                    data['owner_id'] = len(Product.query.all()) + 1
                     photo = Photo(file_path=file_path, **data)
                     
                     db.session.add(photo)
