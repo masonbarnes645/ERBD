@@ -6,6 +6,17 @@ import Paper from '@mui/material/Paper';
 import { useState } from 'react';
 import { postInquiry } from './api';
 import { Button } from '@mui/material';
+import * as yup from 'yup';
+
+
+
+const inqSchema = yup.object().shape({
+    firstname: yup.string().required("First Name is Required"),
+    lastname: yup.string().required("Last Name is required"),
+    email: yup.email().required("Email is Required"),
+    subject: yup.string().required("Subject is Required"),
+    message: yup.string().required("Message is Required")
+})
 
 
 const Contact = () => {

@@ -2,9 +2,17 @@
 
 import { useEffect, useRef, useState } from "react"
 import { fetchTags, postPhoto, postPortfolio, postProduct } from "./api";
+import * as yup from 'yup';
 
-// for scrolling container, css = overflow-y
-// conditional post for portfolio or product
+
+
+const inqSchema = yup.object().shape({
+    firstname: yup.string().required("First Name is Required"),
+    lastname: yup.string().required("Last Name is required"),
+    email: yup.email().required("Email is Required"),
+    subject: yup.string().required("Subject is Required"),
+    message: yup.string().required("Message is Required")
+})
 
 
 const ControlPanel = () => {
@@ -62,9 +70,13 @@ const ControlPanel = () => {
         photoForm.append('image', fileInput)
         photoForm.append('owner_type', 'product')
         photoForm.append('owner_id', 1)
-        await postPhoto(photoForm)
-        await postProduct(formWithTags)
+        try {
+            await postProduct(formWithTags);
+            await postPhoto(photoForm);
+        } catch (error) {
+            console.error('Error posting product or photo:', error);
     }
+}
 
 
     const handleSubmitPortfolio = async (postFormData, e) => {
