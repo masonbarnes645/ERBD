@@ -1,4 +1,7 @@
+import { Paper } from "@mui/material"
 import { useNavigate } from "react-router-dom"
+import Grid from '@mui/material/Grid2';
+
 
 
 const PortfolioSlate = ({ title }) =>{
@@ -6,10 +9,12 @@ const PortfolioSlate = ({ title }) =>{
 
 
     return(
-        <>
-        <h1>{title}</h1>
+        <Paper elevation={10}>
+            <Grid container>
 
-        </>
+            </Grid>
+
+        </Paper>
     )
 }
 

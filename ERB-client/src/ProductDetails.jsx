@@ -2,13 +2,13 @@ import { useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
 import { deleteProduct, fetchProductById } from "./api"
 
-const ProductDetails = () => {
+const ProductDetails = ({ name, description, photos}) => {
     const { productId } = useParams()
     const [product, setProduct] = useState([{}])
 
     const navigate = useNavigate()
 
-
+    // fetch all photos
     useEffect(() => {
         const loadProduct = async () => {
             if (!productId) return;

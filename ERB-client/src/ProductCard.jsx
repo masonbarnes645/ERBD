@@ -6,15 +6,16 @@ import { Link } from "react-router-dom";
 
 
 const ProductCard = ({ name, description, price, tags, photos, product, id }) => {
-    const imageUrl = photos && photos.file_path
-        ? `http://localhost:5555/${photos.file_path}`
+    const imageUrl = photos && photos[0].file_path
+        ? `http://localhost:5555/${photos[0].file_path}`
         : null;
+        console.log(photos)
 
     return (
         <Paper elevation={10}>
             <Grid container paddingTop={4}>
                 <Grid item size={12} paddingX={5}>
-                    {photos && photos.file_path[0] ? (
+                    {photos && photos[0].file_path[0] ? (
                         <>
                             <img
                                 src={imageUrl}

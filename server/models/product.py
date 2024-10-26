@@ -14,10 +14,11 @@ class Product(db.Model, SerializerMixin):
     tags = db.relationship("Tag", secondary=product_tags, back_populates="products")
 
     photos = db.relationship(
-        "Photo",
+        "ProductPhoto",
         primaryjoin="and_(Photo.owner_id == foreign(Product.id), Photo.owner_type=='product')",
         backref="product",
         viewonly=True,
+        uselist=True
     )
     serialize_rules = ("-tags",)
 

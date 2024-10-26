@@ -10,7 +10,7 @@ class Portfolio(db.Model, SerializerMixin):
     description = db.Column(db.String)
 
     photos = db.relationship(
-        "Photo",
+        "PortfolioPhoto",
         primaryjoin="and_(Photo.owner_id == foreign(Portfolio.id), Photo.owner_type=='portfolio')",
         backref="portfolio",
         viewonly=True,
