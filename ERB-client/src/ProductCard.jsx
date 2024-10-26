@@ -19,8 +19,9 @@ const ProductCard = ({ name, description, price, tags, photos, product, id }) =>
                             <img
                                 src={imageUrl}
                                 alt={name}
-                                style={{ width: '200px', height: 'auto' }}
-
+                                style={{ width: '200px', height: '150px' }}
+                                loading="lazy"
+                                
                             />
                         </>
 
