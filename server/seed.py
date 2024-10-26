@@ -25,17 +25,17 @@ def seed_data():
 
 
         photos = []
-        for _ in range(20):
+        for _ in range(100):
             photo = Photo(
-                file_path = "uploads/A_Tribute_To_Spacemen_3_2023.jpg",
-                owner_id = random.randint(1,5),
-                owner_type = "product"
+                file_path = random.choice(["uploads/Camino_1.jpg", "uploads/camino_2.jpeg", "uploads/camino_3.jpg"]),
+                owner_id = random.randint(1,20),
+                owner_type = random.choice(["product", "portfolio"])
             )
             photos.append(photo)
             db.session.add(photo)
 
         portfolios = []
-        for _ in range(5):
+        for _ in range(20):
             portfolio = Portfolio(
                 title = fake.word(),
                 description = fake.sentence()

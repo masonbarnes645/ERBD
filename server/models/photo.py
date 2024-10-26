@@ -14,5 +14,12 @@ class Photo(db.Model, SerializerMixin ):
     serialize_rules = ("-product", "-portfolio")
 
     __mapper_args__ = {
-        'polymorphic_on': owner_type
+        "polymorphic_identity": "photo",
+        "polymorphic_on": owner_type
     }
+
+class ProductPhoto(Photo):
+    __mapper_args__ = {'polymorphic_identity': 'product'}
+
+class PortfolioPhoto(Photo):
+    __mapper_args__ = {'polymorphic_identity': 'portfolio'}
