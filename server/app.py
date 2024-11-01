@@ -210,11 +210,12 @@ class Photos(Resource):
                     file_path = os.path.join("uploads", filename)
                     file.save(file_path)
 
-
                     data = request.form.to_dict()
-                    data['owner_id'] = len(Product.query.all()) + 1
-                    photo = Photo(file_path=file_path, **data)
                     
+                    if data['owner_type'] == 'product':
+                        data['owner_id'] = len(Product.query.all()) + 1
+                    
+                    photo = Photo(file_path=file_path, **data)
                     db.session.add(photo)
                     db.session.commit()
                     

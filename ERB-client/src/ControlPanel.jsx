@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { fetchTags, postPhoto, postPortfolio, postProduct } from "./api";
 import * as yup from 'yup';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { Link } from "react-router-dom";
 
 const productSchema = yup.object().shape({
     name: yup.string().required("Name is Required"),
@@ -87,6 +88,9 @@ const ControlPanel = () => {
         <div>
             <button onClick={toggleForm} name="product">Product</button>
             <button onClick={toggleForm} name="portfolio">Portfolio</button>
+            <Link to={'/control-photo'}>
+                <button> Add photos to portfolio</button>
+            </Link>
 
             {productFormOpen && (
                 <Formik

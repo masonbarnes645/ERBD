@@ -8,6 +8,7 @@ import ProductDetails from "./ProductDetails";
 import PortfolioDetails from "./PortfolioDetails";
 import Login from "./Login";
 import ControlPanel from "./ControlPanel";
+import ControlPhoto from "./ControlPhoto";
 
 export const router =  createBrowserRouter(
     [
@@ -46,6 +47,10 @@ export const router =  createBrowserRouter(
                 {
                     path: "/control",
                     element: <ControlPanel />
+                },
+                {
+                    path: "/control-photo",
+                    element: <ControlPhoto />
                 }
             ]
         }
