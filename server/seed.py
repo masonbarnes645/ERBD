@@ -16,7 +16,6 @@ def seed_data():
     with app.app_context():
         
         Photo.query.delete()
-        Portfolio.query.delete()
         Product.query.delete()
         Tag.query.delete()
         db.session.execute(product_tags.delete())
@@ -33,16 +32,6 @@ def seed_data():
             )
             photos.append(photo)
             db.session.add(photo)
-
-        portfolios = []
-        for _ in range(20):
-            portfolio = Portfolio(
-                title = fake.word(),
-                description = fake.sentence()
-
-            )
-            portfolios.append(portfolio)
-            db.session.add(portfolio)
 
         products = []
         for _ in range(20):
