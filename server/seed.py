@@ -24,11 +24,11 @@ def seed_data():
 
 
         photos = []
-        for _ in range(100):
+        for _ in range(50):
             photo = Photo(
                 file_path = random.choice(["uploads/Camino_1.jpg", "uploads/camino_2.jpeg", "uploads/camino_3.jpg"]),
                 owner_id = random.randint(1,20),
-                owner_type = random.choice(["product", "portfolio"])
+                owner_type = "product"
             )
             photos.append(photo)
             db.session.add(photo)
