@@ -9,9 +9,7 @@ const App = () => {
 
     <UserProvider>
       <NavBar/>
-      <div className="base">
         <Outlet />
-      </div>
       <Toaster />
     </UserProvider>
 

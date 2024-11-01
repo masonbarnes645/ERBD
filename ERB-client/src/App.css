@@ -1,10 +1,5 @@
 body{
     overflow-x: hidden;
-    background: wheat;
+    max-width: 100%;
 }
 
-#logo{
-    width: 75%;
-    height: auto;
-    margin-left: 50px;
-}
