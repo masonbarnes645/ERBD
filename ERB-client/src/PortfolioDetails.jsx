@@ -2,11 +2,14 @@ import { useEffect, useState } from "react"
 
 import { useNavigate, useParams } from "react-router-dom"
 import { deletePortfolio, fetchPortfolioById } from "./api"
+import { ImageList, ImageListItem } from "@mui/material";
 
 
 const PortfolioDetails = () => {
     const { portfolioId } = useParams()
-    const [portfolio, setPortfolio] = useState([])
+    const [portfolio, setPortfolio] = useState({
+        photos : []
+    })
     const [editMode, setEditMode] = useState(false)
     const navigate = useNavigate()
 
@@ -21,38 +24,20 @@ const PortfolioDetails = () => {
         console.log(portfolio)
     }, [])
 
-
-    const handleDelete = async () => {
-        await deletePortfolio(portfolioId)
-        navigate("/")
-    }
-
-    const editModeJSX = (
-        <div></div>
-    )
-    
     
     
     
     
     return (
-        <div>
-            <h2>{portfolio.title}</h2>
-            {portfolio.photos && portfolio.photos.length > 0 ? (
-                <div>
-                    {portfolio.photos.map(photo => (
-                        <div key={photo.id}>
-                            <h3>{photo.title}</h3>
-                            <img src={photo.image_url} alt={photo.title} />
-                            <p>{photo.description}</p>
-                        </div>
-                    ))}
-                </div>
-            ) : (
-                <p>No photos available.</p>
-            )}
-        </div>
+        <ImageList variant="masonry">
+            {portfolio.photos.map((photo) => (
+                <ImageListItem key={photo.id}>
+                    <img src={`http://localhost:5555/${photo.file_path}`} alt={photo.title} />
+                </ImageListItem>
+            ))}
+        </ImageList>
     );
-};
+}
+    
 
-            export default PortfolioDetails
+export default PortfolioDetails
