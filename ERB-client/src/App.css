@@ -1,5 +1,19 @@
 body{
     overflow-x: hidden;
-    max-width: 100%;
+    display: flex;
+    justify-content: center;
+    margin:0;
+    padding: 0;
+    box-sizing: content-box;
+}
+
+.fuckler500 {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(8,1fr);
+}
+
+#test {
+    object-fit: fill;
 }
 

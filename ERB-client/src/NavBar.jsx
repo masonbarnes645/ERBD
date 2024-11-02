@@ -15,7 +15,7 @@ const NavBar = () => {
     };
 
     return (
-        <AppBar  sx={{width:'100%'}}>
+        <AppBar  sx={{maxWidth:'100%'}}>
             <Box
                 sx={{
                     bgcolor: 'blue',
