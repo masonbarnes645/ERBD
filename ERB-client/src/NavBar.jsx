@@ -4,6 +4,7 @@ import { useMediaQuery } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import { useNavigate } from "react-router-dom";
 import MenuIcon from "@mui/icons-material/Menu";
+import './App.css'
 const NavBar = () => {
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down("md"));
@@ -17,8 +18,9 @@ const NavBar = () => {
     return (
         <AppBar  sx={{maxWidth:'100%'}}>
             <Box
+                className= "zen-font"
                 sx={{
-                    bgcolor: 'blue',
+                    bgcolor: '#4D3E37',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'space-between',
