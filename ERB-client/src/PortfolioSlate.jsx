@@ -12,14 +12,14 @@ const PortfolioSlate = ({ title, photos, id }) => {
 
     return (
         <Link to={`/portfolios/${id}`}>
-            <Box sx={{ marginY: '3rem', position: 'relative' }} className="fart">
+            <Box sx={{ marginY: '1rem', position: 'relative' }} className="fart">
                 {photos ? (
                     <>
                         <img
                             src={imageUrl}
                             alt={title}
                             loading="lazy"
-                            style={{ height: '30rem', width: '40rem', objectFit: 'cover', borderStyle: 'solid' }}
+                            style={{ height: '30rem', width: '40rem', objectFit: 'cover', borderStyle: 'solid', borderColor: '#36454F'}}
 
                         />
                     </>
@@ -27,6 +27,9 @@ const PortfolioSlate = ({ title, photos, id }) => {
                 ) : (
                     <p>No image available</p>
                 )}
+                <Box color={'#36454F'} className="zen-font"  display={'flex'} justifyContent={'center'} borderBottom={'solid'}>
+                    <h2>{title}</h2>
+                </Box>
             </Box >
         </Link>
 

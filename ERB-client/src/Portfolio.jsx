@@ -23,7 +23,7 @@ const Portfolio = () => {
 
   console.log(portfolios)
   return (
-    <Grid container spacing={8} display={'flex'} justifyContent={'center'} marginX={'10rem'} marginTop={'3rem'}>
+    <Grid container spacing={8} display={'flex'} justifyContent={'center'} marginX={'5rem'} marginTop={'3rem'}>
       {portfolios.map((portfolio) =>
         <Grid item>
           <PortfolioSlate {...portfolio} />
