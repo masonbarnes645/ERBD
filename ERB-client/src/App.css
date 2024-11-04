@@ -33,3 +33,9 @@ body{
         color: beige ;
     }
 }
+
+.fart{
+    :hover {
+        opacity: .3;
+    }
+}

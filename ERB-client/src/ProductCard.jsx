@@ -13,7 +13,7 @@ const ProductCard = ({ name, description, price, tags, photos, product, id }) =>
         : null;
 
 
-    console.log(photos[0])
+
     return (
         <Link to={`/products/${id}`} >
             <Paper elevation={10} sx={{ maxWidth: '25rem', maxHeight: '25rem', paddingY: '1rem', paddingX: { xs: '1rem', med: 0 } }}>

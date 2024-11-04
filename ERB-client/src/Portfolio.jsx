@@ -23,9 +23,9 @@ const Portfolio = () => {
 
   console.log(portfolios)
   return (
-    <Grid container>
+    <Grid container spacing={8} display={'flex'} justifyContent={'center'} marginX={'10rem'} marginTop={'3rem'}>
       {portfolios.map((portfolio) =>
-        <Grid size={12}>
+        <Grid item>
           <PortfolioSlate {...portfolio} />
         </Grid>)}
       </Grid> 
