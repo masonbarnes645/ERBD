@@ -27,13 +27,13 @@ const Landing = () => {
                 flexFlow: { xs: "column", sm: 'row' }
             }}>
                 <Link to={"/portfolios"}>
-                    <Button variant="contained" size="large" sx={{ backgroundColor: '#4D7A66', marginY: { xs: '10px', sm: '0px' } }}> View our Work</Button>
+                    <Button  variant="contained" size="large" sx={{ backgroundColor: '#36454F', marginY: { xs: '10px', sm: '0px' } }}> View our Work</Button>
                 </Link>
                 <Link to={"/products"}>
-                    <Button variant="contained" size="large"sx={{ backgroundColor: '#4D7A66', marginBottom: { xs: '10px', sm: '0px' } }}> View Furniture</Button>
+                    <Button variant="contained" size="large"sx={{ backgroundColor: '#36454F', marginBottom: { xs: '10px', sm: '0px' } }}> View Furniture</Button>
                 </Link>
                 <Link to={"/contact-us"}>
-                    <Button variant="contained" size="large"sx={{ backgroundColor: '#4D7A66' }}>
+                    <Button variant="contained" size="large"sx={{ backgroundColor: '#36454F' }}>
                         Contact Us
                     </Button>
                 </Link>
