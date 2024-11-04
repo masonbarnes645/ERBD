@@ -19,7 +19,7 @@ const PortfolioSlate = ({ title, photos, id }) => {
                             src={imageUrl}
                             alt={title}
                             loading="lazy"
-                            style={{ height: '30rem', width: '40rem', objectFit: 'cover', borderStyle: 'solid', borderColor: '#36454F'}}
+                            style={{ height: '30rem', width: '40rem', objectFit: 'cover'}}
 
                         />
                     </>
