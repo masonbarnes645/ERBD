@@ -5,13 +5,14 @@ body{
     margin:0;
     padding: 0;
     box-sizing: content-box;
+    background-color: #4D3E37;
 }
 
 .landing-grid {
     display: grid;
-    grid-template-columns: repeat(8, 1fr);
+    grid-template-columns: repeat(16, 1fr);
     grid-template-rows: repeat(10,1fr);
-    padding: 5%;
+    padding: 3%;
 }
 
 #landing-pic {

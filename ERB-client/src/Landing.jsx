@@ -10,22 +10,30 @@ const Landing = () => {
 
 
     return (
-        < Container className="landing-grid" maxWidth={false} sx={{ backgroundColor: '#ccb0a3', width: '100vw', height: '100vh' }}>
-            <Box className="zen-font" sx={{gridColumnStart: 3, gridColumnEnd: 7, textAlign:'center'}}>
+        < Container className="landing-grid" maxWidth={false} sx={{  width: '100vw', height: '100vh' }}>
+            <Box className="zen-font" sx={{
+                gridColumnStart: 4, gridColumnEnd: 14, textAlign: 'center' }}>
                 <h1>Elizabeth Barnes Design</h1>
             </Box>
-            <Box sx={{ gridRowStart: 3, gridRowEnd: 10, gridColumnStart: 3, gridColumnEnd: 7 }} >
+            <Box sx={{ gridRowStart: 2, gridRowEnd: 10, gridColumnStart: 5, gridColumnEnd: 13, borderStyle:'solid' }} >
                 <img src="http://localhost:5555/uploads/Camino_1.jpg" id="landing-pic" />
             </Box>
-            <Box  className= "zen-font" display={"flex"} sx={{ gridRowStart: 10, gridColumnStart: 3, gridColumnEnd:7, justifyContent:'space-between', alignItems:'center' }}>
+            <Box className="zen-font" display={"flex"} sx={{
+                gridRowStart: 10,
+                gridColumnStart: 5,
+                gridColumnEnd: 13,
+                justifyContent: 'space-between',
+                alignItems: 'center',
+                flexFlow: { xs: "column", sm: 'row' }
+            }}>
                 <Link to={"/portfolios"}>
-                    <Button variant="contained" sx={{backgroundColor: '#4D3E37'}}> View our Work</Button>
+                    <Button variant="contained" size="large" sx={{ backgroundColor: '#4D7A66', marginY: { xs: '10px', sm: '0px' } }}> View our Work</Button>
                 </Link>
                 <Link to={"/products"}>
-                    <Button variant="contained" sx={{backgroundColor: '#4D3E37'}}> View Furniture</Button>
+                    <Button variant="contained" size="large"sx={{ backgroundColor: '#4D7A66', marginBottom: { xs: '10px', sm: '0px' } }}> View Furniture</Button>
                 </Link>
                 <Link to={"/contact-us"}>
-                    <Button variant="contained" sx={{backgroundColor: '#4D3E37'}}>
+                    <Button variant="contained" size="large"sx={{ backgroundColor: '#4D7A66' }}>
                         Contact Us
                     </Button>
                 </Link>

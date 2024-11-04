@@ -7,10 +7,11 @@ import { Link } from "react-router-dom";
 
 const ProductCard = ({ name, description, price, tags, photos, product, id }) => {
     const imageUrl = photos
-        ? `http://localhost:5555/${photos[0].file_path}`
+        ? `http://localhost:5555/${photos[0]?.file_path}`
         : null;
 
 
+    console.log(photos[0])
     return (
         <Paper elevation={10}>
             <Grid container paddingTop={4}>

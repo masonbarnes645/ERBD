@@ -20,7 +20,7 @@ const NavBar = () => {
             <Box
                 className= "zen-font"
                 sx={{
-                    bgcolor: '#4D3E37',
+                    bgcolor: '#4D7A66',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'space-between',
