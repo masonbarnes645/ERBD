@@ -24,13 +24,11 @@ const Products = () => {
   }, []);
 
   return (
-    <Grid container spacing={6} marginX={30} marginTop={20}>
+    <Grid container spacing={6}  marginX={10} marginTop={20} display={'flex'} justifyContent={'center'}>
       {products.length > 0 ? (
         products.map((product) => (
-          <Grid size={{md:6, lg:4, xs:12}}>
-            <Box key={product.id}>
+          <Grid>
               <ProductCard {...product} />
-            </Box>
           </Grid>
         ))
       ) : (

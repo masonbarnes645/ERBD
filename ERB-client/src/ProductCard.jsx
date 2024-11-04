@@ -1,6 +1,8 @@
-import { Paper, Typography } from "@mui/material";
+import { Box, Paper, Typography } from "@mui/material";
 import Grid from '@mui/material/Grid2';
 import { Link } from "react-router-dom";
+import './App.css'
+import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 
 
 
@@ -13,33 +15,34 @@ const ProductCard = ({ name, description, price, tags, photos, product, id }) =>
 
     console.log(photos[0])
     return (
-        <Paper elevation={10}>
-            <Grid container paddingTop={4}>
-                <Grid item size={12} paddingX={5}>
+        <Link to={`/products/${id}`} >
+            <Paper elevation={10} sx={{ maxWidth: '25rem', maxHeight: '25rem', paddingY: '1rem', paddingX: { xs: '1rem', med: 0 } }}>
+                <Box alignItems={'center'} textAlign={'center'}>
+                    <h3 className="zen-font">{name}</h3>
+                </Box>
+                <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                     {photos ? (
                         <>
                             <img
                                 src={imageUrl}
                                 alt={name}
-                                style={{ width: '200px', height: '150px' }}
                                 loading="lazy"
-                                
+                                style={{ objectFit: 'cover', width: '15rem', height: '15rem' }}
                             />
                         </>
-
                     ) : (
                         <p>No image available</p>
                     )}
-                </Grid>
-                <Grid item size={8} marginLeft={4} paddingY={2}>
-                    <Typography variant="h4" component='h2'> {name} </Typography>
-                <Link to={`/products/${id}`}>
-                    <Typography variant="body2" component='p'> View Details</Typography>
-                </Link>
-            </Grid>
+                </Box>
+                <Box display={'flex'} className='zen-font'  justifyContent={'space-between'} alignItems={'center'} >
+                    <h3>${price}</h3>
+                    <Box className="details-link">
+                    <h3> Details <ChevronRightIcon style={{position:'relative', top:'6px'}}/></h3>
+                    </Box>
+                </Box>
 
-        </Grid>
-        </Paper >
+            </Paper >
+        </Link>
     )
 }
 
