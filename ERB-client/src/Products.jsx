@@ -32,7 +32,7 @@ const Products = () => {
           </Grid>
         ))
       ) : (
-        <div>No products available</div>
+        <div class="loader"></div>
       )}
     </Grid>
   );

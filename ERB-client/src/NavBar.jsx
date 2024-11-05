@@ -20,7 +20,7 @@ const NavBar = () => {
             <Box
                 className= "zen-font"
                 sx={{
-                    bgcolor: '#4D7A66',
+                    bgcolor: '#5566c2',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'space-between',
@@ -28,7 +28,7 @@ const NavBar = () => {
                 }}
             >
                 <Button variant="text" onClick={() => navigate("/")} sx={{ color: "white" }}>
-                    BrandName
+                    EBarnesDesign
                 </Button>
                 {isMobile ? (
                     <>

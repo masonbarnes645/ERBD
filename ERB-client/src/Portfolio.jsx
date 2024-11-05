@@ -24,10 +24,10 @@ const Portfolio = () => {
   console.log(portfolios)
   return (
     <Grid container spacing={8} display={'flex'} justifyContent={'center'} marginX={'5rem'} marginTop={'3rem'}>
-      {portfolios.map((portfolio) =>
+      {portfolios.length > 0 ? (portfolios.map((portfolio) =>
         <Grid item>
           <PortfolioSlate {...portfolio} />
-        </Grid>)}
+        </Grid>)) : <div class="loader"></div> }
       </Grid> 
 
   )
