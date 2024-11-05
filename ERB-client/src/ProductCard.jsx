@@ -12,7 +12,7 @@ const ProductCard = ({ name, description, price, tags, photos, product, id }) =>
         ? `http://localhost:5555/${photos[0]?.file_path}`
         : null;
 
-
+    
 
     return (
         <Link to={`/products/${id}`} >
