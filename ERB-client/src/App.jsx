@@ -3,6 +3,7 @@ import { Toaster } from "react-hot-toast"
 import { UserProvider } from "./usercontext";
 import NavBar from "./NavBar";
 import { Box } from "@mui/material";
+import Footer from "./Footer";
 
 const App = () => {
 
@@ -22,6 +23,7 @@ const App = () => {
         </Box>
         <Toaster />
       </Box>
+      <Footer/>
     </UserProvider>
   )
 
