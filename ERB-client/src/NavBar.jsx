@@ -16,27 +16,26 @@ const NavBar = () => {
     };
 
     return (
-        <AppBar  sx={{maxWidth:'100%', opacity:'.5'}}>
+        <AppBar sx={{ opacity: '.5', maxWidth: '100%' }}>
             <Box
-                className= "zen-font"
+                className="zen-font"
                 sx={{
                     bgcolor: 'black',
                     display: 'flex',
-                    alignItems: 'center',
                     justifyContent: 'space-between',
-                    padding: '0 1rem',
-                    maxWidth:'100%'
+                    paddingRight:'1rem',
+                    width:'100%'
                 }}
             >
                 <Button variant="text" onClick={() => navigate("/")} sx={{ color: "white" }}>
                     EBarnesDesign
                 </Button>
                 {isMobile ? (
-                    <>
-                        <IconButton color="inherit" onClick={handleDrawerToggle} sx={{marginRight:"1rem"}}>
+                    <Box>
+                        <IconButton color="inherit" onClick={handleDrawerToggle}>
                             <MenuIcon />
                         </IconButton>
-                        <Drawer anchor="right" open={drawerOpen} onClose={handleDrawerToggle}>
+                        <Drawer anchor="top" open={drawerOpen} onClose={handleDrawerToggle}>
                             <List>
                                 <ListItem button onClick={() => { navigate("/contact-us"); handleDrawerToggle(); }}>
                                     <ListItemText primary="Contact" />
@@ -49,7 +48,8 @@ const NavBar = () => {
                                 </ListItem>
                             </List>
                         </Drawer>
-                    </>
+                    </Box>
+
                 ) : (
                     <>
                         <Button variant="text" onClick={() => navigate("/contact-us")} sx={{ color: "white" }}>

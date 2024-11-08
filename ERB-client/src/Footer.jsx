@@ -5,8 +5,8 @@ const Footer = () => {
 
     return (
 
-        <Box sx={{color:'black', display:'flex', justifyContent:'flex-end',  marginTop:'2rem' }}>
-            <Box marginRight={'2rem'} fontSize={'.8rem'} >
+        <Box sx={{color:'black', display:'flex', justifyContent:'center',  marginTop:'2rem', width:'100%' }}>
+            <Box fontSize={'.8rem'}  width={'100%'}>
                 <p>Interior Design |  Elizabeth Barnes Design ©2017 | email: betsy@elizabethbarnesdesign.com  |  phone: 510.301.2740</p>
             </Box>
         </Box>
