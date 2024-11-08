@@ -21,16 +21,17 @@ const Portfolio = () => {
     loadPortfolios();
   }, []);
 
-  console.log(portfolios)
+
   return (
-    <Grid container spacing={8} display={'flex'} justifyContent={'center'} marginX={'5rem'} marginTop={'3rem'}>
+    <Grid container spacing={6} display={'flex'} justifyContent={'center'} marginX={'5rem'} marginTop={'3rem'} >
       {portfolios.length > 0 ? (portfolios.map((portfolio) =>
-        <Grid item>
+        <Grid item >
           <PortfolioSlate {...portfolio} />
         </Grid>)) : <div class="loader"></div> }
       </Grid> 
 
   )
 }
+
 
 export default Portfolio

@@ -16,15 +16,16 @@ const NavBar = () => {
     };
 
     return (
-        <AppBar  sx={{maxWidth:'100%'}}>
+        <AppBar  sx={{maxWidth:'100%', opacity:'.5'}}>
             <Box
                 className= "zen-font"
                 sx={{
-                    bgcolor: '#5566c2',
+                    bgcolor: 'black',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'space-between',
-                    padding: '0 1rem'
+                    padding: '0 1rem',
+                    maxWidth:'100%'
                 }}
             >
                 <Button variant="text" onClick={() => navigate("/")} sx={{ color: "white" }}>
@@ -32,7 +33,7 @@ const NavBar = () => {
                 </Button>
                 {isMobile ? (
                     <>
-                        <IconButton color="inherit" onClick={handleDrawerToggle}>
+                        <IconButton color="inherit" onClick={handleDrawerToggle} sx={{marginRight:"1rem"}}>
                             <MenuIcon />
                         </IconButton>
                         <Drawer anchor="right" open={drawerOpen} onClose={handleDrawerToggle}>

@@ -9,20 +9,20 @@ const PortfolioSlate = ({ title, photos, id }) => {
         ? `http://localhost:5555/${photos[0]?.file_path}`
         : null;
 
+        
 
     return (
         <Link to={`/portfolios/${id}`}>
-            <Box sx={{ marginY: '1rem', position: 'relative' }} className="fart">
+            <Box sx={{ marginY: '1rem' }}  className="port-hover">
                 {photos ? (
-                    <>
-                        <img
+                    <Box component={'img'}
                             src={imageUrl}
                             alt={title}
                             loading="lazy"
-                            style={{ height: '30rem', width: '40rem', objectFit: 'cover'}}
-
-                        />
-                    </>
+                            sx={{ height: {md:'30rem', sm:'20rem', xs:'15rem'}, width: {md:'40rem', sm:'26.4rem', xs:'20rem'}, objectFit: 'cover'}}  
+                            >
+                            
+                    </Box>
 
                 ) : (
                     <p>No image available</p>

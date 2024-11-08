@@ -5,7 +5,7 @@ body{
     margin:0;
     padding: 0;
     box-sizing: content-box;
-    background-color:#ceffec;
+    background-color: wheat;
 }
 
 .landing-grid {
@@ -34,7 +34,7 @@ body{
     }
 }
 
-.fart{
+.port-hover{
     :hover {
         opacity: .3;
     }

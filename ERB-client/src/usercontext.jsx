@@ -13,7 +13,6 @@ export function UserProvider({ children }) {
         if (res.ok) {
           return res.json().then((data) => {
             setUser(data);
-
           });
         } else {
           return res.json().then((errorObj) => {
