@@ -21,7 +21,7 @@ const CPL = () => {
         loadProducts();
     }, [refresh]);
 
-
+//test
     const handleDelete = (id) => {
         deleteProduct(id)
         
