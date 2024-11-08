@@ -1,12 +1,14 @@
 import { Box } from "@mui/material"
 import PostForms from "./PostForms"
+import CPL from "./ControlProductList"
 
 const ControlPanel = () => {
 
     return (
         <Box>
             <PostForms />
-            <p>suck</p>
+            <CPL/>
+            
         </Box>
 
     )

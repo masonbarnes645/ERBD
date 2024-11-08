@@ -49,3 +49,12 @@ body{
     animation: l1 1s steps(4) infinite;
   }
   @keyframes l1 {to{clip-path: inset(0 -34% 0 0)}}
+
+
+.control-delete-button{
+    background-color: red;
+    padding: 1%;
+    margin-right: 5px;
+    
+    
+}
