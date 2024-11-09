@@ -8,7 +8,6 @@ from flask_session import Session
 from flask_restful import Api
 from sqlalchemy import MetaData
 from flask_bcrypt import Bcrypt
-from flask_swagger_ui import get_swaggerui_blueprint
 import os
 
 
@@ -27,13 +26,6 @@ migrate = Migrate(app, db)
 db.init_app(app)
 SWAGGER_URL = '/api/docs'
 API_URL = 'http://127.0.0.1:5555/swagger.json'
-swaggerui_blueprint = get_swaggerui_blueprint(
-    SWAGGER_URL,
-    API_URL,
-    config={ 
-        "app_name": "test-application"
-    }
-)
 
 app.config["SESSION_TYPE"] = "sqlalchemy"
 app.config["SESSION_SQLALCHEMY"] = db
@@ -55,7 +47,6 @@ app.config['MAX_CONTENT_LENGTH'] = 50 * 1024 * 1024
 
 
 app.secret_key = environ.get("SESSION_SECRET")
-app.register_blueprint(swaggerui_blueprint)
 
 
 
