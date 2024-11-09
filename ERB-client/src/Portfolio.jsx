@@ -4,23 +4,10 @@ import Grid from '@mui/material/Grid2';
 
 
 import { fetchPortfolios } from "./api";
+import { useOutletContext } from "react-router-dom";
 
 const Portfolio = () => {
-  const [portfolios, setPortfolios] = useState([])
-
-  useEffect(() => {
-    const loadPortfolios = async () => {
-      try {
-        const data = await fetchPortfolios();
-        setPortfolios(data);
-      } catch (err) {
-        setError(err.message);
-      }
-    };
-
-    loadPortfolios();
-  }, []);
-
+  const { portfolios } = useOutletContext()
 
   return (
     <Grid container spacing={6} display={'flex'} justifyContent={'center'} marginTop={'3rem'} >
