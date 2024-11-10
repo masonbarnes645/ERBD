@@ -7,36 +7,29 @@ import { useOutletContext } from 'react-router-dom';
 const Carousel = () => {
     const { portfolios } = useOutletContext()
     console.log(portfolios)
-    
+
     const settings = {
-        className: "slider variable-width",
+
         dots: true,
         infinite: true,
         speed: 500,
         slidesToShow: 1,
         slidesToScroll: 1,
         variableWidth: true
+
+
     };
     return (
-        <div className='slider-container'>
+        <div className='slider-container' >
             <Slider {...settings}>
                 <div>
-                    <img src='src/assets/Camino_1.jpg' />
+                    <img className="land-img" width={'1080px'} height={'auto'} src='src/assets/landing1.jpeg' />
                 </div>
                 <div>
-                    <img src='src/assets/Camino_1.jpg' />
+                    <img className="land-img" width={'1080px'} height={'auto'} src='src/assets/landing2.jpeg' />
                 </div>
                 <div>
-                    <img src='src/assets/Camino_1.jpg' />
-                </div>
-                <div>
-                    <img src='src/assets/Camino_1.jpg' />
-                </div>
-                <div>
-                    <img src='src/assets/Camino_1.jpg' />
-                </div>
-                <div>
-                    <img src='src/assets/Camino_1.jpg' />
+                    <img className="land-img" width={'1080px'} height={'auto'} src='src/assets/landing3.jpeg' />
                 </div>
             </Slider>
         </div>

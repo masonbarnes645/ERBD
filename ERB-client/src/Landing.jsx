@@ -8,11 +8,17 @@ import { useContext } from "react"
 
 
 const Landing = () => {
-    
+
 
     return (
-        <Box>
-            <Carousel />
+        <Box sx={{ marginTop: '7rem' }}>
+            <Box >
+                <img src="src/assets/Header_logo.png" />
+            </Box>
+            <Box width="1080px">
+                <Carousel />
+            </Box>
+
         </Box>
     )
 }

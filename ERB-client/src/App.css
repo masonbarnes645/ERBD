@@ -60,6 +60,10 @@ body{
 }
 .slider-container {
     width: 100%;
-    max-width: 600px; /* Adjust to your preferred width */
     margin: auto;
+}
+
+.land-img{
+    object-fit: cover;
+    max-height: 693px;
 }
