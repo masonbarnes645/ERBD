@@ -4,18 +4,18 @@ import { Box } from "@mui/material";
 import { useOutletContext } from "react-router-dom";
 
 
-const CPL = () => {
-    const { products } = useOutletContext()
+const CPoL = () => {
+    const { portfolios } = useOutletContext()
     const handleDelete = (id) => {
         deleteProduct(id)
 
     }
     return (
         <Box sx={{ bgcolor: 'black', height: '15rem', overflow: 'scroll', width: '13rem', overflowX: 'hidden' }}>
-            <h4> Products </h4>
+            <h4> Portfolios </h4>
             <ul>
-                {products?.map((product) => (
-                    <li key={product.id}> <button onClick={() => handleDelete(product.id)} className="control-delete-button">x</button>{product.name}</li>
+                {portfolios?.map((portfolio) => (
+                    <li key={portfolio.id}> <button onClick={() => handleDelete(portfolio.id)} className="control-delete-button">x</button>{portfolio.title}</li>
                 ))}
             </ul>
         </Box>
@@ -23,5 +23,5 @@ const CPL = () => {
 
 }
 
-export default CPL
+export default CPoL
 
