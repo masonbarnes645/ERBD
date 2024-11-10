@@ -1,25 +1,13 @@
 import { useEffect, useState } from "react";
 import { deleteProduct, fetchProducts } from "./api";
 import { Box, Button } from "@mui/material";
+import { useOutletContext } from "react-router-dom";
 
 
 const CPL = () => {
-    const [products, setProducts] = useState([])
+    const { products } = useOutletContext()
     const [refresh, setRefresh] = useState(0)
 
-    useEffect(() => {
-        const loadProducts = async () => {
-            try {
-                const data = await fetchProducts();
-                setProducts(data);
-
-            } catch (err) {
-                setError(err.message);
-            }
-        };
-
-        loadProducts();
-    }, [refresh]);
 
 //test
     const handleDelete = (id) => {
@@ -32,7 +20,7 @@ const CPL = () => {
     return (
         <Box sx={{ bgcolor: 'black', height: '15rem', overflow: 'scroll', width: '13rem', overflowX: 'hidden' }}>
             <ul>
-                {products.map((product) => (
+                {products?.map((product) => (
                     <li key={product.id}> <button onClick={() => handleDelete(product.id)} className="control-delete-button">x</button>{product.name}</li>
                 ))}
             </ul>

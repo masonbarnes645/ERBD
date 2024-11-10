@@ -11,8 +11,8 @@ const Landing = () => {
 
 
     return (
-        <Box sx={{ marginTop: '7rem' }}>
-            <Box >
+        <Box sx={{ marginTop: '4rem' }}>
+            <Box display={'flex'} justifyContent={'center'} marginBottom={'3rem'}>
                 <img src="src/assets/Header_logo.png" />
             </Box>
             <Box width="1080px">

@@ -5,11 +5,12 @@ import NavBar from "./NavBar";
 import { Box } from "@mui/material";
 import Footer from "./Footer";
 import { useEffect, useState } from "react";
-import { fetchPortfolios } from "./api";
+import { fetchPortfolios, fetchProducts } from "./api";
 
 
 const App = () => {
   const [portfolios, setPortfolios] = useState([])
+  const [products, setProducts] = useState([])
 
   useEffect(() => {
     const loadPortfolios = async () => {
@@ -24,6 +25,21 @@ const App = () => {
     loadPortfolios();
   }, []);
 
+  useEffect(() => {
+    const loadProducts = async () => {
+        try {
+            const data = await fetchProducts();
+            setProducts(data);
+
+        } catch (err) {
+            setError(err.message);
+        }
+    };
+
+    loadProducts();
+}, []);
+
+
   return (
 
     <UserProvider>
@@ -36,7 +52,7 @@ const App = () => {
       >
         <NavBar />
         <Box sx={{ flexGrow: 1 }}>
-          <Outlet context={{ portfolios }} />
+          <Outlet context={{ portfolios, products }} />
         </Box>
         <Toaster />
       </Box>
