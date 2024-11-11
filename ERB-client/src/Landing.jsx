@@ -8,7 +8,7 @@ import { useMediaQuery, useTheme } from "@mui/material";
 const Landing = () => {
 
     const theme = useTheme();
-    const isMobile = useMediaQuery(theme.breakpoints.down("md"));
+    const isMobile = useMediaQuery(theme.breakpoints.down("lg"));
 
     return (
         <>
@@ -19,11 +19,14 @@ const Landing = () => {
                     justifyContent: 'flex-start',
                     alignContent: 'flex-start',
                     minHeight: '100vh',
+                    minWidth: '100vw',
                     paddingTop: '7rem',
-                    backgroundImage: `url('src/assets/mobile_landing.jpeg')`
+                    backgroundImage: {xs:`url('src/assets/mobile_landing.jpeg')`, sm: `url('src/assets/landing3.jpeg')`},
+                    backgroundSize:'cover',
+                    backgroundPosition: 'center'
                 }}>
-                    <Box width={'80%'} marginX={'10%'}>
-                        <img src="src/assets/Header_logo.png" style={{ width: '100%' }} />
+                    <Box width={{xs: '80%', sm: '60%'}} marginX={{xs:'10%', sm:'20%'}} display={'flex'} justifyContent={'center'}>
+                        <img src="src/assets/Header_logo.png" style={{ width: '100%'}} />
                     </Box>
                     <Box sx={{ display: 'flex', flexDirection: 'column', width: '60%', marginX: '20%', gap: '3rem', paddingTop: '4rem' }}>
                         <button>View Portfolio</button>
