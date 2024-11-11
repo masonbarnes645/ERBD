@@ -12,8 +12,6 @@ const App = () => {
   const [portfolios, setPortfolios] = useState([])
   const [products, setProducts] = useState([])
 
-
-  const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   useEffect(() => {
     const loadPortfolios = async () => {
       try {
@@ -54,7 +52,7 @@ const App = () => {
       >
         <NavBar />
         <Box sx={{ flexGrow: 1 }}>
-          <Outlet context={{ portfolios, products, isMobile }} />
+          <Outlet context={{ portfolios, products }} />
         </Box>
         <Toaster />
       </Box>

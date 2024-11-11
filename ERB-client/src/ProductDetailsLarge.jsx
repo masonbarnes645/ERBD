@@ -1,11 +1,15 @@
 import { Box } from "@mui/material"
+import { useState } from "react"
 
 
 
-const ProductDetailsLarge = () => {
-
-    return
-    (
+const ProductDetailsLarge = ({ product }) => {
+    const [mainPhotoId, setMainPhotoId] = useState(0)
+    
+    const handleClick = (index) => {
+        setMainPhotoId(index)
+    }
+    return(
         <Box sx={{ marginTop: '3rem' }}>
             <Box display={'flex'} justifyContent={'center'}><h1>{product.name}</h1></Box>
             <Box display={'flex'}>
