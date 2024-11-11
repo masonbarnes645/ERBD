@@ -3,6 +3,7 @@ import { useNavigate, useParams } from "react-router-dom"
 import { deleteProduct, fetchProductById } from "./api"
 import { Box, useMediaQuery, useTheme } from "@mui/material"
 import ProductDetailsLarge from "./ProductDetailsLarge"
+import ProductDetailsSmall from "./ProductDetailsSmall"
 
 const ProductDetails = ({ name, description, photos }) => {
     const { productId } = useParams()
@@ -32,9 +33,7 @@ const ProductDetails = ({ name, description, photos }) => {
         <>
             {
                 isMobile ? (
-                    <div>
-                        <h2>sdsd</h2>
-                    </div >
+                        <ProductDetailsSmall product = { product }/>
                 ) : (
                     <div>
                         <ProductDetailsLarge product={ product }/>

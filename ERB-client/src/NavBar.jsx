@@ -22,13 +22,13 @@ const NavBar = () => {
                 sx={{
                     bgcolor: 'black',
                     display: 'flex',
-                    justifyContent: 'space-evenly',
-                    paddingRight: '1rem',
-                    width: '100%'
+                    justifyContent: 'space-between',
+                    paddingRight:'1rem',
+                    width:'100%'
                 }}
             >
-                <Button variant="text" onClick={() => navigate("/")} sx={{ color: "white", fontFamily:'"Zen Antique", serif' }}>
-                    Home
+                <Button variant="text" onClick={() => navigate("/")} sx={{ color: "white" }}>
+                    EBarnesDesign
                 </Button>
                 {isMobile ? (
                     <Box>
@@ -52,17 +52,16 @@ const NavBar = () => {
 
                 ) : (
                     <>
-                        <Button variant="text" onClick={() => navigate("/contact-us")} sx={{ color: "white", fontFamily: '"Zen Antique", serif' }}>
+                        <Button variant="text" onClick={() => navigate("/contact-us")} sx={{ color: "white" }}>
                             Contact
                         </Button>
-                        <Button variant="text" onClick={() => navigate("/products")} sx={{ color: "white", fontFamily: '"Zen Antique", serif' }}>
+                        <Button variant="text" onClick={() => navigate("/products")} sx={{ color: "white" }}>
                             Furniture
                         </Button>
-                        <Button variant="text" onClick={() => navigate("/portfolios")} sx={{ color: "white", fontFamily: '"Zen Antique", serif' }}>
+                        <Button variant="text" onClick={() => navigate("/portfolios")} sx={{ color: "white" }}>
                             Portfolio
                         </Button>
                     </>
-
                 )}
             </Box>
         </AppBar>
