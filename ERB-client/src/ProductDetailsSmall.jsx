@@ -1,29 +1,34 @@
-import Slider from 'react-slick'
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+
 import { Box } from '@mui/material';
+import { useState } from 'react';
 
 
 const ProductDetailsSmall = ({ product }) => {
-    const settings = {
-        dots: true,
-        infinite: true,
-        speed: 500,
-        slidesToShow: 1,
-        slidesToScroll: 1,
-        arrows: false
-    };
+    const [mainPhotoId, setMainPhotoId] = useState(0)
+
+    const handleClick = (index) => {
+        setMainPhotoId(index)
+    }
     return (
-        <>
-            <Box marginTop={'5rem'} display={'flex'} justifyContent={'center'}><h2>{product.name}</h2></Box>
-            <Box marginX={'1rem'} marginTop={'1rem'}>
-                <div className='slider-container' style={{ position: 'fixed' }} >
-                    <Slider {...settings}>
-                        {product.photos?.map((photo, index) => (<div key={photo.id}> <img style={{ height: 'auto', width: '90%' }} src={`http://localhost:5555/${photo.file_path}`} onClick={() => handleClick(index)} /> </div>))}
-                    </Slider>
-                </div>
+        <Box sx={{ marginTop: '3rem' }}>
+            <Box display={'flex'} justifyContent={'center'} ><h4 className='zen-font'>{product.name}</h4></Box>
+            <Box display={'flex'}>
+                <Box sx={{ width: '90%', marginX: '5%' }}>
+                    {product.photos && product.photos[mainPhotoId] && (
+                        <img style={{ width: '100%', height: '100%', objectFit: 'cover' }} src={`http://localhost:5555/${product.photos[mainPhotoId].file_path}`} />
+                    )}
+                </Box>
             </Box>
-        </> 
+            <Box display={'flex'} flexDirection={'row'} justifyContent={'space-around'} marginTop={'1rem'}>
+                {product.photos?.slice(0, 3).map((photo, index) => (<Box key={photo.id} sx={{ borderStyle: 'solid' }}> <img style={{ height: 'auto', width: '60px' }} src={`http://localhost:5555/${photo.file_path}`} onClick={() => handleClick(index)} /> </Box>))}
+            </Box>
+            <Box width={'90%'} marginX={'5%'} marginTop={'.5rem'}>
+                ${product.price}
+            </Box>
+            <Box  width={'90%'} marginX={'5%'}>
+                <h3 className='zen-font'>{product.description}</h3>
+            </Box>
+        </Box>
     )
 }
 

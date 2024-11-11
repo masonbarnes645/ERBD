@@ -23,7 +23,7 @@ const Carousel = () => {
         <div className='slider-container' >
             <Slider {...settings}>
                 <div>
-                    <img className="land-img" width={'1080px'} height={'auto'} src='{pr' />
+                    <img className="land-img" width={'1080px'} height={'auto'} src='src/assets/landing1.jpeg' />
                 </div>
                 <div>
                     <img className="land-img" width={'1080px'} height={'auto'} src='src/assets/landing2.jpeg' />

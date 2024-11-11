@@ -5,7 +5,7 @@ body{
     margin:0;
     padding: 0;
     box-sizing: content-box;
-    background-color: brown;
+    background-color: rgb(44, 36, 61);
 }
 
 .landing-grid {

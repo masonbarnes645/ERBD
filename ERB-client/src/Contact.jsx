@@ -49,20 +49,22 @@ const Contact = () => {
 
 
     return (
-        <Paper elevation={10} component='form' onSubmit={handleSubmit} sx={{ padding: '2rem', width: '100%', marginTop:'10rem' }}>
-            <Box display={'flex'} justifyContent={'space-evenly'}>
-                <TextField fullWidth label="First Name" onChange={handleChange} value={formData.firstname} name="firstname" />
-                <TextField fullWidth label="Last Name" onChange={handleChange} value={formData.lastname} name="lastname" />
-            </Box>
-            <Box sx={{}} display={'flex'}>
-                <TextField fullWidth sx={{ marginBottom: 2 }} label="Email" onChange={handleChange} value={formData.email} name='email' />
-                <TextField fullWidth label="Subject" onChange={handleChange} value={formData.subject} name='subject' />
-            </Box>
-            <Box sx={{}}>
-                <TextField fullWidth label="Message" onChange={handleChange} name='message' value={formData.message} multiline rows={3} />
-            </Box>
-            <Button type='submit'>Submit</Button>
-        </Paper>
+        <Box width={'1080px'} height={'500px'}>
+            <Paper elevation={10} component='form' onSubmit={handleSubmit} sx={{ padding: '2rem', width: '100%', marginTop: '10rem', height:'100%' }}>
+                <Box display={'flex'} justifyContent={'space-evenly'}>
+                    <TextField fullWidth label="First Name" onChange={handleChange} value={formData.firstname} name="firstname" />
+                    <TextField fullWidth label="Last Name" onChange={handleChange} value={formData.lastname} name="lastname" />
+                </Box>
+                <Box sx={{}} display={'flex'}>
+                    <TextField fullWidth sx={{ marginBottom: 2 }} label="Email" onChange={handleChange} value={formData.email} name='email' />
+                    <TextField fullWidth label="Subject" onChange={handleChange} value={formData.subject} name='subject' />
+                </Box>
+                <Box sx={{}}>
+                    <TextField fullWidth label="Message" onChange={handleChange} name='message' value={formData.message} multiline rows={3} />
+                </Box>
+                <Button type='submit'>Submit</Button>
+            </Paper>
+        </Box>
 
     )
 }

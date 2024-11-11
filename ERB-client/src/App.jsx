@@ -27,37 +27,30 @@ const App = () => {
 
   useEffect(() => {
     const loadProducts = async () => {
-        try {
-            const data = await fetchProducts();
-            setProducts(data);
+      try {
+        const data = await fetchProducts();
+        setProducts(data);
 
-        } catch (err) {
-            setError(err.message);
-        }
+      } catch (err) {
+        setError(err.message);
+      }
     };
 
     loadProducts();
-}, []);
+  }, []);
 
 
   return (
-
-    <UserProvider>
-      <Box
-        sx={{
-          minHeight: '100vh', 
-          display: 'flex',
-          flexDirection: 'column',
-        }}
-      >
-        <NavBar />
-        <Box sx={{ flexGrow: 1 }}>
+    <>
+      <UserProvider>
+        <Box>
+          <NavBar />
           <Outlet context={{ portfolios, products }} />
+          <Toaster />
         </Box>
-        <Toaster />
-      </Box>
-      <Footer/>
-    </UserProvider>
+        <Footer />
+      </UserProvider>
+    </>
   )
 
 }
