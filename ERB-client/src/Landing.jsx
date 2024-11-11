@@ -20,7 +20,7 @@ const Landing = () => {
                     alignContent: 'flex-start',
                     minHeight: '100vh',
                     paddingTop: '7rem',
-                    backgroundImage: `url('src/assets/landing2.jpeg')`
+                    backgroundImage: `url('src/assets/mobile_landing.jpeg')`
                 }}>
                     <Box width={'80%'} marginX={'10%'}>
                         <img src="src/assets/Header_logo.png" style={{ width: '100%' }} />

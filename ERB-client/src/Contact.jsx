@@ -5,7 +5,7 @@ import TextField from '@mui/material/TextField';
 import Paper from '@mui/material/Paper';
 import { useState } from 'react';
 import { postInquiry } from './api';
-import { Button } from '@mui/material';
+import { Button, useMediaQuery, useTheme } from '@mui/material';
 import * as yup from 'yup';
 
 //! EMAIL YUP VALIDATION EMAIL YUP
@@ -23,6 +23,8 @@ const inqSchema = yup.object().shape({
 
 const Contact = () => {
     const [formData, setFormData] = useState({});
+    const theme = useTheme();
+    const isMobile = useMediaQuery(theme.breakpoints.down("lg"));
 
 
     const handleChange = (e) => {
@@ -49,24 +51,36 @@ const Contact = () => {
 
 
     return (
-        <Box width={'1080px'} height={'500px'}>
-            <Paper elevation={10} component='form' onSubmit={handleSubmit} sx={{ padding: '2rem', width: '100%', marginTop: '10rem', height:'100%' }}>
-                <Box display={'flex'} justifyContent={'space-evenly'}>
+        <Box display={'flex'} minHeight={'80vh'} justifyContent={'center'} alignItems={'center'}>
+            {isMobile ? (<></>) : (<Box  sx={{ width: '32%', marginLeft: '2rem' }}>
+                <img src='src/assets/Header_logo.png' />
+                <p style={{ color: 'black' }}>{description}</p>
+            </Box>)}
+            <Box component={'form'} onSubmit={handleSubmit} display={'flex'} flexDirection={'column'} marginLeft={'10rem'} gap={'1rem'} minWidth={'50%'}>
+                <Box display={'flex'} gap={'1rem'} >
                     <TextField fullWidth label="First Name" onChange={handleChange} value={formData.firstname} name="firstname" />
                     <TextField fullWidth label="Last Name" onChange={handleChange} value={formData.lastname} name="lastname" />
                 </Box>
-                <Box sx={{}} display={'flex'}>
+                <Box>
                     <TextField fullWidth sx={{ marginBottom: 2 }} label="Email" onChange={handleChange} value={formData.email} name='email' />
                     <TextField fullWidth label="Subject" onChange={handleChange} value={formData.subject} name='subject' />
                 </Box>
-                <Box sx={{}}>
-                    <TextField fullWidth label="Message" onChange={handleChange} name='message' value={formData.message} multiline rows={3} />
-                </Box>
-                <Button type='submit'>Submit</Button>
-            </Paper>
+                <TextField fullWidth label="Message" onChange={handleChange} name='message' value={formData.message} multiline rows={3} />
+                <button type='submit'>Submit</button>
+            </Box>
+
+
         </Box>
+
+
 
     )
 }
 
 export default Contact
+
+
+
+
+
+
