@@ -29,14 +29,7 @@ const ProductDetails = ({ name, description, photos }) => {
 
 
     return (
-        <Box>
-            <Box sx={{borderStyle:'solid'}}>
-                {product.photos && product.photos[mainPhotoId] && (
-                    <img src={`http://localhost:5555/${product.photos[mainPhotoId].file_path}`} />
-                )}
-            </Box>
-            {product.photos?.map((photo, index) => (<Box key={photo.id}> <img src={`http://localhost:5555/${photo.file_path}`} onClick={() => handleClick(index)}/> </Box>))}
-        </Box>
+        <></>
     )
 }
 

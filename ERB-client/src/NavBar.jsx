@@ -7,10 +7,11 @@ import MenuIcon from "@mui/icons-material/Menu";
 import './App.css'
 const NavBar = () => {
     const theme = useTheme();
-    const isMobile = useMediaQuery(theme.breakpoints.down("md"));
+    
     const navigate = useNavigate();
     const [drawerOpen, setDrawerOpen] = useState(false);
 
+    const { isMobile }
     const handleDrawerToggle = () => {
         setDrawerOpen(!drawerOpen);
     };
