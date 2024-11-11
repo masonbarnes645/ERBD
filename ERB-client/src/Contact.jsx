@@ -56,7 +56,7 @@ const Contact = () => {
                 <img src='src/assets/Header_logo.png' />
                 <p style={{ color: 'black' }}>{description}</p>
             </Box>)}
-            <Box component={'form'} onSubmit={handleSubmit} display={'flex'} flexDirection={'column'} marginLeft={'10rem'} gap={'1rem'} minWidth={'50%'}>
+            <Box component={'form'} onSubmit={handleSubmit} sx={{display:'flex', flexDirection:'column'}} marginLeft={{md: 0 ,lg: '10rem'}} gap={'1rem'} width={{md:'70%' ,lg:'50%'}}>
                 <Box display={'flex'} gap={'1rem'} >
                     <TextField fullWidth label="First Name" onChange={handleChange} value={formData.firstname} name="firstname" />
                     <TextField fullWidth label="Last Name" onChange={handleChange} value={formData.lastname} name="lastname" />
