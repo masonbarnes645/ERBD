@@ -13,7 +13,7 @@ const ControlPhoto = () => {
     e.preventDefault()
     const photoForm = new FormData()
     photoForm.append('owner_type', uploadType)
-    photoForm.append('owner_id', selectedPortfolio)
+    photoForm.append('owner_id', selectedOption)
     photoForm.append('image', fileInput);
     await postPhoto(photoForm)
   }

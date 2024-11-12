@@ -210,10 +210,11 @@ export const postPhoto = async (photoData) => {
         });
 
         if (!response.ok) {
-            throw new Error("Post Failed");
+            toast.error('upload failed');
+            return
         }
         
-
+        toast.success("uploaded")
         const result = await response.json();
         return result;
     } catch (err) {
