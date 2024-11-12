@@ -2,6 +2,7 @@ import Box from "@mui/material/Box"
 import Carousel from "./Carousel"
 import './App.css'
 import { useMediaQuery, useTheme } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 
 
@@ -9,6 +10,7 @@ const Landing = () => {
 
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down("lg"));
+    const navigate = useNavigate()
 
     return (
         <>
@@ -29,9 +31,9 @@ const Landing = () => {
                         <img src="src/assets/Header_logo.png" style={{ width: '100%'}} />
                     </Box>
                     <Box sx={{ display: 'flex', flexDirection: 'column', width: '60%', marginX: '20%', gap: '3rem', paddingTop: '4rem' }}>
-                        <button>View Portfolio</button>
-                        <button>View Furniture</button>
-                        <button>Contact Us</button>
+                        <button onClick={() => navigate('/portfolios')}>View Portfolio</button>
+                        <button onClick={() => navigate('/products')}>View Furniture</button>
+                        <button onClick={() => navigate('/contact-us')}>Contact Us</button>
                     </Box>
                 </Box>
             ) :
