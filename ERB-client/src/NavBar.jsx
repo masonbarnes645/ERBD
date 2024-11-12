@@ -22,16 +22,16 @@ const NavBar = () => {
                 sx={{
                     bgcolor: 'black',
                     display: 'flex',
-                    justifyContent: 'space-between',
+                    justifyContent: 'space-around',
                     paddingRight:'1rem',
                     width:'100%'
                 }}
             >
                 <Button variant="text" onClick={() => navigate("/")} sx={{ color: "white" }}>
-                    EBarnesDesign
+                    Home
                 </Button>
                 {isMobile ? (
-                    <Box>
+                    <Box sx={{marginLeft:'13rem'}}>
                         <IconButton color="inherit" onClick={handleDrawerToggle}>
                             <MenuIcon />
                         </IconButton>
