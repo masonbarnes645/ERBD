@@ -30,7 +30,7 @@ const ProductDetailsLarge = ({ product }) => {
             </Box>
             <Box className="zen-font" sx={{ color: 'black', display: 'flex', justifyContent: 'flex-start', flexDirection: 'column', top: '10px', width: '15%', paddingLeft: '1rem' }}>
                 <h2>{product.name}</h2>
-                <h3>{product.price}</h3>
+                <h3>${product.price}</h3>
                 <h3>{product.description}</h3>
             </Box>
         </Box>

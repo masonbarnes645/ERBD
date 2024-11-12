@@ -4,76 +4,54 @@ import { useOutletContext } from "react-router-dom";
 
 const ControlPhoto = () => {
   const { portfolios, products } = useOutletContext()
-  const [selectedPortfolio, setSelectedPortfolio] = useState(1)
-  const [selectedProduct, setSelectedProduct] = useState(1)
-  const [poFileInput, setPoFileInput] = useState(null)
-  const [prFileInput, setPrFileInput] = useState(null)
+  const [selectedOption, setSelectedOption] = useState(1)
+  const [fileInput, setFileInput] = useState(null)
+  const [uploadType, setuploadType] = useState('product')
 
 
-
-  const handleSelectChange = (event) => {
-    setSelectedPortfolio(event.target.value);
-  };
-
-  const handleSubmitPo = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
     const photoForm = new FormData()
-    photoForm.append('owner_type', 'portfolio')
+    photoForm.append('owner_type', uploadType)
     photoForm.append('owner_id', selectedPortfolio)
-    photoForm.append('image', poFileInput);
+    photoForm.append('image', fileInput);
     await postPhoto(photoForm)
-
   }
-  const handleSubmitPr = async (e) => {
-    e.preventDefault()
-    const photoForm = new FormData()
-    photoForm.append('owner_type', 'product')
-    photoForm.append('owner_id', selectedProduct)
-    photoForm.append('image', prFileInput);
-    await postPhoto(photoForm)
+
+  const handleChange = (e) => {
+    setuploadType(e.target.value)
+    setSelectedOption(1)
 
   }
 
-  const handlePoFileChange = (e) => {
-    setPoFileInput(e.target.files[0]);
-  };
-  const handlePrFileChange = (e) => {
-    setPrFileInput(e.target.files[0]);
+
+
+  const handleFileChange = (e) => {
+    setFileInput(e.target.files[0]);
   };
 
 
   return (
     <>
       <div>
-        <h1 style={{ color: 'black' }}>Portfolio</h1>
-        <form onSubmit={handleSubmitPo}>
-          <label>
-            <select value={selectedPortfolio} onChange={handleSelectChange}>
-              {portfolios.map((portfolio) =>
-                <option value={portfolio.id}>{portfolio.title}</option>
-              )}
-
+        <h1 style={{ color: 'black' }}>Add Photos</h1>
+            <select value={uploadType} onChange={handleChange}>
+              <option value={'product'} onClick={() => setuploadType('product')}>Product</option>
+              <option value={'portfolio'} onClick={() => setuploadType('portfolio')}>Portfolio</option>
             </select>
-          </label>
+        <form onSubmit={handleSubmit}>
           <label>
-            <input type="file" name="photo" onChange={handlePoFileChange} />
-          </label>
-          <button type="submit">Submit</button>
-        </form>
-      </div>
-      <div>
-        <h1 style={{ color: 'black' }}>Products</h1>
-        <form onSubmit={handleSubmitPr}>
-          <label>
-            <select value={selectedPortfolio} onChange={handleSelectChange}>
-              {products.map((product) =>
+            <select value={selectedOption} onChange={(e) => setSelectedOption(e.target.value)}>
+              {uploadType === 'portfolio' ? portfolios.map((portfolio) =>
+                <option value={portfolio.id}>{portfolio.title}</option>
+              ) : products.map((product) =>
                 <option value={product.id}>{product.name}</option>
               )}
 
             </select>
           </label>
           <label>
-            <input type="file" name="photo" onChange={handlePrFileChange} />
+            <input type="file" name="photo" onChange={handleFileChange} />
           </label>
           <button type="submit">Submit</button>
         </form>
