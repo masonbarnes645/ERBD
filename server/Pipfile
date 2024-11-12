@@ -18,6 +18,7 @@ python-dotenv = "*"
 flask-mail = "*"
 ipdb = "*"
 flask-swagger-ui = "*"
+werkzeug = "*"
 
 [dev-packages]
 
