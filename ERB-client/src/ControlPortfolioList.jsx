@@ -11,7 +11,7 @@ const CPoL = () => {
 
     }
     return (
-        <Box sx={{ bgcolor: 'black', height: '15rem', overflow: 'scroll', width: '13rem', overflowX: 'hidden' }}>
+        <Box sx={{ bgcolor: 'black', height: '15rem', overflow: 'scroll', width: '13rem', overflowX: 'hidden', color:'white' }}>
             <h4> Portfolios </h4>
             <ul>
                 {portfolios?.map((portfolio) => (
