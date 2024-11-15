@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { fetchTags, postPhoto, postPortfolio, postProduct } from "./api";
 import * as yup from 'yup';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate, useOutletContext } from "react-router-dom";
 import { Box } from "@mui/material";
 
 const productSchema = yup.object().shape({
@@ -22,18 +22,21 @@ const PostForms = () => {
     const [tags, setTags] = useState([]);
     const [selectedTags, setSelectedTags] = useState([]);
     const [fileInput, setFileInput] = useState(null);
-
+    
+    const { products } = useOutletContext()
+    const navigate = useNavigate()
+    
     const handleCheckboxChange = (e) => {
         const { value, checked } = e.target;
         setSelectedTags(prev =>
             checked ? [...prev, value] : prev.filter(tagId => tagId !== value)
         );
     };
-
+    
     const handleFileChange = (e) => {
         setFileInput(e.target.files[0]);
     };
-
+    
     const toggleForm = (e) => {
         const { name } = e.target;
         if (name === "product") {
@@ -44,17 +47,19 @@ const PostForms = () => {
             setProductFormOpen(false);
         }
     };
-
+    
     const handleSubmitProduct = async (values, { setSubmitting, resetForm }) => {
         try {
             const formWithTags = { ...values, tags: selectedTags };
             const photoForm = new FormData();
             photoForm.append('image', fileInput);
             photoForm.append('owner_type', 'product');
-            photoForm.append('owner_id', 1);
+            console.log(products?.length)
+            console.log(products)
+            photoForm.append('owner_id', products?.length + 1);
             await postProduct(formWithTags);
             await postPhoto(photoForm);
-            resetForm();
+            navigate(0)
         } catch (error) {
             console.error('Error posting product or photo:', error);
         } finally {
@@ -89,7 +94,7 @@ const PostForms = () => {
 
 
     return (
-        <Box display={'flex'}>
+        <Box display={'flex'} color={'white'}>
             <Box sx={{ paddingTop: 20, display: 'flex', flexDirection: 'column', maxWidth: '10rem' }}>
                 <button onClick={toggleForm} name="product">Product</button>
                 <button onClick={toggleForm} name="portfolio">Portfolio</button>

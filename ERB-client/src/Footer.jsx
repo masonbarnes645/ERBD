@@ -1,4 +1,4 @@
-import { AppBar, Box } from "@mui/material"
+import { Box } from "@mui/material"
 
 
 const Footer = () => {

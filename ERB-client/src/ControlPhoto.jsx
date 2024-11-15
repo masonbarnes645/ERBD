@@ -1,12 +1,16 @@
-import { useState } from "react";
-import { fetchPortfolios, postPhoto } from "./api";
-import { useOutletContext } from "react-router-dom";
+import { useContext, useState } from "react";
+import { postPhoto } from "./api";
+import {useNavigate, useOutletContext } from "react-router-dom";
+import { UserContext } from "./usercontext";
 
 const ControlPhoto = () => {
   const { portfolios, products } = useOutletContext()
   const [selectedOption, setSelectedOption] = useState(1)
   const [fileInput, setFileInput] = useState(null)
   const [uploadType, setuploadType] = useState('product')
+  const { user } = useContext(UserContext);
+  const navigate = useNavigate()
+
 
 
   const handleSubmit = async (e) => {
@@ -32,6 +36,7 @@ const ControlPhoto = () => {
 
 
   return (
+    user ?
     <>
       <div>
         <h1 style={{ color: 'black' }}>Add Photos</h1>
@@ -57,6 +62,8 @@ const ControlPhoto = () => {
         </form>
       </div>
     </>
+    :
+    navigate('/')
   )
 }
 

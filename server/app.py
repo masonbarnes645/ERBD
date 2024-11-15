@@ -16,7 +16,7 @@ from models.portfolio import Portfolio
 from models.admin import Admin
 from models.product import Product
 from models.tag import Tag
-from models.inquiry import Inquiry
+
 
 
 class Portfolios(Resource):
@@ -212,8 +212,8 @@ class Photos(Resource):
 
                     data = request.form.to_dict()
                     
-                    if data['owner_type'] == 'product':
-                        data['owner_id'] = len(Product.query.all()) + 1
+                    # if data['owner_type'] == 'product':
+                    #     data['owner_id'] = len(Product.query.all()) + 1
                     
                     photo = Photo(file_path=file_path, **data)
                     db.session.add(photo)
@@ -263,14 +263,10 @@ class Inquiries(Resource):
     def post(self):
         data = request.get_json()
         data['name'] = f"{data['firstname']} {data['lastname']}"
-        send_email(data)
         try:
-            new_inquiry = Inquiry(name=data['name'], subject=data['subject'], email=data['email'], message=data['message'])
-            db.session.add(new_inquiry)
-            db.session.commit()
-            return make_response("Inquiry added", 201)
+            send_email(data)
+            return make_response("Inquiry sent", 200)
         except Exception as e:
-            db.session.rollback()
             return make_response({"error": str(e)}, 500)
         
 class File(Resource):

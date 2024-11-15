@@ -47,7 +47,7 @@ const Contact = () => {
             >
                 {() => (
                     <Form>
-                        <Box sx={{ display: 'flex', flexDirection: 'column', marginX: '2rem', marginLeft: { md: 0, lg: '10rem' }, gap: '1rem', width: { md: '70%', lg: '50%' } }}>
+                        <Box sx={{ display: 'flex', flexDirection: 'column', marginX: '2rem', marginLeft: { sm: 0, lg: '10rem' }, gap: '1rem', width: { sm: '70%', lg: '50%' } }}>
                             <Box display={'flex'} gap={'1rem'}>
                                 <Field as={TextField} fullWidth label="First Name" name="firstname" />
                                 <ErrorMessage name="firstname" component="div" style={{ color: 'red' }} />

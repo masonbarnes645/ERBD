@@ -1,5 +1,4 @@
 import { Box, Paper, Typography } from "@mui/material";
-import Grid from '@mui/material/Grid2';
 import { Link } from "react-router-dom";
 import './App.css'
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';

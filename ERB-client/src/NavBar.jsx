@@ -27,7 +27,7 @@ const NavBar = () => {
                     width:'100%'
                 }}
             >
-                <Button variant="text" onClick={() => navigate("/")} sx={{ color: "white" }}>
+                <Button variant="text" onClick={() => navigate("/")} sx={{ color: "white", fontFamily: '"Zen Antique", serif' }}>
                     Home
                 </Button>
                 {isMobile ? (
@@ -52,13 +52,13 @@ const NavBar = () => {
 
                 ) : (
                     <>
-                        <Button variant="text" onClick={() => navigate("/contact-us")} sx={{ color: "white" }}>
+                        <Button variant="text" onClick={() => navigate("/contact-us")} sx={{ color: "white", fontFamily: '"Zen Antique", serif' }}>
                             Contact
                         </Button>
-                        <Button variant="text" onClick={() => navigate("/products")} sx={{ color: "white" }}>
+                        <Button variant="text" onClick={() => navigate("/products")} sx={{ color: "white", fontFamily: '"Zen Antique", serif' }}>
                             Furniture
                         </Button>
-                        <Button variant="text" onClick={() => navigate("/portfolios")} sx={{ color: "white" }}>
+                        <Button variant="text" onClick={() => navigate("/portfolios")} sx={{ color: "white", fontFamily: '"Zen Antique", serif'}}>
                             Portfolio
                         </Button>
                     </>

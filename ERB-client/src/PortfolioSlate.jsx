@@ -1,7 +1,5 @@
 import { Box, Paper } from "@mui/material"
 import { Link, useNavigate } from "react-router-dom"
-import Grid from '@mui/material/Grid2';
-
 
 
 const PortfolioSlate = ({ title, photos, id }) => {

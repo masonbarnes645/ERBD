@@ -25,6 +25,7 @@ const App = () => {
     loadPortfolios();
   }, []);
 
+
   useEffect(() => {
     const loadProducts = async () => {
       try {
@@ -38,6 +39,8 @@ const App = () => {
 
     loadProducts();
   }, []);
+
+  
 
 
   return (

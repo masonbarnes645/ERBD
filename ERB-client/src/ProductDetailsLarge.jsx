@@ -28,10 +28,10 @@ const ProductDetailsLarge = ({ product }) => {
                     <img style={{ width: '100%', height: '100%', objectFit: 'cover' }} src={`http://localhost:5555/${product.photos[mainPhotoId].file_path}`} />
                 )}
             </Box>
-            <Box className="zen-font" sx={{ color: 'black', display: 'flex', justifyContent: 'flex-start', flexDirection: 'column', top: '10px', width: '15%', paddingLeft: '1rem' }}>
+            <Box className="zen-font" sx={{ color: 'black', display: 'flex', justifyContent: 'flex-start', flexDirection: 'column', top: '10px', width: '15%', paddingLeft: '1rem', wordWrap:'break-word' }}>
                 <h2>{product.name}</h2>
                 <h3>${product.price}</h3>
-                <h3>{product.description}</h3>
+                <h3>sdf</h3>
             </Box>
         </Box>
     )

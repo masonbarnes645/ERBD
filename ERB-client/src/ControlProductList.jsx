@@ -1,13 +1,14 @@
-import {  useState } from "react";
 import { deleteProduct } from "./api";
 import { Box } from "@mui/material";
-import { useOutletContext } from "react-router-dom";
+import { useNavigate, useOutletContext } from "react-router-dom";
 
 
 const CPL = () => {
     const { products } = useOutletContext()
+    const navigate = useNavigate()
     const handleDelete = (id) => {
         deleteProduct(id)
+
 
     }
     return (

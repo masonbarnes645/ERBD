@@ -15,6 +15,7 @@ const Landing = () => {
     return (
         <>
             {isMobile ? (
+                
                 <Box sx={{
                     display: 'flex',
                     flexDirection: 'column',
@@ -23,11 +24,14 @@ const Landing = () => {
                     minHeight: '100vh',
                     minWidth: '100vw',
                     paddingTop: '7rem',
-                    backgroundImage: {xs:`url('src/assets/mobile_landing.jpeg')`, sm: `url('src/assets/landing3.jpeg')`},
+                    backgroundImage: {xs:`url('src/assets/martis10.jpg')`, sm: `url('src/assets/landing3.jpeg')`},
                     backgroundSize:'cover',
                     backgroundPosition: 'center'
+                    
+
                 }}>
-                    <Box width={{xs: '80%', sm: '60%'}} marginX={{xs:'10%', sm:'20%'}} display={'flex'} justifyContent={'center'}>
+                    
+                    <Box width={{xs: '80%', sm: '60%'}} marginX={{xs:'10%', sm:'20%'}} display={'flex'} justifyContent={'center'}  >
                         <img src="src/assets/Header_logo.png" style={{ width: '100%'}} />
                     </Box>
                     <Box sx={{ display: 'flex', flexDirection: 'column', width: '60%', marginX: '20%', gap: '3rem', paddingTop: '4rem' }}>
