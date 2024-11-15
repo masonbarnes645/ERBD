@@ -31,14 +31,13 @@ class Portfolios(Resource):
     def post(self):
         data = request.get_json()
 
-        if session['user_id']:
-            try:
-                new_portfolio = Portfolio(**data)
-                db.session.add(new_portfolio)
-                db.session.commit()
-            except Exception as e:
-                db.session.rollback()
-                return make_response({"error": str(e)}, 400)
+        try:
+            new_portfolio = Portfolio(**data)
+            db.session.add(new_portfolio)
+            db.session.commit()
+        except Exception as e:
+            db.session.rollback()
+            return make_response({"error": str(e)}, 400)
 
 
 class Products(Resource):
@@ -52,20 +51,20 @@ class Products(Resource):
         data = request.get_json()
         selected_tag_ids = data.get("tags", [])
         tags = Tag.query.filter(Tag.id.in_(selected_tag_ids)).all()
-        if session['user_id']:
-            try:
-                new_product = Product(
-                    name=data["name"],
-                    description=data["description"],
-                    price=data["price"],
-                    tags=tags
-                )
-                db.session.add(new_product)
-                db.session.commit()
-                return make_response(new_product.to_dict(), 201)
-            except Exception as e:
-                db.session.rollback()
-                return make_response({"error": str(e)}, 400)
+
+        try:
+            new_product = Product(
+                name=data["name"],
+                description=data["description"],
+                price=data["price"],
+                tags=tags
+            )
+            db.session.add(new_product)
+            db.session.commit()
+            return make_response(new_product.to_dict(), 201)
+        except Exception as e:
+            db.session.rollback()
+            return make_response({"error": str(e)}, 400)
 
 
 class PortfolioById(Resource):
@@ -82,7 +81,7 @@ class PortfolioById(Resource):
     def delete(self, id):
         try:
             portfolio = db.session.get(Portfolio, id)
-            if portfolio and session['user_id']:
+            if portfolio:
                 db.session.delete(portfolio)
                 db.session.commit()
                 return make_response({}, 204)
@@ -119,7 +118,7 @@ class ProductById(Resource):
     def delete(self, id):
         try:
             product = db.session.get(Product, id)
-            if product and session['user_id']:
+            if product:
                 db.session.delete(product)
                 db.session.commit()
                 return make_response({}, 204)
@@ -205,7 +204,7 @@ class Photos(Resource):
             if file.filename == '':
                 return make_response({"error": "No file selected"}, 400)
 
-            if allowed_file(file.filename) and session['user_id']:
+            if allowed_file(file.filename):
                 try:
                     filename = secure_filename(file.filename)
                     file_path = os.path.join("uploads", filename)
