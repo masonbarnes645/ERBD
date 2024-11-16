@@ -19,6 +19,7 @@ flask-mail = "*"
 ipdb = "*"
 flask-swagger-ui = "*"
 werkzeug = "*"
+gunicorn = "*"
 
 [dev-packages]
 

@@ -1,5 +1,5 @@
 
-from flask import Flask, jsonify, request
+from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
 from flask_migrate import Migrate
@@ -23,14 +23,12 @@ app = Flask(
     )
 app.config['SQLALCHEMY_DATABASE_URI'] = environ.get('SQLALCHEMY_DATABASE_URI')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-metadata = MetaData(naming_convention={
-    "fk": "fk_%(table_name)s_%(column_0_name)s_%(referred_table_name)s",
-})
+
 
 api = Api(app, prefix="/api/v1")
 
 db = SQLAlchemy(metadata=metadata)
-migrate = Migrate(app, db)
+migrate = Migrate(app, db)  
 db.init_app(app)
 SWAGGER_URL = '/api/docs'
 API_URL = 'http://127.0.0.1:5555/swagger.json'
@@ -59,8 +57,8 @@ app.secret_key = environ.get("SESSION_SECRET")
 
 
 CORS(app)
-Session(app)    
 bcrypt = Bcrypt(app)
+Session(app)    
 
 
 
