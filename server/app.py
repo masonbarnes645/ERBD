@@ -1,4 +1,4 @@
-from flask import make_response, session, request, Flask, send_from_directory, render_template
+from flask import make_response, session, request, send_from_directory, render_template
 from flask_restful import Resource
 import os
 from config import app, api, db, ALLOWED_EXTENSIONS
