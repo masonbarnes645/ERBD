@@ -3,7 +3,6 @@ from flask_restful import Resource
 import os
 from config import app, api, db, ALLOWED_EXTENSIONS
 from flask_mail import Mail, Message
-from ipdb import set_trace
 from werkzeug.utils import secure_filename
 
 
@@ -312,62 +311,4 @@ if __name__ == "__main__":
     app.run(port=5555, debug=True)
 
 
-@app.route('/swagger.json')
-def swagger_json():
-    return {
-        "swagger": "2.0",
-        "info": {
-            "version": "1.0.0",
-            "title": "ERB"
-        },
-        "paths": {
-            "/photos": {
-                "post": {
-                    "summary": "Upload a photo",
-                    "consumes": ["multipart/form-data"],
-                    "produces": ["application/json"],
-                    "parameters": [
-                        {
-                            "name": "photo",
-                            "in": "formData",
-                            "description": "The photo to upload",
-                            "required": True,
-                            "type": "file"
-                        },
-                        {
-                            "name": "owner_type",
-                            "in": "formData",
-                            "description": "Title of the photo",
-                            "required": True,
-                            "type": "string"
-                        },
-                        {
-                            "name": "owner_id",
-                            "in": "formData",
-                            "description": "Description of the photo",
-                            "required": False,
-                            "type": "integer"
-                        }
-                    ],
-                    "responses": {
-                        "200": {
-                            "description": "Photo uploaded successfully",
-                            "schema": {
-                                "type": "object",
-                                "properties": {
-                                    "message": {
-                                        "type": "string",
-                                        "example": "Photo uploaded successfully"
-                                    },
-                                    "photo_url": {
-                                        "type": "string",
-                                        "example": "https://example.com/photo.jpg"
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
+
