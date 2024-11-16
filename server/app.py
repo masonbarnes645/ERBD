@@ -1,4 +1,4 @@
-from flask import make_response, session, request, Flask, send_from_directory
+from flask import make_response, session, request, Flask, send_from_directory, render_template
 from flask_restful import Resource
 import os
 from config import app, api, db, ALLOWED_EXTENSIONS
@@ -7,8 +7,8 @@ from ipdb import set_trace
 from werkzeug.utils import secure_filename
 
 
-BASE_DIR = os.path.abspath(os.path.dirname(__file__))
-DATABASE = os.environ.get("DB_URI", f"sqlite:///{os.path.join(BASE_DIR, 'app.db')}")
+
+
 mail = Mail(app)
 
 from models.photo import Photo
@@ -17,6 +17,20 @@ from models.admin import Admin
 from models.product import Product
 from models.tag import Tag
 
+
+#REACT ROUTeS
+
+@app.route("/")
+@app.route("/portfolios")
+@app.route("/portfolios/<int:id>")
+@app.route("/products")
+@app.route("/products/<int:id>")
+@app.route("/contact-us")
+@app.route("/login")
+@app.route("/control")
+@app.route("/control-photo")
+def index (id = 0):
+    return render_template("index.html")
 
 
 class Portfolios(Resource):

@@ -8,18 +8,26 @@ from flask_session import Session
 from flask_restful import Api
 from sqlalchemy import MetaData
 from flask_bcrypt import Bcrypt
-import os
+from dotenv import load_dotenv
+load_dotenv()
 
 
 
-app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db' 
+
+app = Flask(
+    __name__,
+    static_url_path="",
+    static_folder="../ERB-client/dist",
+    template_folder="../ERB-client/dist"
+
+    )
+app.config['SQLALCHEMY_DATABASE_URI'] = environ.get('SQLALCHEMY_DATABASE_URI')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 metadata = MetaData(naming_convention={
     "fk": "fk_%(table_name)s_%(column_0_name)s_%(referred_table_name)s",
 })
 
-api = Api(app)
+api = Api(app, prefix="/api/v1")
 
 db = SQLAlchemy(metadata=metadata)
 migrate = Migrate(app, db)

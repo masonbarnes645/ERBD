@@ -1,8 +1,8 @@
-"""empty message
+"""add models
 
-Revision ID: 966923bb5cc9
+Revision ID: 23436dd64b74
 Revises: 
-Create Date: 2024-10-09 18:27:35.861109
+Create Date: 2024-11-16 12:21:41.277010
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '966923bb5cc9'
+revision = '23436dd64b74'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -26,9 +26,9 @@ def upgrade():
     )
     op.create_table('photos',
     sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('image_url', sa.String(), nullable=False),
-    sa.Column('owner_id', sa.Integer(), nullable=False),
+    sa.Column('file_path', sa.String(), nullable=False),
     sa.Column('owner_type', sa.String(), nullable=False),
+    sa.Column('owner_id', sa.Integer(), nullable=False),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('portfolios',
@@ -50,11 +50,10 @@ def upgrade():
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('product_tags',
-    sa.Column('product_id', sa.Integer(), nullable=False),
-    sa.Column('tag_id', sa.Integer(), nullable=False),
+    sa.Column('product_id', sa.Integer(), nullable=True),
+    sa.Column('tag_id', sa.Integer(), nullable=True),
     sa.ForeignKeyConstraint(['product_id'], ['products.id'], name=op.f('fk_product_tags_product_id_products')),
-    sa.ForeignKeyConstraint(['tag_id'], ['tags.id'], name=op.f('fk_product_tags_tag_id_tags')),
-    sa.PrimaryKeyConstraint('product_id', 'tag_id')
+    sa.ForeignKeyConstraint(['tag_id'], ['tags.id'], name=op.f('fk_product_tags_tag_id_tags'))
     )
     # ### end Alembic commands ###
 
