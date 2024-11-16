@@ -1,4 +1,4 @@
-import { deleteProduct } from "./api";
+import { deletePortfolio, deleteProduct } from "./api";
 import { Box } from "@mui/material";
 import { useOutletContext } from "react-router-dom";
 
@@ -6,7 +6,7 @@ import { useOutletContext } from "react-router-dom";
 const CPoL = () => {
     const { portfolios } = useOutletContext()
     const handleDelete = (id) => {
-        deleteProduct(id)
+        deletePortfolio(id)
 
     }
     return (

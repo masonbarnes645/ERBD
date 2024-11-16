@@ -35,9 +35,12 @@ const Contact = () => {
     return (
         <Box display={'flex'} minHeight={'80vh'} justifyContent={'center'} alignItems={'center'}>
             {!isMobile && (
-                <Box sx={{ width: '32%', marginLeft: '2rem' }}>
+                <Box sx={{ width: '40%', marginLeft: '2rem' }}>
                     <img src='src/assets/Header_logo.png' alt="Logo" />
-                    <p style={{ color: 'black' }}>{description}</p>
+                    <Box display={'flex'} >
+                        <img src='src/assets/headshotEBD.jpeg' style={{marginRight:'1rem', marginTop:'1rem', width:'auto', height:'363px'}}/>
+                        <p className='zen-font' style={{ color: 'black',  overflowY:'auto', height:'363px'}}>{description}</p>
+                    </Box>
                 </Box>
             )}
             <Formik
@@ -51,20 +54,20 @@ const Contact = () => {
                             <Box display={'flex'} gap={'1rem'}>
                                 <Field as={TextField} fullWidth label="First Name" name="firstname" />
                                 <ErrorMessage name="firstname" component="div" style={{ color: 'red' }} />
-                                
+
                                 <Field as={TextField} fullWidth label="Last Name" name="lastname" />
                                 <ErrorMessage name="lastname" component="div" style={{ color: 'red' }} />
                             </Box>
                             <Box>
                                 <Field as={TextField} fullWidth sx={{ marginBottom: 2 }} label="Email" name="email" />
                                 <ErrorMessage name="email" component="div" style={{ color: 'red' }} />
-                                
+
                                 <Field as={TextField} fullWidth label="Subject" name="subject" />
                                 <ErrorMessage name="subject" component="div" style={{ color: 'red' }} />
                             </Box>
                             <Field as={TextField} fullWidth label="Message" name="message" multiline rows={3} />
                             <ErrorMessage name="message" component="div" style={{ color: 'red' }} />
-                            
+
                             <button type="submit">Submit</button>
                         </Box>
                     </Form>

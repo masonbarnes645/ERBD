@@ -15,7 +15,7 @@ const Landing = () => {
     return (
         <>
             {isMobile ? (
-                
+
                 <Box sx={{
                     display: 'flex',
                     flexDirection: 'column',
@@ -24,15 +24,15 @@ const Landing = () => {
                     minHeight: '100vh',
                     minWidth: '100vw',
                     paddingTop: '7rem',
-                    backgroundImage: {xs:`url('src/assets/martis10.jpg')`, sm: `url('src/assets/landing3.jpeg')`},
-                    backgroundSize:'cover',
+                    backgroundImage: { xs: `url('src/assets/martis10.jpg')`, sm: `url('src/assets/landing2.jpeg')` },
+                    backgroundSize: 'cover',
                     backgroundPosition: 'center'
-                    
+
 
                 }}>
-                    
-                    <Box width={{xs: '80%', sm: '60%'}} marginX={{xs:'10%', sm:'20%'}} display={'flex'} justifyContent={'center'}  >
-                        <img src="src/assets/Header_logo.png" style={{ width: '100%'}} />
+
+                    <Box width={{ xs: '80%', sm: '60%' }} marginX={{ xs: '10%', sm: '20%' }} display={'flex'} justifyContent={'center'}  >
+                        <img src="src/assets/Header_logo.png" style={{ width: '100%' }} />
                     </Box>
                     <Box sx={{ display: 'flex', flexDirection: 'column', width: '60%', marginX: '20%', gap: '3rem', paddingTop: '4rem' }}>
                         <button onClick={() => navigate('/portfolios')}>View Portfolio</button>
@@ -41,13 +41,20 @@ const Landing = () => {
                     </Box>
                 </Box>
             ) :
-                (<Box sx={{ marginTop: '4rem' }}>
-                    <Box display={'flex'} justifyContent={'center'} marginBottom={'3rem'}>
-                        <img src="src/assets/Header_logo.png" />
+                (<Box sx={{
+                    backgroundImage: `url('src/assets/landing2.jpeg')`,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                    height: '100vh',
+                    width: '100vw',
+                    display: 'flex',
+                    justifyContent:'center',
+                    alignItems:'center'
+                }}>
+                    <Box >
+                        <h1 className="zen-font" style={{fontSize:'5rem', color:'darkslategrey'}}> Elizabeth Barnes Design</h1>
                     </Box>
-                    <Box width="1080px">
-                        <Carousel />
-                    </Box>
+
 
                 </Box>)
 

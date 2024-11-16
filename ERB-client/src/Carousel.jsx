@@ -34,7 +34,7 @@ const Carousel = () => {
 
     const settings = {
 
-        dots: true,
+        dots: false,
         infinite: true,
         slidesToShow: 1,
         slidesToScroll: 1,
@@ -51,7 +51,7 @@ const Carousel = () => {
         <div className='slider-container' >
             <Slider {...settings}>
                 <div>
-                    <img className="land-img" width={'1080px'} height={'auto'} src='src/assets/landing1.jpeg' />
+                    <img className="land-img" width={'1080px'} height={'auto'} src='src/assets/martis10.jpg' />
                 </div>
                 <div>
                     <img className="land-img" width={'1080px'} height={'auto'} src='src/assets/landing2.jpeg' />
