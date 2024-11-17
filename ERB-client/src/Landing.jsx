@@ -5,6 +5,8 @@ import { useMediaQuery, useTheme } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import xsbg from '../public/martis10.jpg'
 import lgbg from '../public/landing2.jpeg'
+import header from '../public/Header_logo.png'
+
 
 
 
@@ -35,7 +37,7 @@ const Landing = () => {
                 }}>
 
                     <Box width={{ xs: '80%', sm: '60%' }} marginX={{ xs: '10%', sm: '20%' }} display={'flex'} justifyContent={'center'}  >
-                        <img src="assets/Header_logo.png" style={{ width: '100%' }} />
+                        <img src={header} style={{ width: '100%' }} />
                     </Box>
                     <Box sx={{ display: 'flex', flexDirection: 'column', width: '60%', marginX: '20%', gap: '3rem', paddingTop: '4rem' }}>
                         <button onClick={() => navigate('/portfolios')}>View Portfolio</button>
