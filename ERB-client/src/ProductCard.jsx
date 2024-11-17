@@ -8,7 +8,7 @@ import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 
 const ProductCard = ({ name, description, price, tags, photos, product, id }) => {
     const imageUrl = photos
-        ? `http://localhost:5555/${photos[0]?.file_path}`
+        ? `api/v1/${photos[0]?.file_path}`
         : null;
 
     

@@ -39,7 +39,7 @@ const PortfolioDetails = () => {
             <ImageList variant="masonry" gap={6} sx={{marginX:'1rem', marginTop:'2rem'}}>
                 {portfolio.photos.map((photo) => (
                     <ImageListItem key={photo.id}>
-                        <img src={`http://localhost:5555/${photo.file_path}`} alt={photo.title} />
+                        <img src={`/api/v1/${photo.file_path}`} alt={photo.title} />
                     </ImageListItem>
                 ))}
             </ImageList>
