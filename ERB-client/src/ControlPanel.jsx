@@ -36,7 +36,7 @@ const ControlPanel = () => {
                 <PostForms />
                 <CPL />
                 <CPoL />
-                <button onClick={handleLogout}> Logout</button>   
+                <button onClick={handleLogout}>Logout</button>   
             </Box>
         : 
             navigate('/')
