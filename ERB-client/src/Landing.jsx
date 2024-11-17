@@ -3,7 +3,9 @@ import Carousel from "./Carousel"
 import './App.css'
 import { useMediaQuery, useTheme } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import mobile from '../public/mobile_landing.jpeg'
+import xsbg from '../public/martis10.jpg'
+import lgbg from '../public/landing2.jpeg'
+
 
 
 
@@ -25,7 +27,7 @@ const Landing = () => {
                     minHeight: '100vh',
                     minWidth: '100vw',
                     paddingTop: '7rem',
-                    backgroundImage: { xs: `url(${mobile})`, sm: `url('src/assets/landing2.jpeg')` },
+                    backgroundImage: { xs: `url(${xsbg})`, sm: `url(${lgbg})` },
                     backgroundSize: 'cover',
                     backgroundPosition: 'center'
 
@@ -43,7 +45,7 @@ const Landing = () => {
                 </Box>
             ) :
                 (<Box sx={{
-                    backgroundImage: `url('assets/landing2.jpeg')`,
+                    backgroundImage: `url('${lgbg}')`,
                     backgroundSize: 'cover',
                     backgroundPosition: 'center',
                     height: '100vh',

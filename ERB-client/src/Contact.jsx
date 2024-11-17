@@ -4,6 +4,8 @@ import { postInquiry } from './api';
 import { useMediaQuery, useTheme } from '@mui/material';
 import * as yup from 'yup';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
+import headshot from '../public/headshotEBD.jpeg'
+import header from '../public/Header_logo.png'
 
 const description = "Elizabeth Barnes Design is a San Francisco Bay Area based design firm. Started in 2012 by Connecticut native Betsy Barnes, EBD brings a down-to-earth approach to designing beautiful spaces. Every project is unique to the client's personal taste, timeline, and budget. Collaborating with architects, contractors, and craftspeople, Betsy is well-versed in managing small and large-scale projects.";
 
@@ -36,9 +38,9 @@ const Contact = () => {
         <Box display={'flex'} minHeight={'80vh'} justifyContent={'center'} alignItems={'center'}>
             {!isMobile && (
                 <Box sx={{ width: '40%', marginLeft: '2rem' }}>
-                    <img src='src/assets/Header_logo.png' alt="Logo" />
+                    <img src={header} alt="Logo" />
                     <Box display={'flex'} >
-                        <img src='src/assets/headshotEBD.jpeg' style={{marginRight:'1rem', marginTop:'1rem', width:'auto', height:'363px'}}/>
+                        <img src={headshot} style={{marginRight:'1rem', marginTop:'1rem', width:'auto', height:'363px'}}/>
                         <p className='zen-font' style={{ color: 'black',  overflowY:'auto', height:'363px'}}>{description}</p>
                     </Box>
                 </Box>
