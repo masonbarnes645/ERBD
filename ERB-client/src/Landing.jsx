@@ -32,7 +32,7 @@ const Landing = () => {
                 }}>
 
                     <Box width={{ xs: '80%', sm: '60%' }} marginX={{ xs: '10%', sm: '20%' }} display={'flex'} justifyContent={'center'}  >
-                        <img src="src/assets/Header_logo.png" style={{ width: '100%' }} />
+                        <img src="assets/Header_logo.png" style={{ width: '100%' }} />
                     </Box>
                     <Box sx={{ display: 'flex', flexDirection: 'column', width: '60%', marginX: '20%', gap: '3rem', paddingTop: '4rem' }}>
                         <button onClick={() => navigate('/portfolios')}>View Portfolio</button>
@@ -42,7 +42,7 @@ const Landing = () => {
                 </Box>
             ) :
                 (<Box sx={{
-                    backgroundImage: `url('src/assets/landing2.jpeg')`,
+                    backgroundImage: `url('assets/landing2.jpeg')`,
                     backgroundSize: 'cover',
                     backgroundPosition: 'center',
                     height: '100vh',
