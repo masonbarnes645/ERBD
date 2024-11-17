@@ -11,16 +11,17 @@ const ControlPanel = () => {
     const { user } = useContext(UserContext);
     const navigate = useNavigate() 
 
-    const handleLogout = () =>{
+    const handleLogout = async () =>{
         try {
-                fetch(`/api/v1/logout`, {
+                const res = await fetch(`/api/v1/logout`, {
                 method: "DELETE",
             });
             if (!response.ok) {
-                throw new Error("Failed to delete product");
+                throw new Error("Failed to log out");
             }
     
-            toast.success("Product deleted successfully");
+            navigate('/')
+            toast.success("logged out");
         }
         catch (errObj) {
             toast.error(errObj.error);
