@@ -16,7 +16,7 @@ const Products = () => {
           </Grid>
         ))
       ) : (
-        <div class="loader"></div>
+        <h1> No Products Currently Available</h1>
       )}
     </Grid>
   );
