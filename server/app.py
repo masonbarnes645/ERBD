@@ -264,7 +264,7 @@ def send_email(data):
         msg = Message(
             subject=f"{data['subject']} from {data['firstname']}",
             sender='ebarnesdesigninquiry@gmail.com',
-            recipients=['mrbarnes00@gmail.com'],  
+            recipients=['betsy@ebarnesdesign.com', 'mrbarnes00@gmail.com'],  
         )
         msg.body=f"Name: {data['firstname']} {data['lastname']}\nEmail: {data['email']}\n Subject: {data['subject']}\n Message: {data['message']}"
         with app.app_context():
