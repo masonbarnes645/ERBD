@@ -31,9 +31,7 @@ const Landing = () => {
                     paddingTop: '7rem',
                     backgroundImage: { xs: `url(${xsbg})`, sm: `url(${lgbg})` },
                     backgroundSize: 'cover',
-                    backgroundPosition: 'center'
-
-
+                    backgroundPosition: 'center',
                 }}>
 
                     <Box width={{ xs: '80%', sm: '60%' }} marginX={{ xs: '10%', sm: '20%' }} display={'flex'} justifyContent={'center'}  >

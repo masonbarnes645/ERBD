@@ -2,7 +2,6 @@ import ProductCard from "./ProductCard";
 import Grid from '@mui/material/Grid2';
 import { useOutletContext } from "react-router-dom";
 
-// test
 
 const Products = () => {
   const { products } = useOutletContext()
