@@ -54,8 +54,6 @@ const PostForms = () => {
             const photoForm = new FormData();
             photoForm.append('image', fileInput);
             photoForm.append('owner_type', 'product');
-            console.log(products?.length)
-            console.log(products)
             photoForm.append('owner_id', products?.length + 1);
             await postProduct(formWithTags);
             await postPhoto(photoForm);
