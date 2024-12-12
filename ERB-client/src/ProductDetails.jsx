@@ -5,9 +5,11 @@ import { useMediaQuery, useTheme } from "@mui/material"
 import ProductDetailsLarge from "./ProductDetailsLarge"
 import ProductDetailsSmall from "./ProductDetailsSmall"
 
-const ProductDetails = ({ name, description, photos }) => {
+const ProductDetails = () => {
     const { productId } = useParams()
-    const [product, setProduct] = useState([{}])
+    const [product, setProduct] = useState({
+        photos: []
+    })
 
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down("md"));
@@ -30,7 +32,7 @@ const ProductDetails = ({ name, description, photos }) => {
                         <ProductDetailsSmall product = { product }/>
                 ) : (
                     <div>
-                        <ProductDetailsLarge product={ product }/>
+                        <ProductDetailsLarge product = { product }/>
                     </div>
                 )}
         </>

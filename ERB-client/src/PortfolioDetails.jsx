@@ -11,8 +11,6 @@ const PortfolioDetails = () => {
     const [portfolio, setPortfolio] = useState({
         photos: []
     })
-    const [editMode, setEditMode] = useState(false)
-    const navigate = useNavigate()
 
     useEffect(() => {
         const loadPortfolio = async () => {
