@@ -50,12 +50,8 @@ const PostForms = () => {
     
     const handleSubmitProduct = async (values, { setSubmitting, resetForm }) => {
         try {
-            const formWithTags = { ...values, tags: selectedTags };
-            const photoForm = new FormData();
-            photoForm.append('image', fileInput);
-            photoForm.append('owner_type', 'product');
-            await postProduct(formWithTags);
-            navigate(0)
+            await postProduct(values);
+            resetForm()
         } catch (error) {
             console.error('Error posting product or photo:', error);
         } finally {
