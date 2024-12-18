@@ -17,7 +17,7 @@ from models.product import Product
 from models.tag import Tag
 
 
-#REACT ROUTeS
+#REACT ROUTES
 
 @app.route("/")
 @app.route("/portfolios")
@@ -222,10 +222,7 @@ class Photos(Resource):
                     filename = secure_filename(file.filename)
                     file_path = os.path.join("uploads", filename)
                     file.save(file_path)
-
-                    data = request.form.to_dict()
-                    
-                    
+                    data = request.form.to_dict()                
                     photo = Photo(file_path=file_path, **data)
                     db.session.add(photo)
                     db.session.commit()
