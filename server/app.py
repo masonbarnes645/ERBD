@@ -4,10 +4,15 @@ import os
 from config import app, api, db
 from flask_mail import Mail, Message
 from werkzeug.utils import secure_filename
+import boto3
 
 
 
-
+s3 = boto3.client(
+    's3',
+    aws_access_key_id=app.config['S3_ACCESS_KEY'],
+    aws_secret_access_key=app.config['S3_SECRET_KEY']
+) 
 mail = Mail(app)
 
 from models.photo import Photo
@@ -15,6 +20,7 @@ from models.portfolio import Portfolio
 from models.admin import Admin
 from models.product import Product
 from models.tag import Tag
+
 
 
 #REACT ROUTES
