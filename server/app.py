@@ -5,15 +5,10 @@ from config import app, api, db
 from flask_mail import Mail, Message
 from werkzeug.utils import secure_filename
 import boto3
+import uuid
 
 
 
-s3 = boto3.client(
-    's3',
-    aws_access_key_id=app.config['S3_ACCESS_KEY'],
-    aws_secret_access_key=app.config['S3_SECRET_KEY']
-) 
-mail = Mail(app)
 
 from models.photo import Photo
 from models.portfolio import Portfolio
@@ -21,7 +16,8 @@ from models.admin import Admin
 from models.product import Product
 from models.tag import Tag
 
-
+s3_bucket = app.config['S3_BUCKET']
+s3_region = app.config['S3_REGION']
 
 #REACT ROUTES
 
@@ -36,6 +32,27 @@ from models.tag import Tag
 @app.route("/control-photo")
 def index (id = 0):
     return render_template("index.html")
+
+
+def upload_to_s3(file, filename):
+    try:
+        s3_client = boto3.client(
+            's3',
+            aws_access_key_id=app.config['S3_ACCESS_KEY'],
+            aws_secret_access_key=app.config['S3_SECRET_KEY'],
+            region_name=s3_region
+        )
+        s3_client.upload_fileobj(
+            file,
+            s3_bucket,
+            filename,
+            ExtraArgs={"ACL":"public-read"} 
+        )
+        return f"https://{s3_bucket}.s3.{s3_region}.amazonaws.com/{filename}"
+    except Exception as e:
+        raise RuntimeError(f"Failed to upload file to S3: {str(e)}")
+
+
 
 
 class Portfolios(Resource):
@@ -220,19 +237,18 @@ def allowed_file(filename):
 class Photos(Resource):
     def post(self):
             file = request.files['image']
-            if file.filename == '':
+            if not file or file.filename == '':
                 return make_response({"error": "No file selected"}, 400)
 
             if allowed_file(file.filename):
                 try:
-                    filename = secure_filename(file.filename)
-                    file_path = os.path.join("uploads", filename)
-                    file.save(file_path)
-                    data = request.form.to_dict()                
-                    photo = Photo(file_path=file_path, **data)
+                    filename = f"{uuid.uuid4().hex}_{secure_filename(file.filename)}"
+                    file_url = upload_to_s3(file, filename)
+                    data = request.form.to_dict()
+                    photo = Photo(file_url=file_url, **data)
                     db.session.add(photo)
                     db.session.commit()
-                    
+
                     return make_response(photo.to_dict(), 201)
                 except Exception as e:
                         db.session.rollback()  

@@ -49,6 +49,9 @@ app.config['MAIL_USE_SSL'] = False
 
 app.config['S3_ACCESS_KEY'] = environ.get('S3_ACCESS_KEY')
 app.config['S3_SECRET_KEY'] = environ.get('S3_SECRET_KEY')
+app.config['S3_BUCKET'] = 'eb-design'
+app.config['S3_REGION'] = 'us-west-1'
+
 
 
 app.config['UPLOAD_FOLDER'] = 'uploads/'
