@@ -34,26 +34,9 @@ def index (id = 0):
     return render_template("index.html")
 
 
-def upload_to_s3(file, filename):
-    try:
-        s3_client = boto3.client(
-            's3',
-            aws_access_key_id=app.config['S3_ACCESS_KEY'],
-            aws_secret_access_key=app.config['S3_SECRET_KEY'],
-            region_name=s3_region
-        )
-        s3_client.upload_fileobj(
-            file,
-            s3_bucket,
-            filename,
-            ExtraArgs={"ACL":"public-read"} 
-        )
-        return f"https://{s3_bucket}.s3.{s3_region}.amazonaws.com/{filename}"
-    except Exception as e:
-        raise RuntimeError(f"Failed to upload file to S3: {str(e)}")
 
 
-
+print(app.config['S3_ACCESS_KEY'], app.config['S3_SECRET_KEY'])
 
 class Portfolios(Resource):
     def get(self):
@@ -233,6 +216,29 @@ def allowed_file(filename):
     ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
+s3_client = boto3.client(
+            's3',
+            aws_access_key_id=app.config['S3_ACCESS_KEY'],
+            aws_secret_access_key=app.config['S3_SECRET_KEY'],
+            region_name=s3_region
+        )
+def upload_to_s3(file, filename):
+    try:
+        s3_client.upload_fileobj(
+            file,
+            s3_bucket,
+            filename,
+            ExtraArgs={"ACL":"public-read"} 
+        )
+        return f"https://{s3_bucket}.s3.{s3_region}.amazonaws.com/{filename}"
+    except Exception as e:
+        raise RuntimeError(f"Failed to upload file to S3: {str(e)}")
+    
+try:
+    response = s3_client.list_buckets()
+    print("Buckets:", response['Buckets'])
+except Exception as e:
+    print("Error:", e)
 
 class Photos(Resource):
     def post(self):
