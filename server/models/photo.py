@@ -7,7 +7,7 @@ class Photo(db.Model, SerializerMixin ):
     __tablename__= "photos"
 
     id = db.Column(db.Integer, primary_key=True)
-    file_path= db.Column(db.String, nullable=False)
+    file_url= db.Column(db.String, nullable=False)
     owner_type = db.Column(db.String, nullable=False)
     owner_id = db.Column(db.Integer, nullable=False)
 
