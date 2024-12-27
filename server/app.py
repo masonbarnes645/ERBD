@@ -4,8 +4,10 @@ import os
 from config import app, api, db
 from flask_mail import Mail, Message
 from werkzeug.utils import secure_filename
+from werkzeug.datastructures import FileStorage
 import boto3
 import uuid
+import mimetypes
 
 
 
@@ -223,12 +225,18 @@ s3_client = boto3.client(
             region_name=s3_region
         )
 def upload_to_s3(file, filename):
+    mime_type, _ = mimetypes.guess_type(filename)
+    if mime_type is None:
+        mime_type = 'application/octet-stream'
     try:
         s3_client.upload_fileobj(
             file,
             s3_bucket,
             filename,
-            ExtraArgs={"ACL":"public-read"} 
+            ExtraArgs={
+                "ACL":"public-read",
+                "ContentType": mime_type       
+                       } 
         )
         return f"https://{s3_bucket}.s3.{s3_region}.amazonaws.com/{filename}"
     except Exception as e:
@@ -239,6 +247,11 @@ try:
     print("Buckets:", response['Buckets'])
 except Exception as e:
     print("Error:", e)
+
+with open('uploads/berk1.jpg', 'rb') as file:
+    filename = 'berk12.jpg'
+    file_url = upload_to_s3(file, filename)
+    print(f"Uploaded file URL: {file_url}")
 
 class Photos(Resource):
     def post(self):
