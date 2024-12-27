@@ -242,16 +242,6 @@ def upload_to_s3(file, filename):
     except Exception as e:
         raise RuntimeError(f"Failed to upload file to S3: {str(e)}")
     
-try:
-    response = s3_client.list_buckets()
-    print("Buckets:", response['Buckets'])
-except Exception as e:
-    print("Error:", e)
-
-with open('uploads/berk1.jpg', 'rb') as file:
-    filename = 'berk12.jpg'
-    file_url = upload_to_s3(file, filename)
-    print(f"Uploaded file URL: {file_url}")
 
 class Photos(Resource):
     def post(self):
