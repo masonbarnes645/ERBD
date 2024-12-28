@@ -299,7 +299,7 @@ def send_email(data):
         )
         msg.body=f"Name: {data['firstname']} {data['lastname']}\nEmail: {data['email']}\n Subject: {data['subject']}\n Message: {data['message']}"
         with app.app_context():
-            mail.send(msg)
+            Mail.send(msg)
 
 class Inquiries(Resource):
     def post(self):
