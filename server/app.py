@@ -41,7 +41,7 @@ def index (id = 0):
 
 
 
-print(app.config['S3_ACCESS_KEY'], app.config['S3_SECRET_KEY'])
+print(os.getenv('S3_ACCESS_KEY'), app.config['S3_SECRET_KEY'])
 
 class Portfolios(Resource):
     def get(self):
@@ -223,8 +223,8 @@ def allowed_file(filename):
 
 s3_client = boto3.client(
             's3',
-            aws_access_key_id=os.getenv('S3_ACCESS_KEY'),
-            aws_secret_access_key=os.getenv('S3_SECRET_KEY'),
+            aws_access_key_id=app.config['S3_ACCESS_KEY'],
+            aws_secret_access_key=app.config['S3_SECRET_KEY'],
             region_name=s3_region
         )
 def upload_to_s3(file, filename):
@@ -319,13 +319,17 @@ class File(Resource):
         except Exception as e:
             return make_response({"error": str(e)}, 500)
         
-with open('uploads/berk1.jpg', 'rb') as file:
-    filename = 'berk1.jpg'
-    file_url = upload_to_s3(file, filename)
-    print(f"Uploaded file URL: {file_url}")
+# with open('uploads/berk1.jpg', 'rb') as file:
+#     filename = 'berk1.jpg'
+#     file_url = upload_to_s3(file, filename)
+#     print(f"Uploaded file URL: {file_url}")
 
 
-
+# session = boto3.Session()
+# credentials = session.get_credentials()
+# print("Credentials:", credentials)
+# print("Access Key:", credentials.access_key)
+# print("Secret Key:", credentials.secret_key)
 
 
 
