@@ -24,6 +24,8 @@ from models.tag import Tag
 s3_bucket = app.config['S3_BUCKET']
 s3_region = app.config['S3_REGION']
 
+mail = Mail(app)
+
 #REACT ROUTES
 
 @app.route("/")
@@ -299,7 +301,7 @@ def send_email(data):
         )
         msg.body=f"Name: {data['firstname']} {data['lastname']}\nEmail: {data['email']}\n Subject: {data['subject']}\n Message: {data['message']}"
         with app.app_context():
-            Mail.send(msg)
+            mail.send(msg)
 
 class Inquiries(Resource):
     def post(self):

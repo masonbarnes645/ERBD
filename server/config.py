@@ -47,6 +47,8 @@ app.config['MAIL_DEFAULT_SENDER'] = 'ebarnesdesigninquiry@gmail.com'
 app.config['MAIL_USE_TLS'] = True
 app.config['MAIL_USE_SSL'] = False
 
+
+
 app.config['S3_ACCESS_KEY'] = environ.get('S3_ACCESS_KEY')
 app.config['S3_SECRET_KEY'] = environ.get('S3_SECRET_KEY')
 app.config['S3_BUCKET'] = 'eb-design'
