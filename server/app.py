@@ -8,6 +8,9 @@ from werkzeug.datastructures import FileStorage
 import boto3
 import uuid
 import mimetypes
+from dotenv import load_dotenv
+load_dotenv()
+
 
 
 
@@ -220,8 +223,8 @@ def allowed_file(filename):
 
 s3_client = boto3.client(
             's3',
-            aws_access_key_id=app.config['S3_ACCESS_KEY'],
-            aws_secret_access_key=app.config['S3_SECRET_KEY'],
+            aws_access_key_id=os.getenv('S3_ACCESS_KEY'),
+            aws_secret_access_key=os.getenv('S3_SECRET_KEY'),
             region_name=s3_region
         )
 def upload_to_s3(file, filename):
@@ -315,6 +318,11 @@ class File(Resource):
             return send_from_directory(uploads_dir, file_path)
         except Exception as e:
             return make_response({"error": str(e)}, 500)
+        
+with open('uploads/berk1.jpg', 'rb') as file:
+    filename = 'berk1.jpg'
+    file_url = upload_to_s3(file, filename)
+    print(f"Uploaded file URL: {file_url}")
 
 
 
