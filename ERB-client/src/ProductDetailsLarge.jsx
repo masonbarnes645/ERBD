@@ -19,12 +19,12 @@ const ProductDetailsLarge = ({ product }) => {
                         borderColor: 'black',
                         borderStyle: product.photos[mainPhotoId].id === photo.id ? 'solid' : 'none'
                     }}
-                        key={photo.id}> <img style={{ height: '100%', width: '100%' }} src={`https://www.betsybarnesdesign.com/api/v1/${photo.file_path}`} onClick={() => handleClick(index)} />
+                        key={photo.id}> <img style={{ height: '100%', width: '100%' }} src={photo.file_url} onClick={() => handleClick(index)} />
                     </Box>))}
             </Box>
             <Box sx={{ width: { lg: '45rem', md: '36rem' }, height: { lg: '40rem', md: '32rem' } }}>
                 {product.photos && product.photos[mainPhotoId] && (
-                    <img style={{ width: '100%', height: '100%', objectFit: 'cover' }} src={`https://www.betsybarnesdesign.com/api/v1/${product.photos[mainPhotoId].file_path}`} />
+                    <img style={{ width: '100%', height: '100%', objectFit: 'cover' }} src={product.photos[mainPhotoId].file_url} />
                 )}
             </Box>
             <Box className="zen-font" sx={{ color: 'black', display: 'flex', justifyContent: 'flex-start', flexDirection: 'column', top: '10px', width: '15%', paddingLeft: '1rem', wordWrap:'break-word' }}>

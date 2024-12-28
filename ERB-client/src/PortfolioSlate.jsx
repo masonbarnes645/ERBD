@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom"
 
 const PortfolioSlate = ({ title, photos, id }) => {
     const imageUrl = photos
-        ? `api/v1/${photos[0]?.file_path}`
+        ? photos[0]?.file_url
         : null;
 
         

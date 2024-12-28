@@ -14,12 +14,12 @@ const ProductDetailsSmall = ({ product }) => {
             <Box display={'flex'} flexDirection={'column'} alignItems={'center'} width={'100%'} overflow={'hidden'}>
                 <Box sx={{ objectFit: 'cover', justifyContent: 'center' }}>
                     {product.photos && product.photos[mainPhotoId] && (
-                        <img style={{maxWidth:'100%'}} src={`https://www.betsybarnesdesign.com/api/v1/${product.photos[mainPhotoId].file_path}`} />
+                        <img style={{maxWidth:'100%'}} src={product.photos[mainPhotoId].file_url} />
                     )}
                 </Box>
 
                 <Box display={'flex'} flexDirection={'row'} justifyContent={'space-around'} marginTop={'1rem'}>
-                    {product.photos?.slice(0, 2).map((photo, index) => (<Box key={photo.id} sx={{ borderStyle: 'solid' }}> <img style={{ height: 'auto', width: '60px' }} src={`https://www.betsybarnesdesign.com/api/v1/${photo.file_path}`} onClick={() => handleClick(index)} /> </Box>))}
+                    {product.photos?.slice(0, 2).map((photo, index) => (<Box key={photo.id} sx={{ borderStyle: 'solid' }}> <img style={{ height: 'auto', width: '60px' }} src={photo.file_url} onClick={() => handleClick(index)} /> </Box>))}
                 </Box>
                 <Box >
                     ${product.price}
