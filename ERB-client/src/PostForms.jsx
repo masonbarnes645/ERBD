@@ -50,16 +50,8 @@ const PostForms = () => {
     
     const handleSubmitProduct = async (values, { setSubmitting, resetForm }) => {
         try {
-            const formWithTags = { ...values, tags: selectedTags };
-            const photoForm = new FormData();
-            photoForm.append('image', fileInput);
-            photoForm.append('owner_type', 'product');
-            console.log(products?.length)
-            console.log(products)
-            photoForm.append('owner_id', products?.length + 1);
-            await postProduct(formWithTags);
-            await postPhoto(photoForm);
-            navigate(0)
+            await postProduct(values);
+            resetForm()
         } catch (error) {
             console.error('Error posting product or photo:', error);
         } finally {
@@ -129,7 +121,7 @@ const PostForms = () => {
                                         <ErrorMessage name="price" component="div" />
                                     </label>
                                     <br />
-                                    <label>
+                                    {/* <label>
                                         Main Image:
                                         <input type="file" name="image" onChange={handleFileChange} />
                                     </label>
@@ -146,7 +138,7 @@ const PostForms = () => {
                                             </label>
                                         ))}
                                     </div>
-                                    <br />
+                                    <br /> */}
                                     <button type="submit" disabled={isSubmitting}>Submit Product</button>
                                 </Form>
                             </Box>

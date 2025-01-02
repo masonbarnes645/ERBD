@@ -13,7 +13,7 @@ const Login = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        fetch("http://127.0.0.1:5555/login", {
+        fetch("/api/v1/login", {
                 method: "POST",
                 headers: {
                     "content-type": "application/json",

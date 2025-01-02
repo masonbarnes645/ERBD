@@ -1,15 +1,19 @@
-from flask import make_response, session, request, Flask, send_from_directory
+from flask import make_response, session, request, send_from_directory, render_template
 from flask_restful import Resource
 import os
-from config import app, api, db, ALLOWED_EXTENSIONS
+from config import app, api, db
 from flask_mail import Mail, Message
-from ipdb import set_trace
 from werkzeug.utils import secure_filename
+from werkzeug.datastructures import FileStorage
+import boto3
+import uuid
+import mimetypes
+from dotenv import load_dotenv
+load_dotenv()
 
 
-BASE_DIR = os.path.abspath(os.path.dirname(__file__))
-DATABASE = os.environ.get("DB_URI", f"sqlite:///{os.path.join(BASE_DIR, 'app.db')}")
-mail = Mail(app)
+
+
 
 from models.photo import Photo
 from models.portfolio import Portfolio
@@ -17,7 +21,29 @@ from models.admin import Admin
 from models.product import Product
 from models.tag import Tag
 
+s3_bucket = app.config['S3_BUCKET']
+s3_region = app.config['S3_REGION']
 
+mail = Mail(app)
+
+#REACT ROUTES
+
+@app.route("/")
+@app.route("/portfolios")
+@app.route("/portfolios/<int:id>")
+@app.route("/products")
+@app.route("/products/<int:id>")
+@app.route("/contact-us")
+@app.route("/login")
+@app.route("/control")
+@app.route("/control-photo")
+def index (id = 0):
+    return render_template("index.html")
+
+
+
+
+print(os.getenv('S3_ACCESS_KEY'), app.config['S3_SECRET_KEY'])
 
 class Portfolios(Resource):
     def get(self):
@@ -197,26 +223,46 @@ def allowed_file(filename):
     ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
+s3_client = boto3.client(
+            's3',
+            aws_access_key_id=app.config['S3_ACCESS_KEY'],
+            aws_secret_access_key=app.config['S3_SECRET_KEY'],
+            region_name=s3_region
+        )
+def upload_to_s3(file, filename):
+    mime_type, _ = mimetypes.guess_type(filename)
+    if mime_type is None:
+        mime_type = 'application/octet-stream'
+    try:
+        s3_client.upload_fileobj(
+            file,
+            s3_bucket,
+            filename,
+            ExtraArgs={
+                "ACL":"public-read",
+                "ContentType": mime_type       
+                       } 
+        )
+        return f"https://{s3_bucket}.s3.{s3_region}.amazonaws.com/{filename}"
+    except Exception as e:
+        raise RuntimeError(f"Failed to upload file to S3: {str(e)}")
+    
 
 class Photos(Resource):
     def post(self):
             file = request.files['image']
-            if file.filename == '':
+            if not file or file.filename == '':
                 return make_response({"error": "No file selected"}, 400)
 
             if allowed_file(file.filename):
                 try:
-                    filename = secure_filename(file.filename)
-                    file_path = os.path.join("uploads", filename)
-                    file.save(file_path)
-
+                    filename = f"{uuid.uuid4().hex}_{secure_filename(file.filename)}"
+                    file_url = upload_to_s3(file, filename)
                     data = request.form.to_dict()
-                    
-                    
-                    photo = Photo(file_path=file_path, **data)
+                    photo = Photo(file_url=file_url, **data)
                     db.session.add(photo)
                     db.session.commit()
-                    
+
                     return make_response(photo.to_dict(), 201)
                 except Exception as e:
                         db.session.rollback()  
@@ -251,7 +297,7 @@ def send_email(data):
         msg = Message(
             subject=f"{data['subject']} from {data['firstname']}",
             sender='ebarnesdesigninquiry@gmail.com',
-            recipients=['mrbarnes00@gmail.com'],  
+            recipients=['betsy@ebarnesdesign.com', 'adrienne@ebarnesdesign.com'],  
         )
         msg.body=f"Name: {data['firstname']} {data['lastname']}\nEmail: {data['email']}\n Subject: {data['subject']}\n Message: {data['message']}"
         with app.app_context():
@@ -274,9 +320,18 @@ class File(Resource):
             return send_from_directory(uploads_dir, file_path)
         except Exception as e:
             return make_response({"error": str(e)}, 500)
+        
+# with open('uploads/berk1.jpg', 'rb') as file:
+#     filename = 'berk1.jpg'
+#     file_url = upload_to_s3(file, filename)
+#     print(f"Uploaded file URL: {file_url}")
 
 
-
+# session = boto3.Session()
+# credentials = session.get_credentials()
+# print("Credentials:", credentials)
+# print("Access Key:", credentials.access_key)
+# print("Secret Key:", credentials.secret_key)
 
 
 
@@ -298,62 +353,4 @@ if __name__ == "__main__":
     app.run(port=5555, debug=True)
 
 
-@app.route('/swagger.json')
-def swagger_json():
-    return {
-        "swagger": "2.0",
-        "info": {
-            "version": "1.0.0",
-            "title": "ERB"
-        },
-        "paths": {
-            "/photos": {
-                "post": {
-                    "summary": "Upload a photo",
-                    "consumes": ["multipart/form-data"],
-                    "produces": ["application/json"],
-                    "parameters": [
-                        {
-                            "name": "photo",
-                            "in": "formData",
-                            "description": "The photo to upload",
-                            "required": True,
-                            "type": "file"
-                        },
-                        {
-                            "name": "owner_type",
-                            "in": "formData",
-                            "description": "Title of the photo",
-                            "required": True,
-                            "type": "string"
-                        },
-                        {
-                            "name": "owner_id",
-                            "in": "formData",
-                            "description": "Description of the photo",
-                            "required": False,
-                            "type": "integer"
-                        }
-                    ],
-                    "responses": {
-                        "200": {
-                            "description": "Photo uploaded successfully",
-                            "schema": {
-                                "type": "object",
-                                "properties": {
-                                    "message": {
-                                        "type": "string",
-                                        "example": "Photo uploaded successfully"
-                                    },
-                                    "photo_url": {
-                                        "type": "string",
-                                        "example": "https://example.com/photo.jpg"
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
+

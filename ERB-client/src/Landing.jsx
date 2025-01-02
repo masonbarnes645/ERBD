@@ -3,6 +3,11 @@ import Carousel from "./Carousel"
 import './App.css'
 import { useMediaQuery, useTheme } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import xsbg from '../public/martis10.jpg'
+import lgbg from '../public/landing2.jpeg'
+import header from '../public/Header_logo.png'
+
+
 
 
 
@@ -24,15 +29,13 @@ const Landing = () => {
                     minHeight: '100vh',
                     minWidth: '100vw',
                     paddingTop: '7rem',
-                    backgroundImage: { xs: `url('src/assets/martis10.jpg')`, sm: `url('src/assets/landing2.jpeg')` },
+                    backgroundImage: { xs: `url(${xsbg})`, sm: `url(${lgbg})` },
                     backgroundSize: 'cover',
-                    backgroundPosition: 'center'
-
-
+                    backgroundPosition: 'center',
                 }}>
 
                     <Box width={{ xs: '80%', sm: '60%' }} marginX={{ xs: '10%', sm: '20%' }} display={'flex'} justifyContent={'center'}  >
-                        <img src="src/assets/Header_logo.png" style={{ width: '100%' }} />
+                        <img src={header} style={{ width: '100%' }} />
                     </Box>
                     <Box sx={{ display: 'flex', flexDirection: 'column', width: '60%', marginX: '20%', gap: '3rem', paddingTop: '4rem' }}>
                         <button onClick={() => navigate('/portfolios')}>View Portfolio</button>
@@ -42,7 +45,7 @@ const Landing = () => {
                 </Box>
             ) :
                 (<Box sx={{
-                    backgroundImage: `url('src/assets/landing2.jpeg')`,
+                    backgroundImage: `url('${lgbg}')`,
                     backgroundSize: 'cover',
                     backgroundPosition: 'center',
                     height: '100vh',

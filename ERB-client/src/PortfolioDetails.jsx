@@ -11,8 +11,6 @@ const PortfolioDetails = () => {
     const [portfolio, setPortfolio] = useState({
         photos: []
     })
-    const [editMode, setEditMode] = useState(false)
-    const navigate = useNavigate()
 
     useEffect(() => {
         const loadPortfolio = async () => {
@@ -39,7 +37,7 @@ const PortfolioDetails = () => {
             <ImageList variant="masonry" gap={6} sx={{marginX:'1rem', marginTop:'2rem'}}>
                 {portfolio.photos.map((photo) => (
                     <ImageListItem key={photo.id}>
-                        <img src={`http://localhost:5555/${photo.file_path}`} alt={photo.title} />
+                        <img src={photo.file_url} alt={photo.title} />
                     </ImageListItem>
                 ))}
             </ImageList>

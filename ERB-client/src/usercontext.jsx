@@ -7,7 +7,7 @@ export function UserProvider({ children }) {
 
 
   useEffect(() => {
-    fetch("http://127.0.0.1:5555/check-session")
+    fetch("/api/v1/check-session")
       .then((res) => {
         if (res.ok) {
           return res.json().then((data) => {

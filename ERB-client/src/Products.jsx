@@ -3,7 +3,6 @@ import Grid from '@mui/material/Grid2';
 import { useOutletContext } from "react-router-dom";
 
 
-
 const Products = () => {
   const { products } = useOutletContext()
 
@@ -16,7 +15,7 @@ const Products = () => {
           </Grid>
         ))
       ) : (
-        <div class="loader"></div>
+        <h1> No Products Currently Available</h1>
       )}
     </Grid>
   );

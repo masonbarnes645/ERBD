@@ -1,6 +1,6 @@
 import toast from "react-hot-toast"
 
-const API_URL = "http://localhost:5555/"
+const API_URL = "/api/v1"
 
 // Products
 export const fetchProducts = async () => {
