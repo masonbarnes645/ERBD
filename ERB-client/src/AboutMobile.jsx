@@ -8,7 +8,7 @@ const description = "Elizabeth Barnes Design is a San Francisco Bay Area based d
 const About = () => {
 
     return (
-        <Box sx={{ width: { xs: '90%', md: '40%' }, marginLeft: { xs: 'auto', md: '2rem' }, marginRight: { xs: 'auto', md: '0' } }}>
+        <Box sx={{ width: { xs: '90%', md: '40%' }, marginLeft: { xs: 'auto', md: '2rem' }, marginRight: { xs: 'auto', md: '0' }, marginTop: {xs:'3rem'} }}>
             <img src={header} alt="Logo" style={{ width: '100%', height: 'auto' }} />
             <Box display="flex" flexDirection={{ xs: 'column', md: 'row' }} alignItems={{ xs: 'center', md: 'flex-start' }}>
                 <img
