@@ -9,6 +9,7 @@ import PortfolioDetails from "./PortfolioDetails";
 import Login from "./Login";
 import ControlPanel from "./ControlPanel";
 import ControlPhoto from "./ControlPhoto";
+import About from "./AboutMobile";
 
 export const router =  createBrowserRouter(
     [
@@ -51,6 +52,10 @@ export const router =  createBrowserRouter(
                 {
                     path: "/control-photo",
                     element: <ControlPhoto />
+                },
+                {
+                    path: "/about",
+                    element: <About />
                 }
             ]
         }
