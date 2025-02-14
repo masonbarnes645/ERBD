@@ -41,6 +41,7 @@ const Landing = () => {
                         <button onClick={() => navigate('/portfolios')}>View Portfolio</button>
                         <button onClick={() => navigate('/products')}>View Furniture</button>
                         <button onClick={() => navigate('/contact-us')}>Contact Us</button>
+                        <button onClick={() => navigate('/about')}>About EBD</button>
                     </Box>
                 </Box>
             ) :
