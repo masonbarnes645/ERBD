@@ -20,7 +20,6 @@ const PortfolioDetails = () => {
         };
 
         loadPortfolio();
-        console.log(portfolio)
     }, [])
 
 

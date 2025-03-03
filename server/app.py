@@ -289,9 +289,6 @@ class PhotosByOwner(Resource):
         except Exception as e:
                 return make_response({"error": str(e)}, 500)
             
-
-
-#! fetch photos where owner_id = id and owner type is correct
         
 def send_email(data):
         msg = Message(
@@ -321,10 +318,6 @@ class File(Resource):
         except Exception as e:
             return make_response({"error": str(e)}, 500)
         
-# with open('uploads/berk1.jpg', 'rb') as file:
-#     filename = 'berk1.jpg'
-#     file_url = upload_to_s3(file, filename)
-#     print(f"Uploaded file URL: {file_url}")
 
 
 # session = boto3.Session()
