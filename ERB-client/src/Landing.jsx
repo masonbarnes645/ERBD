@@ -46,7 +46,6 @@ const Landing = () => {
                 </Box>
             ) :
                 (<Box sx={{
-                    backgroundImage: `url('${lgbg}')`,
                     backgroundSize: 'cover',
                     backgroundPosition: 'center',
                     height: '100vh',
