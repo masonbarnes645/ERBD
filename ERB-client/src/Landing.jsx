@@ -57,7 +57,7 @@ const Landing = () => {
                         alignItems:'center'
                     }}>
                         <Box >
-                            <h1 className="zen-font" style={{fontSize:'5rem', color:'darkslategrey'}}> Elizabeth Barnes Design</h1>
+                            <h1 className="zen-font" style={{fontSize:'5rem', color:'white'}}> Elizabeth Barnes Design</h1>
                         </Box>
     
     
