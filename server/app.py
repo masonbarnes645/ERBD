@@ -37,6 +37,7 @@ mail = Mail(app)
 @app.route("/login")
 @app.route("/control")
 @app.route("/control-photo")
+@app.route("/portfolios/edi/<int:id>")
 def index (id = 0):
     return render_template("index.html")
 
