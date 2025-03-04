@@ -4,7 +4,7 @@ import './App.css'
 import { useMediaQuery, useTheme } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import xsbg from '../public/martis10.jpg'
-import lgbg from '../public/landing2.jpeg'
+import lgbg from '../public/darklanding.jpg'
 import header from '../public/Header_logo.png'
 
 
@@ -45,21 +45,11 @@ const Landing = () => {
                     </Box>
                 </Box>
             ) :
-                (<Box sx={{
-                    backgroundSize: 'cover',
-                    backgroundPosition: 'center',
-                    height: '100vh',
-                    width: '100vw',
-                    display: 'flex',
-                    justifyContent:'center',
-                    alignItems:'center'
-                }}>
-                    <Box >
-                        <h1 className="zen-font" style={{fontSize:'5rem', color:'darkslategrey'}}> Elizabeth Barnes Design</h1>
-                    </Box>
+                (
+                  <></>
 
 
-                </Box>)
+)
 
             }
         </>
