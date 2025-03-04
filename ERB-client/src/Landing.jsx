@@ -46,7 +46,22 @@ const Landing = () => {
                 </Box>
             ) :
                 (
-                  <></>
+                    <Box sx={{
+                        backgroundImage: `url('${lgbg}')`,
+                        backgroundSize: 'cover',
+                        backgroundPosition: 'center',
+                        height: '100vh',
+                        width: '100vw',
+                        display: 'flex',
+                        justifyContent:'center',
+                        alignItems:'center'
+                    }}>
+                        <Box >
+                            <h1 className="zen-font" style={{fontSize:'5rem', color:'darkslategrey'}}> Elizabeth Barnes Design</h1>
+                        </Box>
+    
+    
+                    </Box>
 
 
 )
