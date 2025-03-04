@@ -18,6 +18,7 @@ const EditPortfolio = () => {
 
     return     (
         <>
+        <p>{portfolio.name}</p>
         </>
     )
 }

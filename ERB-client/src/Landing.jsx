@@ -59,8 +59,6 @@ const Landing = () => {
                         <Box >
                             <h1 className="zen-font" style={{fontSize:'5rem', color:'white'}}> Elizabeth Barnes Design</h1>
                         </Box>
-    
-    
                     </Box>
 
 

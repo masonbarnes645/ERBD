@@ -10,6 +10,7 @@ import Login from "./Login";
 import ControlPanel from "./ControlPanel";
 import ControlPhoto from "./ControlPhoto";
 import About from "./AboutMobile";
+import EditPortfolio from "./EditPortfolio";
 
 export const router =  createBrowserRouter(
     [
@@ -40,6 +41,10 @@ export const router =  createBrowserRouter(
                 {
                     path: "/products/:productId",
                     element: <ProductDetails />
+                },
+                {
+                    path: "/products/edit/:productId",
+                    element: <EditPortfolio />
                 },
                 {
                     path: "/login",
