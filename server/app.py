@@ -38,6 +38,8 @@ mail = Mail(app)
 @app.route("/control")
 @app.route("/control-photo")
 @app.route("/portfolios/edit/<int:id>")
+@app.route("/control-product")
+@app.route("/control-portfolio")
 def index (id = 0):
     return render_template("index.html")
 
