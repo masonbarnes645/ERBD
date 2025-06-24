@@ -21,7 +21,7 @@ const EditPortfolio = () => {
 
     return     (
         <>
-        <p>{portfolio.name}</p>
+        <p>{portfolio.title}</p>
         </>
     )
 }
