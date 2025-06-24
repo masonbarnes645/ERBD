@@ -40,9 +40,6 @@ const App = () => {
     loadProducts();
   }, []);
 
-  
-
-
   return (
     <>
       <UserProvider>

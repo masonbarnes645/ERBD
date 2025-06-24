@@ -1,4 +1,4 @@
-import { deletePortfolio, deleteProduct } from "./api";
+import { deletePortfolio } from "./api";
 import { Box } from "@mui/material";
 import { useOutletContext } from "react-router-dom";
 
@@ -7,7 +7,6 @@ const CPoL = () => {
     const { portfolios } = useOutletContext()
     const handleDelete = (id) => {
         deletePortfolio(id)
-
     }
     return (
         <Box sx={{ bgcolor: 'black', height: '15rem', overflow: 'scroll', width: '13rem', overflowX: 'hidden', color:'white' }}>

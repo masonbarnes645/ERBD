@@ -88,8 +88,8 @@ const PostForms = () => {
     return (
         <Box display={'flex'} color={'white'}>
             <Box sx={{ paddingTop: 20, display: 'flex', flexDirection: 'column', maxWidth: '10rem' }}>
-                <button onClick={toggleForm} name="product">Product</button>
-                <button onClick={toggleForm} name="portfolio">Portfolio</button>
+                <button onClick={toggleForm} name="product">Add New Product</button>
+                <button onClick={toggleForm} name="portfolio">Add New Portfolio</button>
                 <Link to={'/control-photo'}>
                     <button> Add photos</button>
                 </Link>
