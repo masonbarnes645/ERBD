@@ -9,7 +9,7 @@ const ProductDetailsLarge = ({ product }) => {
         setMainPhotoId(index)
     }
     return (
-        <Box display={'flex'} justifyContent={'center'}>
+        <Box display={'flex'} justifyContent={'center'} marginTop={'5rem'}>
             <Box display={'flex'} flexDirection={'column'} paddingRight={'1rem'}>
                 {product.photos?.slice(0, 6).map((photo, index) => (
                     <Box sx={{

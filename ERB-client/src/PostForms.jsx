@@ -121,24 +121,6 @@ const PostForms = () => {
                                         <ErrorMessage name="price" component="div" />
                                     </label>
                                     <br />
-                                    {/* <label>
-                                        Main Image:
-                                        <input type="file" name="image" onChange={handleFileChange} />
-                                    </label>
-                                    <br />
-                                    <div>
-                                        {tags.map(tag => (
-                                            <label key={tag.id}>
-                                                {tag.name}
-                                                <input
-                                                    type="checkbox"
-                                                    value={tag.id}
-                                                    onChange={handleCheckboxChange}
-                                                />
-                                            </label>
-                                        ))}
-                                    </div>
-                                    <br /> */}
                                     <button type="submit" disabled={isSubmitting}>Submit Product</button>
                                 </Form>
                             </Box>

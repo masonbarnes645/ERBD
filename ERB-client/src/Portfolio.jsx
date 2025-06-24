@@ -1,9 +1,7 @@
-import { useEffect, useState } from "react"
 import PortfolioSlate from "./PortfolioSlate"
 import Grid from '@mui/material/Grid2';
 
 
-import { fetchPortfolios } from "./api";
 import { useOutletContext } from "react-router-dom";
 
 const Portfolio = () => {
