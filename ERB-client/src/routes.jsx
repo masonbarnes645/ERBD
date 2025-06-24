@@ -11,6 +11,8 @@ import ControlPanel from "./ControlPanel";
 import ControlPhoto from "./ControlPhoto";
 import About from "./AboutMobile";
 import EditPortfolio from "./EditPortfolio";
+import CPoL from "./ControlPortfolioList";
+import CPL from "./ControlProductList";
 
 export const router =  createBrowserRouter(
     [
@@ -61,6 +63,14 @@ export const router =  createBrowserRouter(
                 {
                     path: "/about",
                     element: <About />
+                },
+                {
+                    path:"/control-portfolio",
+                    element: <CPoL />
+                },
+                {
+                    path:"control-product",
+                    element: <CPL />
                 }
             ]
         }
