@@ -41,7 +41,7 @@ const NavBar = () => {
                                     <ListItemText primary="Contact" />
                                 </ListItem>
                                 <ListItem button onClick={() => { navigate("/products"); handleDrawerToggle(); }}>
-                                    <ListItemText primary="Shop" />
+                                    <ListItemText primary="The Attic" />
                                 </ListItem>
                                 <ListItem button onClick={() => { navigate("/portfolios"); handleDrawerToggle(); }}>
                                     <ListItemText primary="Portfolio" />
@@ -56,7 +56,7 @@ const NavBar = () => {
                             Portfolio
                         </Button>
                         <Button variant="text" onClick={() => navigate("/products")} sx={{ color: "white", fontFamily: '"Zen Antique", serif' }}>
-                            Shop
+                            The Attic
                         </Button>
                         <Button variant="text" onClick={() => navigate("/contact-us")} sx={{ color: "white", fontFamily: '"Zen Antique", serif' }}>
                             Contact
