@@ -5,7 +5,7 @@ import CPoL from "./ControlPortfolioList"
 import { useContext } from "react"
 import { UserContext } from "./usercontext"
 import { useNavigate } from "react-router-dom"
-
+import toast from "react-hot-toast"
 
 const ControlPanel = () => {
     const { user } = useContext(UserContext);
@@ -20,8 +20,8 @@ const ControlPanel = () => {
                 throw new Error("Failed to log out");
             }
     
-            navigate('/')
             toast.success("logged out");
+            navigate('/')
         }
         catch (errObj) {
             toast.error(errObj.error);
