@@ -22,11 +22,11 @@ const Login = () => {
         }
     }
     return (
-        <Box paddingTop={'30rem'} bgcolor={'black'}>
+        <Box paddingTop={'3rem'}>
             <form onSubmit={(e) => handleSubmit(e)} >
-                <label style={{ color: 'white' }}>
-                    username: <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
-                    password: <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+                <label style={{ color: 'black' }}>
+                    Username: <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
+                    Password: <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
                 </label>
                 <button type="submit">Submit</button>
             </form>
