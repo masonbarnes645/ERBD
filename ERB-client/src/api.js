@@ -221,3 +221,29 @@ export const postPhoto = async (photoData) => {
         console.error("Error during photo upload:", err.message);
     }
 };
+
+// Account
+
+export const login = async (username, password) => {
+    try {
+        const response = await fetch(`${API_URL}/login`, {
+            method:'POST',
+            body: JSON.stringify({
+                username: username,
+                password: password
+            }),
+        })
+        if (!response.ok){
+            toast.error('login failed')
+        }
+        const result = await response.json()
+        return result
+        
+
+    } catch(err) {
+        console.error("Error during login:", err.message)
+    }
+}
+
+
+

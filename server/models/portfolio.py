@@ -18,3 +18,4 @@ class Portfolio(db.Model, SerializerMixin):
         uselist=True
     )
 
+# add an 'order' integer column, sort by this column
