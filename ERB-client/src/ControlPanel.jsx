@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom"
 import toast from "react-hot-toast"
 
 const ControlPanel = () => {
-    const { user } = useContext(UserContext);
+    const { user, setUser } = useContext(UserContext);
     const navigate = useNavigate() 
 
     useEffect(() => {
@@ -23,6 +23,7 @@ const ControlPanel = () => {
                 throw new Error("Failed to log out");
             }
     
+            setUser(null)
             toast.success("logged out");
         }
         catch (errObj) {
