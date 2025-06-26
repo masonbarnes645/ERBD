@@ -10,6 +10,7 @@ class Photo(db.Model, SerializerMixin ):
     file_url= db.Column(db.String, nullable=False)
     owner_type = db.Column(db.String, nullable=False)
     owner_id = db.Column(db.Integer, nullable=False)
+    ordinal = db.Column(db.Integer)
 
     serialize_rules = ("-product", "-portfolio")
 

@@ -12,9 +12,6 @@ from dotenv import load_dotenv
 load_dotenv()
 
 
-
-
-
 from models.photo import Photo
 from models.portfolio import Portfolio
 from models.admin import Admin
