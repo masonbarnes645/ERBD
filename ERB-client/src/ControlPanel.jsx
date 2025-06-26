@@ -2,7 +2,7 @@ import { Box } from "@mui/material"
 import PostForms from "./PostForms"
 import CPL from "./ControlProductList"
 import CPoL from "./ControlPortfolioList"
-import { useContext } from "react"
+import { useContext, useEffect } from "react"
 import { UserContext } from "./usercontext"
 import { useNavigate } from "react-router-dom"
 import toast from "react-hot-toast"
@@ -11,6 +11,9 @@ const ControlPanel = () => {
     const { user } = useContext(UserContext);
     const navigate = useNavigate() 
 
+    useEffect(() => {
+        if (!user) navigate('/')
+    }, (user, navigate))
     const handleLogout = async () =>{
         try {
                 const res = await fetch(`/api/v1/logout`, {
@@ -21,7 +24,6 @@ const ControlPanel = () => {
             }
     
             toast.success("logged out");
-            navigate('/')
         }
         catch (errObj) {
             toast.error(errObj.message);
