@@ -16,7 +16,7 @@ const ControlPanel = () => {
                 const res = await fetch(`/api/v1/logout`, {
                 method: "DELETE",
             });
-            if (!response.ok) {
+            if (!res.ok) {
                 throw new Error("Failed to log out");
             }
     
@@ -24,7 +24,7 @@ const ControlPanel = () => {
             navigate('/')
         }
         catch (errObj) {
-            toast.error(errObj.error);
+            toast.error(errObj.message);
         }
     }
 
