@@ -37,8 +37,8 @@ const ControlPanel = () => {
         user ? 
             <Box>
                 <PostForms />
-                <CPL />
-                <CPoL />
+                <button onClick={() => {navigate('/control-product')}}> View/Edit Products</button>
+                <button onClick={() => {navigate('/control-portfolio')}}> View/Edit Portfolios</button>
                 <button onClick={handleLogout}>Logout</button>   
             </Box>
         : 
