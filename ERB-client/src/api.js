@@ -235,6 +235,7 @@ export const login = async (username, password) => {
         })
         if (!response.ok){
             toast.error('login failed')
+            return
         }
         const result = await response.json()
         return result

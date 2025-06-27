@@ -20,6 +20,10 @@ const EditPortfolio = () => {
         loadPortfolio();
     }, [])
 
+    const handleSave = () => {
+        
+    }
+
     return (
         <Box marginTop={'5rem'} >
             <Box textAlign={'center'} color={'gray'} borderBottom={'solid'}>
@@ -34,6 +38,7 @@ const EditPortfolio = () => {
                     </ImageListItem>
                 ))}
             </ImageList>
+            <button onClick={handleSave}> Save Changes </button>
         </Box>
     )
 }
