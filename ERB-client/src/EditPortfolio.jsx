@@ -29,7 +29,7 @@ const EditPortfolio = () => {
             </Box>
             <ImageList variant="standard" gap={6} sx={{ marginX: '1rem', marginTop: '2rem' }}>
                 {portfolio.photos.map((photo) => (
-                    <ImageListItem key={photo.id}>
+                    <ImageListItem key={photo.id} style={{height:'50%', width:'50%'}}>
                         <img src={photo.file_url} alt={photo.title} />
                     </ImageListItem>
                 ))}
