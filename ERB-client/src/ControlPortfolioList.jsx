@@ -1,14 +1,20 @@
 import { deletePortfolio } from "./api";
 import { Box } from "@mui/material";
 import { useOutletContext } from "react-router-dom";
+import { UserContext } from "./usercontext"
+import { useContext } from "react";
+
 
 
 const CPoL = () => {
     const { portfolios } = useOutletContext()
+    const { user } = useContext(UserContext);
+    
     const handleDelete = (id) => {
         deletePortfolio(id)
     }
     return (
+        user ?
         <Box sx={{ bgcolor: 'black', overflow: 'scroll', overflowX: 'hidden', color:'white' }}>
             <h4> Portfolios </h4>
             <ul>
@@ -17,6 +23,8 @@ const CPoL = () => {
                 ))}
             </ul>
         </Box>
+        : navigate('/')
+
     );
 
 }
