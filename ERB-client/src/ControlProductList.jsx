@@ -12,7 +12,7 @@ const CPL = () => {
 
     }
     return (
-        <Box sx={{ bgcolor: 'black', height: '15rem', overflow: 'scroll', width: '13rem', overflowX: 'hidden', color:'white' }}>
+        <Box sx={{ bgcolor: 'black', overflow: 'scroll', overflowX: 'hidden', color:'white' }}>
             <h4> Products </h4>
             <ul>
                 {products?.map((product) => (
