@@ -28,10 +28,10 @@ export const router =  createBrowserRouter(
                     path: "/portfolios",
                     element: <Portfolio />
                 },
-                {
-                    path: "/products",
-                    element: <Products />
-                },
+                // {
+                //     path: "/products",
+                //     element: <Products />
+                // },
                 {
                     path: "/contact-us",
                     element: <Contact />
@@ -39,10 +39,10 @@ export const router =  createBrowserRouter(
                 {
                     path: "/portfolios/:portfolioId",
                     element: <PortfolioDetails />
-                },
-                {
-                    path: "/products/:productId",
-                    element: <ProductDetails />
+                // },
+                // {
+                //     path: "/products/:productId",
+                //     element: <ProductDetails />
                 },
                 {
                     path: "/portfolios/edit/:portfolioId",

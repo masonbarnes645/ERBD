@@ -39,7 +39,7 @@ const Landing = () => {
                     </Box>
                     <Box sx={{ display: 'flex', flexDirection: 'column', width: '60%', marginX: '20%', gap: '3rem', paddingTop: '4rem' }}>
                         <button onClick={() => navigate('/portfolios')}>View Portfolio</button>
-                        <button onClick={() => navigate('/products')}>View Furniture</button>
+                        {/* <button onClick={() => navigate('/products')}>View Furniture</button> */}
                         <button onClick={() => navigate('/contact-us')}>Contact Us</button>
                         <button onClick={() => navigate('/about')}>About EBD</button>
                     </Box>

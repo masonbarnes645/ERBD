@@ -23,6 +23,8 @@ const EditPortfolio = () => {
     const handleSave = () => {
         
     }
+    
+    // ADD HANDLE TO DRAG PICTURE/ CHANGE ORDER  || HANDLESAVE = PATCH CALL TO CHANGE PHOTO.ORDINAL
 
     return (
         <Box marginTop={'5rem'} >
